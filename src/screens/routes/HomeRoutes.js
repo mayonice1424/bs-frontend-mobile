@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import BerandaScreen from '../home/BerandaScreen';
+import LayoutScreen from '../LayoutScreen';
 
 const Stack = createNativeStackNavigator();
 
