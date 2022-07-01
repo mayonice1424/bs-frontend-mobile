@@ -14,7 +14,22 @@ const Tab = createBottomTabNavigator();
 const MainScreen = ({navigation}) => {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          tabBarStyle: { 
+            position: 'absolute',
+            height : 60,
+            borderTopEndRadius:20,
+            borderTopStartRadius:20,
+            shadowColor : "#000",
+            shadowOpacity : 0.86,
+            shadowOffset : {
+              width :20,
+              height:100,
+            } 
+          },
+        }}
+        >
         <Tab.Screen
           name="Home"
           component={HomeRoutes}
@@ -82,7 +97,7 @@ const MainScreen = ({navigation}) => {
             tabBarLabel: (props) => {
               return(
                 <Text style={{fontSize: 10, fontWeight: "bold" ,color : props.focused ? "#4AD482" : "#1D2E3D"}}>
-                  Beranda
+                  Profil
                 </Text>
               )
             },
