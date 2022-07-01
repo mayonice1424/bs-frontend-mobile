@@ -1,74 +1,134 @@
 import React, {useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
+import {View, Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import Profil from './routes/ProfileRoutes';
 import HomeRoutes from './routes/HomeRoutes';
+import Kerajinan from './routes/KerajinanRoutes';
+import Artikel from './routes/ArtikelRoutes';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Feather from 'react-native-vector-icons/Feather';
 
 const Tab = createBottomTabNavigator();
 
 const MainScreen = ({navigation}) => {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({route}) => ({
-          tabBarIcon: ({focused, color, size}) => {
-            let iconName;
-
-            if (route.name === 'Home') {
-              iconName = focused ? 'ios-home' : 'ios-home-outline';
-            } else if (route.name === 'Sampah') {
-              iconName = focused ? 'reader' : 'reader-outline';
-            } else if (route.name === 'Kerajinan') {
-              iconName = focused ? 'ios-journal' : 'ios-journal-outline';
-            } else if (route.name === 'Profile') {
-              iconName = focused ? 'menu' : 'menu-outline';
-            }
-
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-          tabBarActiveTintColor: '#518fed',
-          tabBarInactiveTintColor: 'gray',
-          tabBarHideOnKeyboard: true,
-        })}>
+      <Tab.Navigator>
         <Tab.Screen
           name="Home"
           component={HomeRoutes}
-          options={{headerShown: false, unmountOnBlur: true}}
+          options={{
+            headerShown: false,
+            unmountOnBlur: true,
+            tabBarLabel: props => {
+              return (
+                <Text
+                  style={{
+                    fontSize: 10,
+                    fontWeight: 'bold',
+                    color: props.focused ? '#4AD482' : '#1D2E3D',
+                  }}>
+                  Beranda
+                </Text>
+              );
+            },
+            tabBarIcon: tabInfo => {
+              return (
+                <Ionicons
+                  name="home-outline"
+                  size={30}
+                  color={tabInfo.focused ? '#4AD482' : '#1D2E3D'}
+                />
+              );
+            },
+          }}
         />
         <Tab.Screen
-          name="Sampah"
-          component={HomeRoutes}
+          name="Artikel"
+          component={Artikel}
           options={{
-            title: 'Daftar Pemesanan',
-            headerStyle: {
-              backgroundColor: '#518fed',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-              alignItems: 'center',
-            },
-            headerTitleAlign: 'center',
+            headerShown: false,
             unmountOnBlur: true,
+            tabBarLabel: props => {
+              return (
+                <Text
+                  style={{
+                    fontSize: 10,
+                    fontWeight: 'bold',
+                    color: props.focused ? '#4AD482' : '#1D2E3D',
+                  }}>
+                  Artikel
+                </Text>
+              );
+            },
+            tabBarIcon: tabInfo => {
+              return (
+                <Ionicons
+                  name="document-text-outline"
+                  size={30}
+                  color={tabInfo.focused ? '#4AD482' : '#1D2E3D'}
+                />
+              );
+            },
           }}
         />
         <Tab.Screen
           name="Kerajinan"
-          component={HomeRoutes}
+          component={Kerajinan}
           options={{
-            title: 'Daftar Pembatalan',
-            headerStyle: {
-              backgroundColor: '#f04313',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-              alignItems: 'center',
-            },
-            headerTitleAlign: 'center',
+            headerShown: false,
             unmountOnBlur: true,
+            tabBarLabel: props => {
+              return (
+                <Text
+                  style={{
+                    fontSize: 10,
+                    fontWeight: 'bold',
+                    color: props.focused ? '#4AD482' : '#1D2E3D',
+                  }}>
+                  Kerajinan
+                </Text>
+              );
+            },
+            tabBarIcon: tabInfo => {
+              return (
+                <Feather
+                  name="shopping-bag"
+                  size={30}
+                  color={tabInfo.focused ? '#4AD482' : '#1D2E3D'}
+                />
+              );
+            },
+          }}
+        />
+        <Tab.Screen
+          name="Profil"
+          component={Profil}
+          options={{
+            headerShown: false,
+            unmountOnBlur: true,
+            tabBarLabel: props => {
+              return (
+                <Text
+                  style={{
+                    fontSize: 10,
+                    fontWeight: 'bold',
+                    color: props.focused ? '#4AD482' : '#1D2E3D',
+                  }}>
+                  Profil
+                </Text>
+              );
+            },
+            tabBarIcon: tabInfo => {
+              return (
+                <Ionicons
+                  name="md-person-circle-outline"
+                  size={32}
+                  color={tabInfo.focused ? '#4AD482' : '#1D2E3D'}
+                />
+              );
+            },
           }}
         />
       </Tab.Navigator>

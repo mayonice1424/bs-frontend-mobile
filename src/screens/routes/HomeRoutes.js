@@ -7,7 +7,7 @@ import LayoutScreen from '../LayoutScreen';
 
 const Stack = createNativeStackNavigator();
 
-function Route() {
+function HomeRoute() {
   return (
     <Stack.Navigator
       initialRouteName="HomeScreen"
@@ -17,4 +17,4 @@ function Route() {
   );
 }
 
-export default Route;
+export default HomeRoute;
