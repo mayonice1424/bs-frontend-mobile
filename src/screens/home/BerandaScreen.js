@@ -4,7 +4,7 @@ import {View, Text, SafeAreaView, ScrollView} from 'react-native';
 const BerandaScreen = ({navigation}) => {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text onPress={() => navigation.navigate('Home')}>BerandaScreen</Text>
+      <Text onPress={() => navigation.navigate('Home')}>Beranda Screen</Text>
     </View>
   );
 };
