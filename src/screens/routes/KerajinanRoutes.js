@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, SafeAreaView, ScrollView} from 'react-native';
 
-const Sampah = ({navigation}) => {
+const Kerajinan = ({navigation}) => {
   return (
     <View>
       <Text>Sampah</Text>
@@ -9,4 +9,4 @@ const Sampah = ({navigation}) => {
   );
 };
 
-export default Sampah;
+export default Kerajinan;
