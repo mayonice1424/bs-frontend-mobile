@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -6,74 +6,14 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import layoutStyle from '../../styles/layoutStyle';
 import loginStyle from '../../styles/loginStyle';
 
-const LoginScreen = ({navigation}) => {
-  const [checkToken, setCheckToken] = useState(null);
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = () => {
-    try {
-      AsyncStorage.getItem('token').then(value => {
-        if (value != null) {
-          navigation.navigate('TabNavigator');
-        }
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const setData = async respons => {
-    console.log(respons);
-    if (respons != null) {
-      try {
-        var user = {
-          id: respons.user['id'],
-          token: respons.token,
-        };
-        await AsyncStorage.setItem('token', JSON.stringify(user));
-      } catch (error) {
-        console.log(error);
-      } finally {
-        console.log('masuk sini');
-        navigation.navigate('TabNavigator');
-      }
-    }
-  };
-
-  const loginUser = async credentials => {
-    return await fetch(`http://192.168.0.5:8000/bang-salam-api/login-user/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(credentials),
-    })
-      .then(response => response.json())
-      .then(response => {
-        console.log(response);
-        setCheckToken(response);
-        if (response.token != null) {
-          setData(response);
-        } else if (response.non_field_errors[0] == 'Incorrect Credentials') {
-          console.log('Salah');
-          setModalVisible(true);
-        }
-      })
-      .catch(error => console.log(error));
-  };
-
-  const namaHalaman = 'Masuk';
-
+const ResetPasswordScreen = ({navigation}) => {
   return (
     <View style={layoutStyle.container}>
       <View style={layoutStyle.content}>
@@ -144,14 +84,10 @@ const LoginScreen = ({navigation}) => {
               );
             }}
           </Formik>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Reset Password')}>
-            <Text>Forgot Password?</Text>
-          </TouchableOpacity>
         </ScrollView>
       </View>
     </View>
   );
 };
 
-export default LoginScreen;
+export default ResetPasswordScreen;

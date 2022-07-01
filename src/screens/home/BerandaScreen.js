@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, Text, SafeAreaView, ScrollView} from 'react-native';
+import {View, Text, SafeAreaView, ScrollView, Image} from 'react-native';
 
 import layoutStyle from '../../styles/layoutStyle';
 import HeaderComponent from '../../components/HeaderComponent';
+import berandaStyle from '../../styles/berandaStyle';
 
 const BerandaScreen = ({navigation}) => {
   const namaHalaman = 'Beranda';
@@ -13,7 +14,15 @@ const BerandaScreen = ({navigation}) => {
         <HeaderComponent halaman={namaHalaman} />
       </View>
       <View style={layoutStyle.content}>
-        <Text>{namaHalaman}</Text>
+        <View style={berandaStyle.box}>
+          <View>
+            <Image></Image>
+          </View>
+          <View>
+            <Text>Hai, Sarah Amelia</Text>
+            <Text>Apakah sudah menjual sampah hari ini?</Text>
+          </View>
+        </View>
       </View>
     </View>
   );

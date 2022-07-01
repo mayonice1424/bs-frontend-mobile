@@ -22,6 +22,11 @@ const layoutStyle = StyleSheet.create({
     marginLeft: '4%',
     marginRight: '4%',
   },
+  touchable: {
+    width: 30,
+    height: 30,
+    backgroundColor: 'black',
+  },
 });
 
 export default layoutStyle;
