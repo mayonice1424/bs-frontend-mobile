@@ -36,10 +36,13 @@ const textStyle = StyleSheet.create({
   subtitle2: {
     fontFamily: 'Poppins-Medium',
     fontSize: 18,
+    textAlign: 'center',
   },
   button : {
     fontFamily: 'Poppins-Semibold',
     fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
   }
 });
 
