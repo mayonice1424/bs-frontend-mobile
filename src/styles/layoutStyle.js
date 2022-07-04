@@ -1,8 +1,12 @@
 import {View, Text, StyleSheet, Colors} from 'react-native';
+import colorStyle from './colorStyle';
 
 const layoutStyle = StyleSheet.create({
   container: {
+    alignItems:"center",
     flex: 1,
+    backgroundColor: '#FCFFFC',
+    padding: 0,
   },
   box: {
     width: '100%',

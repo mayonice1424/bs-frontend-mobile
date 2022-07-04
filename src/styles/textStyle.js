@@ -37,6 +37,10 @@ const textStyle = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
     fontSize: 18,
   },
+  button : {
+    fontFamily: 'Poppins-Semibold',
+    fontSize: 18,
+  }
 });
 
 export default textStyle;
