@@ -1,33 +1,56 @@
+import * as React from 'react';
+import AppIntroSlider from 'react-native-app-intro-slider';
+import homeLoginStyle from '../../styles/homeLogin';
+import Onboarding from '../../styles/onboarding';
+import colorStyle from '../../styles/colorStyle';
+import textStyle from '../../styles/textStyle';
 import { Text, View,Image, TouchableOpacity } from "react-native";
-import React, { Component } from "react";
-import homeLoginStyle from "../../styles/homeLogin";
-import Onboarding from "../../styles/onboarding";
-import colorStyle from "../../styles/colorStyle";
-import textStyle from "../../styles/textStyle";
+const slides = [
+  {
+    key: 1,
+    text: 'Mulai kebiasaan untuk membuang dan memilah sampah anorganik pada tempatnya',
+    image: require('.././../images/./Image/Onboarding1.png'),
+  },
+  {
+    key: 2,
+    text: 'Sampah dapat ditukarkan melalui bank sampah untuk menjadi koin yang akan tersimpan di akun kamu',
+    image: require('.././../images/./Image/Onboarding2.png'),
+  },
+  {
+    key: 3,
+    text: 'Koin tersebut dapat ditukarkan menjadi uang rupiah',
+    image: require('.././../images/./Image/Onboarding3.png'),
+  }
+];
 
-
-class UserOnBoarding1 extends Component {
-    constructor(props) {
-    super(props);
-    this.state = {};
-    }
-    render () {
-return (
-    <View style={homeLoginStyle.container}>
-        <View>
-            <Image style={Onboarding.image}
-            source={require('../../images/Image/Onboarding1.png')} />
-        </View>
+export default class UserOnBoarding extends React.Component {
+  state = {
+    showRealApp: false
+  }
+  _renderItem = ({ item }) => {
+    return (
+      <View style={homeLoginStyle.container}>
+        <Image style={Onboarding.image}
+        source={item.image} />
         <View style={[Onboarding.caption,colorStyle.backgroundYellowDashboard]}>
-            <Text style = {[textStyle.subtitle2,colorStyle.blackForFontAndAnything]}>Mulai kebiasaan untuk membuang dan memilah sampah anorganik pada tempatnya</Text>
+            <Text style = {[textStyle.subtitle2,colorStyle.blackForFontAndAnything]}>{item.text}</Text>
         </View>
         <View style = {[Onboarding.circleContainer]}>
-            <View style= {[colorStyle.backgroundPrimerGreenActive,Onboarding.circle]}></View>
-            <View style= {[colorStyle.borderColorGreenActive,Onboarding.circle]}></View>
-            <View style= {[colorStyle.borderColorGreenActive,Onboarding.circle]}></View>
         </View>
         <TouchableOpacity style = {[Onboarding.button,colorStyle.backgroundPrimerGreenActive]} onPress={() => this.props.navigation.navigate('HomeLogin')}><Text style={[textStyle.button,colorStyle.whiteForCard]}>Get Started</Text></TouchableOpacity>
-    </View>
-  )}
-};
-export default UserOnBoarding1;
+      </View>
+    );
+  }
+  _onDone = () => {
+    // User finished the introduction. Show real app through
+    // navigation or simply by controlling state
+    this.setState({ showRealApp: true });
+  };
+  render() {
+    if (this.state.showRealApp) {
+      return <UserOnBoarding />;
+    } else {
+      return <AppIntroSlider activeDotStyle={[colorStyle.backgroundPrimerGreenActive,Onboarding.circle]} dotStyle={[colorStyle.borderColorGreenActive,Onboarding.circle]} renderItem={this._renderItem} data={slides} onDone={this._onDone}/>;
+    }
+  }
+}
