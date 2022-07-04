@@ -59,6 +59,64 @@ const colorStyle = StyleSheet.create({
   greenRabun: {
     color: '#2E4F36',
   },
+  backgroundYoungGreen: {
+    color: '#54E346',
+  },
+  backgroundTersier: {
+    backgroundColor: '#40CD78',
+  },
+  backgroundYellow: {
+    backgroundColor: '#C2B919',
+  },
+  backgroundDisableButton: {
+    color: '#E0DECA',
+  },
+  backgroundPrimerGreenActive: {
+    backgroundColor: '#4AD482',
+  },
+  backgroundPrimerBackground: {
+    color: '#FCFFFC',
+  },
+  backgroundGreenGradient: {
+    color: '#63E798',
+  },
+  backgroundBlackForFontAndAnything: {
+    color: '#1D2E3D',
+  },
+  backgroundStroke: {
+    stroke: '#000000',
+    opacity: 0.2,
+  },
+  backgroundTextColorWhite: {
+    color: '#FCFFFC',
+  },
+  backgroundSoftPurple: {
+    color: '#F3EFFF',
+  },
+  backgroundSoftGreen: {
+    color: '#E8FFF1',
+  },
+  backgroundSoftYellow: {
+    color: '#FFF9EC',
+  },
+  backgroundSoftRed: {
+    color: '#FFF1F0',
+  },
+  backgroundDarkGreen: {
+    color: '#26C165',
+  },
+  backgroundWhiteForCard: {
+    color: '#FFFFFF',
+  },
+  backgroundPencairan: {
+    color: '#E94867',
+  },
+  backgroundYellowDashboard: {
+    color: '#FCF9C6',
+  },
+  backgroundGreenRabun: {
+    color: '#2E4F36',
+  },
 });
 
 export default colorStyle;

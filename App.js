@@ -1,9 +1,8 @@
 import * as React from 'react';
-import {View, Text} from 'react-native';
-import MainScreen from './src/screens/MainScreen';
+import HomeLogin from './src/screens/routes/HomeLogin'; 
 
-function App() {
-  return <MainScreen />;
+export default function App() {
+  return (
+      <HomeLogin />
+  );
 }
-
-export default App;
