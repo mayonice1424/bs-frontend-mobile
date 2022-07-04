@@ -35,13 +35,11 @@ button : {
     justifyContent:'center',
     borderRadius: 10,
     borderColor: '#171717',
-    borderWidth: 1,
-},
-shadowProp: {
-    shadowColor: '#171717',
-    shadowOffset: {width: -2, height: 4},
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
+    shadowOpacity: 0.8,
+    elevation: 6,
+    backgroundColor : "#0000",
+    shadowRadius: 15 ,
+    shadowOffset : { width: 56, height: 13},
 },
 text : {
   textAlign:"center",

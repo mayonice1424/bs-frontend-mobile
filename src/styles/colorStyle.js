@@ -60,7 +60,7 @@ const colorStyle = StyleSheet.create({
     color: '#2E4F36',
   },
   backgroundYoungGreen: {
-    color: '#54E346',
+    backgroundColor: '#54E346',
   },
   backgroundTersier: {
     backgroundColor: '#40CD78',
@@ -69,54 +69,58 @@ const colorStyle = StyleSheet.create({
     backgroundColor: '#C2B919',
   },
   backgroundDisableButton: {
-    color: '#E0DECA',
+    backgroundColor: '#E0DECA',
   },
   backgroundPrimerGreenActive: {
     backgroundColor: '#4AD482',
   },
   backgroundPrimerBackground: {
-    color: '#FCFFFC',
+    backgroundColor: '#FCFFFC',
   },
   backgroundGreenGradient: {
     color: '#63E798',
   },
   backgroundBlackForFontAndAnything: {
-    color: '#1D2E3D',
+    backgroundColor: '#1D2E3D',
   },
   backgroundStroke: {
     stroke: '#000000',
     opacity: 0.2,
   },
   backgroundTextColorWhite: {
-    color: '#FCFFFC',
+    backgroundColor: '#FCFFFC',
   },
   backgroundSoftPurple: {
-    color: '#F3EFFF',
+    backgroundColor: '#F3EFFF',
   },
   backgroundSoftGreen: {
     color: '#E8FFF1',
   },
   backgroundSoftYellow: {
-    color: '#FFF9EC',
+    backgroundColor: '#FFF9EC',
   },
   backgroundSoftRed: {
-    color: '#FFF1F0',
+    backgroundColor: '#FFF1F0',
   },
   backgroundDarkGreen: {
-    color: '#26C165',
+    backgroundColor: '#26C165',
   },
   backgroundWhiteForCard: {
-    color: '#FFFFFF',
+    backgroundColor: '#FFFFFF',
   },
   backgroundPencairan: {
-    color: '#E94867',
+    backgroundColor: '#E94867',
   },
   backgroundYellowDashboard: {
-    color: '#FCF9C6',
+    backgroundColor: '#FCF9C6',
   },
   backgroundGreenRabun: {
-    color: '#2E4F36',
+    backgroundColor: '#2E4F36',
   },
+  borderColorGreenActive:{
+    borderColor: '#40CD78',
+    borderWidth : 1,
+  }
 });
 
 export default colorStyle;
