@@ -3,7 +3,7 @@ import colorStyle from './colorStyle';
 
 const layoutStyle = StyleSheet.create({
   container: {
-    alignItems:"center",
+    // alignItems:"center",
     flex: 1,
     backgroundColor: '#FCFFFC',
     padding: 0,

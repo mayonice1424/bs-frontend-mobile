@@ -5,6 +5,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LoginScreen from '../login/LoginScreen';
 import ResetPasswordScreen from '../login/ResetPasswordScreen';
 import RegistrasiScreen from '../login/RegistrasiScreen';
+import UserOnBoarding from '../login/UserOnBoarding';
+import UserDashboard from '../login/UserDashboard';
 
 import layoutStyle from '../../styles/layoutStyle';
 import colorStyle from '../../styles/colorStyle';
@@ -17,7 +19,7 @@ const Stack = createNativeStackNavigator();
 function LoginRoute({navigation}) {
   return (
     <Stack.Navigator
-      initialRouteName="Registrasi"
+      initialRouteName="UserOnBoarding"
       screenOptions={{
         headerStyle: {
           backgroundColor: '#FCFFFC',
@@ -29,6 +31,20 @@ function LoginRoute({navigation}) {
         headerTitleAlign: 'center',
         headerShadowVisible: false,
       }}>
+      <Stack.Screen
+        name="User On Boarding"
+        component={UserOnBoarding}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="UserDashboard"
+        component={UserDashboard}
+        options={{
+          headerShown: false,
+        }}
+      />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Registrasi" component={RegistrasiScreen} />
       <Stack.Screen name="Reset Password" component={ResetPasswordScreen} />
