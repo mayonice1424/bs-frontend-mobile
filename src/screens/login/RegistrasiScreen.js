@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -14,6 +14,10 @@ import layoutStyle from '../../styles/layoutStyle';
 import loginStyle from '../../styles/loginStyle';
 
 const RegistrasiScreen = ({navigation}) => {
+  const registrasi = async credentials => {
+    navigation.navigate('Registrasi2', credentials);
+  };
+
   return (
     <View style={layoutStyle.container}>
       <View style={layoutStyle.content}>
@@ -22,13 +26,13 @@ const RegistrasiScreen = ({navigation}) => {
             initialValues={{
               nama: '',
               username: '',
-              noTelp: '',
-              kataSandi: '',
+              no_telepon: '',
+              password: '',
               validasiKataSandi: '',
             }}
             onSubmit={(values, actions) => {
               console.log(values);
-              // loginUser(values);
+              registrasi(values);
               actions.setSubmitting(false);
             }}
             validationSchema={Yup.object({
@@ -36,12 +40,12 @@ const RegistrasiScreen = ({navigation}) => {
               username: Yup.string()
                 .required('username dibutuhkan minimal 5 karakter!')
                 .min(5, 'username'),
-              noTelp: Yup.string()
+              no_telepon: Yup.string()
                 .required('No Telp dibutuhkan!')
-                .min(8, 'noTelp'),
-              kataSandi: Yup.string()
+                .min(8, 'no_telepon'),
+              password: Yup.string()
                 .required('Kata Sandi dibutuhkan minimal 8 karakter')
-                .min(8, 'kataSandi'),
+                .min(8, 'password'),
               validasiKataSandi: Yup.string()
                 .required('Silahkan ketik ulang kata sandi!')
                 .min(8, 'validasiKataSandi'),
@@ -90,17 +94,17 @@ const RegistrasiScreen = ({navigation}) => {
                   <TextInput
                     style={loginStyle.input}
                     placeholder="No Telepon"
-                    value={values.noTelp}
+                    value={values.no_telepon}
                     underlineColorAndroid="transparent"
                     placeholderTextColor={'#c4c4c4'}
                     keyboardType="numeric"
                     autoCapitalize="none"
-                    autoCompleteType="noTelp"
-                    onChangeText={handleChange('noTelp')}
-                    onBlur={handleBlur('noTelp')}
+                    autoCompleteType="tel"
+                    onChangeText={handleChange('no_telepon')}
+                    onBlur={handleBlur('no_telepon')}
                   />
-                  {errors.noTelp ? (
-                    <Text style={loginStyle.valid}>{errors.noTelp}</Text>
+                  {errors.no_telepon ? (
+                    <Text style={loginStyle.valid}>{errors.no_telepon}</Text>
                   ) : (
                     <Text style={loginStyle.valid}></Text>
                   )}
@@ -108,16 +112,16 @@ const RegistrasiScreen = ({navigation}) => {
                   <TextInput
                     style={loginStyle.input}
                     placeholder="kata Sandi"
-                    value={values.kataSandi}
+                    value={values.password}
                     underlineColorAndroid="transparent"
                     placeholderTextColor={'#c4c4c4'}
                     autoCapitalize="none"
-                    autoCompleteType="kataSandi"
-                    onChangeText={handleChange('kataSandi')}
-                    onBlur={handleBlur('kataSandi')}
+                    secureTextEntry
+                    onChangeText={handleChange('password')}
+                    onBlur={handleBlur('password')}
                   />
-                  {errors.kataSandi ? (
-                    <Text style={loginStyle.valid}>{errors.kataSandi}</Text>
+                  {errors.password ? (
+                    <Text style={loginStyle.valid}>{errors.password}</Text>
                   ) : (
                     <Text style={loginStyle.valid}></Text>
                   )}

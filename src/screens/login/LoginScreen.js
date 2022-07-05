@@ -51,13 +51,16 @@ const LoginScreen = ({navigation}) => {
   };
 
   const loginUser = async credentials => {
-    return await fetch(`http://192.168.0.5:8000/bang-salam-api/login-user/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    return await fetch(
+      `http://192.168.74.221:8000/bang-salam-api/login-user/`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
       },
-      body: JSON.stringify(credentials),
-    })
+    )
       .then(response => response.json())
       .then(response => {
         console.log(response);

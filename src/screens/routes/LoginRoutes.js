@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LoginScreen from '../login/LoginScreen';
 import ResetPasswordScreen from '../login/ResetPasswordScreen';
 import RegistrasiScreen from '../login/RegistrasiScreen';
+import Registrasi2Screen from '../login/Registrasi2Screen';
 import UserOnBoarding from '../login/UserOnBoarding';
 import UserDashboard from '../login/UserDashboard';
 
@@ -47,6 +48,7 @@ function LoginRoute({navigation}) {
       />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Registrasi" component={RegistrasiScreen} />
+      <Stack.Screen name="Registrasi2" component={Registrasi2Screen} />
       <Stack.Screen name="Reset Password" component={ResetPasswordScreen} />
     </Stack.Navigator>
   );
