@@ -58,19 +58,19 @@ export default class UserOnBoarding extends React.Component {
     this.setState({showRealApp: true});
   };
   render() {
-    const {navigate} = this.props.navigation;
-    try {
-      AsyncStorage.getItem('token').then(value => {
-        if (value != null) {
-          navigate('TabNavigator');
-        }
-      });
-    } catch (error) {
-      console.log(error);
-    }
     if (this.state.showRealApp) {
       return <UserOnBoarding />;
     } else {
+      const {navigate} = this.props.navigation;
+      try {
+        AsyncStorage.getItem('token').then(value => {
+          if (value != null) {
+            navigate('TabNavigator');
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
       return (
         <AppIntroSlider
           activeDotStyle={[

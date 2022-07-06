@@ -208,7 +208,9 @@ const RegistrasiScreen = ({route, navigation}) => {
                   <HorizontalLine />
 
                   <View style={loginStyle.formField}>
-                    <Text>Foto KTP</Text>
+                    <Text style={colorStyle.blackForFontAndAnything}>
+                      Foto KTP
+                    </Text>
                     <TouchableOpacity
                       activeOpacity={0.5}
                       style={loginStyle.uploadButton}
@@ -233,7 +235,9 @@ const RegistrasiScreen = ({route, navigation}) => {
                   </View>
 
                   <View style={loginStyle.formField}>
-                    <Text>Foto Profil</Text>
+                    <Text style={colorStyle.blackForFontAndAnything}>
+                      Foto Profil
+                    </Text>
                     <TouchableOpacity
                       activeOpacity={0.5}
                       style={loginStyle.uploadButton}

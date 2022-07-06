@@ -52,9 +52,9 @@ const RegistrasiScreen = ({navigation}) => {
                   .required('username dibutuhkan!')
                   .min(5, 'username minimal 5 karakter!'),
                 no_telepon: Yup.string()
-                  .required('No Telp dibutuhkan!')
-                  .matches(/^[0-9]+$/, 'NIK harus berupa angka!')
-                  .min(8, 'no_telepon minimal 8 digit!'),
+                  .required('no telepon dibutuhkan!')
+                  .matches(/^[0-9]+$/, 'no telepon harus berupa angka!')
+                  .min(8, 'no telepon minimal 8 digit!'),
                 password: Yup.string()
                   .required('Kata Sandi dibutuhkan!')
                   .min(8, 'password minimal 8 karakter!'),
