@@ -3,6 +3,7 @@ import colorStyle from './colorStyle';
 
 const layoutStyle = StyleSheet.create({
   container: {
+    flex: 1,
     // alignItems:"center",
     height: '100%',
     backgroundColor: '#FCFFFC',
@@ -22,9 +23,10 @@ const layoutStyle = StyleSheet.create({
     flex: 1,
   },
   content: {
-    paddingBottom: '40%',
+    // paddingBottom: '40%',
     marginLeft: '4%',
     marginRight: '4%',
+    height: '100%',
   },
   touchable: {
     width: 30,

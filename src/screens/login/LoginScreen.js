@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  KeyboardAvoidingView,
 } from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
@@ -12,6 +13,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import layoutStyle from '../../styles/layoutStyle';
 import loginStyle from '../../styles/loginStyle';
+import HorizontalLine from '../../components/HorizontalLine';
+import textStyle from '../../styles/textStyle';
+import colorStyle from '../../styles/colorStyle';
 
 const LoginScreen = ({navigation}) => {
   const [checkToken, setCheckToken] = useState(null);
@@ -118,6 +122,7 @@ const LoginScreen = ({navigation}) => {
                   ) : (
                     <Text style={loginStyle.valid}></Text>
                   )}
+                  <HorizontalLine />
 
                   <TextInput
                     style={loginStyle.input}
@@ -135,22 +140,36 @@ const LoginScreen = ({navigation}) => {
                   ) : (
                     <Text style={loginStyle.valid}></Text>
                   )}
+                  <HorizontalLine />
 
-                  <TouchableOpacity
-                    mode="contained"
-                    onPress={() => {
-                      handleSubmit();
-                    }}>
-                    <Text style={loginStyle.ButtonSubmit}>Submit</Text>
-                  </TouchableOpacity>
+                  <View style={loginStyle.buttonContainer}>
+                    <TouchableOpacity
+                      style={loginStyle.button}
+                      mode="contained"
+                      onPress={() => {
+                        handleSubmit();
+                      }}>
+                      <Text
+                        style={[textStyle.button, colorStyle.primerBackground]}>
+                        Masuk
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               );
             }}
           </Formik>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Reset Password')}>
-            <Text>Forgot Password?</Text>
-          </TouchableOpacity>
+          <View style={loginStyle.forgotPassword}>
+            <Text style={[textStyle.body4, colorStyle.blackForFontAndAnything]}>
+              Lupa kata sandi ?{' '}
+            </Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Reset Password')}>
+              <Text style={[textStyle.body4, colorStyle.tersier]}>
+                Klik disini
+              </Text>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </View>
     </View>

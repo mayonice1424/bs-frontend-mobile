@@ -12,6 +12,9 @@ import * as Yup from 'yup';
 
 import layoutStyle from '../../styles/layoutStyle';
 import loginStyle from '../../styles/loginStyle';
+import HorizontalLine from '../../components/HorizontalLine';
+import textStyle from '../../styles/textStyle';
+import colorStyle from '../../styles/colorStyle';
 
 const ResetPasswordScreen = ({navigation}) => {
   return (
@@ -19,19 +22,21 @@ const ResetPasswordScreen = ({navigation}) => {
       <View style={layoutStyle.content}>
         <ScrollView>
           <Formik
-            initialValues={{username: '', password: ''}}
+            initialValues={{username: '', nik: ''}}
             onSubmit={(values, actions) => {
               console.log(values);
-              loginUser(values);
+              reset(values);
               actions.setSubmitting(false);
             }}
             validationSchema={Yup.object({
               username: Yup.string()
-                .required('username is required!')
-                .min(3, 'username'),
-              password: Yup.string()
-                .required('Password is required!')
-                .min(8, 'Password is too short!'),
+                .required('username dibutuhkan!')
+                .min(5, 'username minimal 5 karakter!'),
+              nik: Yup.string()
+                .required('nik dibutuhkan!')
+                .matches(/^[0-9]+$/, 'NIK harus berupa angka!')
+                .min(16, 'nik harus 16 digit!')
+                .max(16, 'nik harus 16 digit!'),
             })}>
             {formikProps => {
               const {handleChange, handleBlur, handleSubmit, values, errors} =
@@ -40,7 +45,7 @@ const ResetPasswordScreen = ({navigation}) => {
                 <View>
                   <TextInput
                     style={loginStyle.input}
-                    placeholder="username"
+                    placeholder="Username"
                     value={values.username}
                     underlineColorAndroid="transparent"
                     placeholderTextColor={'#c4c4c4'}
@@ -55,31 +60,40 @@ const ResetPasswordScreen = ({navigation}) => {
                   ) : (
                     <Text style={loginStyle.valid}></Text>
                   )}
+                  <HorizontalLine />
 
                   <TextInput
                     style={loginStyle.input}
-                    placeholder="Password"
-                    value={values.password}
+                    placeholder="NIK"
+                    value={values.nik}
                     underlineColorAndroid="transparent"
                     placeholderTextColor={'#c4c4c4'}
+                    keyboardType="numeric"
                     autoCapitalize="none"
-                    secureTextEntry
-                    onChangeText={handleChange('password')}
-                    onBlur={handleBlur('password')}
+                    autoCompleteType="nik"
+                    onChangeText={handleChange('nik')}
+                    onBlur={handleBlur('nik')}
                   />
-                  {errors.password ? (
-                    <Text style={loginStyle.valid}>{errors.password}</Text>
+                  {errors.nik ? (
+                    <Text style={loginStyle.valid}>{errors.nik}</Text>
                   ) : (
                     <Text style={loginStyle.valid}></Text>
                   )}
+                  <HorizontalLine />
 
-                  <TouchableOpacity
-                    mode="contained"
-                    onPress={() => {
-                      handleSubmit();
-                    }}>
-                    <Text style={loginStyle.ButtonSubmit}>Submit</Text>
-                  </TouchableOpacity>
+                  <View style={loginStyle.buttonContainer}>
+                    <TouchableOpacity
+                      style={loginStyle.button}
+                      mode="contained"
+                      onPress={() => {
+                        handleSubmit();
+                      }}>
+                      <Text
+                        style={[textStyle.button, colorStyle.primerBackground]}>
+                        Ganti Kata Sandi
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               );
             }}

@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  Alert,
 } from 'react-native';
 
 import moment from 'moment';
@@ -19,6 +20,8 @@ import * as ImagePicker from 'react-native-image-picker';
 import layoutStyle from '../../styles/layoutStyle';
 import loginStyle from '../../styles/loginStyle';
 import HorizontalLine from '../../components/HorizontalLine';
+import textStyle from '../../styles/textStyle';
+import colorStyle from '../../styles/colorStyle';
 
 const RegistrasiScreen = ({route, navigation}) => {
   let data = route.params;
@@ -47,7 +50,7 @@ const RegistrasiScreen = ({route, navigation}) => {
       foto_ktp: KTP,
       foto_profil: Profil,
     };
-    console.log(all_data);
+    // console.log(all_data);
     // const upload_data = new FormData();
     // upload_data.append(all_data);
     const final_data = new FormData();
@@ -62,7 +65,6 @@ const RegistrasiScreen = ({route, navigation}) => {
     final_data.append('nik', all_data.nik);
     final_data.append('foto_ktp', all_data.foto_ktp);
     // console.log('halloo', final_data);
-    navigation.navigate('Login');
 
     return await fetch(
       `http://192.168.74.221:8000/bang-salam-api/register-user/`,
@@ -78,12 +80,30 @@ const RegistrasiScreen = ({route, navigation}) => {
         body: final_data,
       },
     )
-      .then(response => response.json())
       .then(response => {
-        console.log(response);
-        // setCheckToken(response);
+        // console.log(response);
+        // console.log('status: ', response.status);
+        if (response.status === 201) {
+          Alert.alert(
+            'Registrasi Berhasil',
+            'Silahkan melakukan login terlebih dahulu',
+          );
+          navigation.navigate('UserDashboard');
+        } else {
+          Alert.alert(
+            'Registrasi Gagal',
+            'Terdapat data yang tidak dapat digunakan, silahkan cek data kembali',
+          );
+        }
       })
-      .catch(error => console.log(error));
+
+      .catch(error => {
+        Alert.alert(
+          'Registrasi Gagal',
+          'Terdapat data yang tidak dapat digunakan, silahkan cek data kembali',
+        );
+        // console.log(error);
+      });
   };
 
   return (
@@ -98,7 +118,7 @@ const RegistrasiScreen = ({route, navigation}) => {
               role: 'pengguna',
             }}
             onSubmit={(values, actions) => {
-              console.log(values);
+              // console.log(values);
               registrasi(values);
               actions.setSubmitting(false);
             }}
@@ -174,7 +194,7 @@ const RegistrasiScreen = ({route, navigation}) => {
                     value={values.alamat}
                     underlineColorAndroid="transparent"
                     placeholderTextColor={'#c4c4c4'}
-                    keyboardType="numeric"
+                    keyboardType="default"
                     autoCapitalize="none"
                     autoCompleteType="alamat"
                     onChangeText={handleChange('alamat')}
@@ -187,51 +207,69 @@ const RegistrasiScreen = ({route, navigation}) => {
                   )}
                   <HorizontalLine />
 
-                  <TouchableOpacity
-                    activeOpacity={0.5}
-                    style={loginStyle.uploadButton}
-                    onPress={() => {
-                      launchImageLibrary({noData: true}, response => {
-                        if (response) {
-                          setKTP({
-                            ...KTP,
-                            uri: response.assets[0].uri,
-                            type: response.assets[0].type,
-                            name: response.assets[0].fileName,
-                          });
-                          // console.log(response.assets[0].uri);
-                        }
-                      });
-                    }}>
-                    <Text>Upload Foto KTP</Text>
-                  </TouchableOpacity>
+                  <View style={loginStyle.formField}>
+                    <Text>Foto KTP</Text>
+                    <TouchableOpacity
+                      activeOpacity={0.5}
+                      style={loginStyle.uploadButton}
+                      onPress={() => {
+                        launchImageLibrary({noData: true}, response => {
+                          if (response) {
+                            setKTP({
+                              ...KTP,
+                              uri: response.assets[0].uri,
+                              type: response.assets[0].type,
+                              name: response.assets[0].fileName,
+                            });
+                            // console.log(response.assets[0].uri);
+                          }
+                        });
+                      }}>
+                      <Text
+                        style={[textStyle.body4, colorStyle.primerBackground]}>
+                        Upload Foto KTP
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
 
-                  <TouchableOpacity
-                    activeOpacity={0.5}
-                    style={loginStyle.uploadButton}
-                    onPress={() => {
-                      launchImageLibrary({noData: true}, response => {
-                        if (response) {
-                          setProfil({
-                            ...KTP,
-                            uri: response.assets[0].uri,
-                            type: response.assets[0].type,
-                            name: response.assets[0].fileName,
-                          });
-                          // console.log(response.assets[0].uri);
-                        }
-                      });
-                    }}>
-                    <Text>Upload Foto Profil</Text>
-                  </TouchableOpacity>
+                  <View style={loginStyle.formField}>
+                    <Text>Foto Profil</Text>
+                    <TouchableOpacity
+                      activeOpacity={0.5}
+                      style={loginStyle.uploadButton}
+                      onPress={() => {
+                        launchImageLibrary({noData: true}, response => {
+                          if (response) {
+                            setProfil({
+                              ...KTP,
+                              uri: response.assets[0].uri,
+                              type: response.assets[0].type,
+                              name: response.assets[0].fileName,
+                            });
+                            // console.log(response.assets[0].uri);
+                          }
+                        });
+                      }}>
+                      <Text
+                        style={[textStyle.body4, colorStyle.primerBackground]}>
+                        Upload Foto Profil
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
 
-                  <TouchableOpacity
-                    mode="contained"
-                    onPress={() => {
-                      handleSubmit();
-                    }}>
-                    <Text style={loginStyle.ButtonSubmit}>Submit</Text>
-                  </TouchableOpacity>
+                  <View style={loginStyle.buttonContainer}>
+                    <TouchableOpacity
+                      style={loginStyle.button}
+                      mode="contained"
+                      onPress={() => {
+                        handleSubmit();
+                      }}>
+                      <Text
+                        style={[textStyle.button, colorStyle.primerBackground]}>
+                        Daftar
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               );
             }}

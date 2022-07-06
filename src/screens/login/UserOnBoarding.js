@@ -1,10 +1,13 @@
-import * as React from 'react';
+import React, {useEffect} from 'react';
+import {Text, View, Image, TouchableOpacity} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import AppIntroSlider from 'react-native-app-intro-slider';
 import homeLoginStyle from '../../styles/homeLogin';
 import Onboarding from '../../styles/onboarding';
 import colorStyle from '../../styles/colorStyle';
 import textStyle from '../../styles/textStyle';
-import {Text, View, Image, TouchableOpacity} from 'react-native';
+
 const slides = [
   {
     key: 1,
@@ -55,6 +58,16 @@ export default class UserOnBoarding extends React.Component {
     this.setState({showRealApp: true});
   };
   render() {
+    const {navigate} = this.props.navigation;
+    try {
+      AsyncStorage.getItem('token').then(value => {
+        if (value != null) {
+          navigate('TabNavigator');
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
     if (this.state.showRealApp) {
       return <UserOnBoarding />;
     } else {

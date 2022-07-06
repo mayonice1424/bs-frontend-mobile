@@ -9,7 +9,9 @@ const loginStyle = StyleSheet.create({
     // marginTop: 5,
     // padding: '2%',
   },
-  input: {},
+  input: {
+    color: '#000',
+  },
   package: {
     marginTop: '5%',
     marginBottom: '10%',
@@ -40,10 +42,22 @@ const loginStyle = StyleSheet.create({
     borderRadius: 5,
   },
   uploadButton: {
-    backgroundColor: '#04b040',
-    borderRadius: 5,
+    backgroundColor: '#4AD482',
+    borderRadius: 10,
     alignItems: 'center',
     padding: '2%',
+  },
+  formField: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '5%',
+  },
+  forgotPassword: {
+    marginTop: '5%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
 });
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import {Image} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import LoginScreen from '../login/LoginScreen';
@@ -8,12 +7,6 @@ import RegistrasiScreen from '../login/RegistrasiScreen';
 import Registrasi2Screen from '../login/Registrasi2Screen';
 import UserOnBoarding from '../login/UserOnBoarding';
 import UserDashboard from '../login/UserDashboard';
-
-import layoutStyle from '../../styles/layoutStyle';
-import colorStyle from '../../styles/colorStyle';
-
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import chevron from '../../images/chevron.png';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,14 +39,22 @@ function LoginRoute({navigation}) {
           headerShown: false,
         }}
       />
-      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{title: 'Login'}}
+      />
       <Stack.Screen name="Registrasi" component={RegistrasiScreen} />
       <Stack.Screen
         name="Registrasi2"
         component={Registrasi2Screen}
         options={{title: 'Registrasi'}}
       />
-      <Stack.Screen name="Reset Password" component={ResetPasswordScreen} />
+      <Stack.Screen
+        name="Reset Password"
+        component={ResetPasswordScreen}
+        options={{title: 'Lupa Kata Sandi'}}
+      />
     </Stack.Navigator>
   );
 }
