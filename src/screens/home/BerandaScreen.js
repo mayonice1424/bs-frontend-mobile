@@ -17,39 +17,11 @@ const BerandaScreen = ({navigation}) => {
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       date: '2020-01-01',
     },
-    {
-      id: 2,
-      thumbnail: require('../.././/images/Image/JenisSampah/BotolKaca.jpg'),
-      title: 'Sampah ',
-      description: 'Sampah Bekas',
-      date: '2020-01-01',
-    },
-    {
-      id: 3,
-      thumbnail: require('../.././/images/Image/JenisSampah/BotolKaca.jpg'),
-      title: 'Sampah ',
-      description: 'Sampah Bekas',
-      date: '2020-01-01',
-    },
-    {
-      id: 4,
-      thumbnail: require('../.././/images/Image/JenisSampah/BotolKaca.jpg'),
-      title: 'Sampah ',
-      description: 'Sampah Bekas',
-      date: '2020-01-01',
-    },
-    {
-      id: 5,
-      thumbnail: require('../.././/images/Image/JenisSampah/BotolKaca.jpg'),
-      title: 'Sampah ',
-      description: 'Sampah Bekas',
-      date: '2020-01-01',
-    },
   ]);
   return (
     <ScrollView>
       <View style={layoutStyle.container}>
-        <View style={layoutStyle.content}>
+        <View style={berandaStyle.content}>
           <View style = {berandaStyle.profile}>
             <View>
               <Image 

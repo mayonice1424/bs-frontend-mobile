@@ -22,7 +22,6 @@ const layoutStyle = StyleSheet.create({
     flex: 1,
   },
   content: {
-    paddingBottom: '40%',
     marginLeft: '4%',
     marginRight: '4%',
   },
