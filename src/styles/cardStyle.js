@@ -6,7 +6,7 @@ const cardStyle = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
-    marginTop: '1%',
+    marginTop: '3%',
     alignItems:'center',
     backgroundColor: '#FCFFFC',
     borderColor: '#171717',
@@ -21,6 +21,9 @@ const cardStyle = StyleSheet.create({
     marginHorizontal: '5%',
     width: 140,
     height: 120,
+  },
+  body:{
+    height:"20%",
   }
 });
 

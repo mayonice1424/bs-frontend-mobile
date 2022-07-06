@@ -2,7 +2,6 @@ import {StyleSheet} from 'react-native';
 
 const berandaStyle = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 0,
   },
   image: {
@@ -12,35 +11,37 @@ const berandaStyle = StyleSheet.create({
     marginLeft: '3%',
     marginRight: '2%'
   },
-  box:{
+  profile:{
     marginTop: '10%',
     justifyContent: 'flex-start',
     flexDirection: 'row',
     alignItems:'flex-start',
   },
-  textBox :{
+  textProfile :{
     marginTop: '2.5%',
   },
-  textBOX :{
+  userInfo :{
     borderRadius: 10,
     marginTop: '5%',
     width: '100%',
-    height : '15%',
     borderRadius: 10,
   },
   linearGradient: {
     width: '100%',
-    height: 120,
+    height: 120 ,
     borderRadius:10,
   },
   imageCoin: {
     width: 24,
     height: 24,
-    marginRight: '15%',
+    marginRight: '5%',
   },
   viewSaldo: {
     flexDirection: 'row',
-    width: '60%',
+    width: '40%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: '25%',
   },
   leftWrap:{
     width: '50%',
@@ -60,22 +61,21 @@ const berandaStyle = StyleSheet.create({
   containerBox:{
     alignItems: 'center',
     justifyContent: 'center',
-    width: '48%',
+    width: '49%',
     marginRight: '2%',
-    height: '100%',
     borderRadius: 10,
   },  
-  box1:{
-    height:'23%',
-    marginTop: '5%',
+  boxRow:{
+    height:'13%',
     flexDirection: 'row',
+    marginBottom:'1%',
+    marginTop:'3%'
   },
-  box2:{
-    marginTop: '5%',
-    marginBottom: '3%',
-    height:'23%',
-    flexDirection: 'row',
-  }, 
+  boxContent:{
+    flexDirection : 'row',
+    width:'70%',
+    marginTop:11,
+  }
 });
 
 export default berandaStyle;
