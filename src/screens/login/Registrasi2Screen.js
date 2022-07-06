@@ -18,6 +18,7 @@ import * as ImagePicker from 'react-native-image-picker';
 
 import layoutStyle from '../../styles/layoutStyle';
 import loginStyle from '../../styles/loginStyle';
+import HorizontalLine from '../../components/HorizontalLine';
 
 const RegistrasiScreen = ({route, navigation}) => {
   let data = route.params;
@@ -47,15 +48,34 @@ const RegistrasiScreen = ({route, navigation}) => {
       foto_profil: Profil,
     };
     console.log(all_data);
-    // navigation.navigate('Registrasi2', credentials);
+    // const upload_data = new FormData();
+    // upload_data.append(all_data);
+    const final_data = new FormData();
+    final_data.append('alamat', all_data.alamat);
+    final_data.append('username', all_data.username);
+    final_data.append('password', all_data.password);
+    final_data.append('no_telepon', all_data.no_telepon);
+    final_data.append('nama', all_data.nama);
+    final_data.append('role', all_data.role);
+    final_data.append('foto_profil', all_data.foto_profil);
+    final_data.append('tanggal_lahir', all_data.tanggal_lahir);
+    final_data.append('nik', all_data.nik);
+    final_data.append('foto_ktp', all_data.foto_ktp);
+    // console.log('halloo', final_data);
+    navigation.navigate('Login');
+
     return await fetch(
       `http://192.168.74.221:8000/bang-salam-api/register-user/`,
       {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/json',
+          Accept: 'application/json',
+          'Content-Type':
+            'multipart/form-data; boundary=6ff46e0b6b5148d984f148b6542e5a5d',
         },
-        body: JSON.stringify(all_data),
+        // body: upload_data,
+        body: final_data,
       },
     )
       .then(response => response.json())
@@ -85,8 +105,9 @@ const RegistrasiScreen = ({route, navigation}) => {
             validationSchema={Yup.object({
               nik: Yup.string()
                 .required('nik dibutuhkan!')
-                .min(16, 'nik')
-                .max(16, 'nik'),
+                .matches(/^[0-9]+$/, 'NIK harus berupa angka!')
+                .min(16, 'nik harus 16 digit!')
+                .max(16, 'nik harus 16 digit!'),
               alamat: Yup.string()
                 .required('alamat dibutuhkan!')
                 .min(8, 'alamat'),
@@ -113,6 +134,8 @@ const RegistrasiScreen = ({route, navigation}) => {
                   ) : (
                     <Text style={loginStyle.valid}></Text>
                   )}
+                  <HorizontalLine />
+
                   <View style={loginStyle.package}>
                     <View style={loginStyle.formDateTime}>
                       {!isPickerShow && (
@@ -143,6 +166,8 @@ const RegistrasiScreen = ({route, navigation}) => {
                       </View>
                     </View>
                   </View>
+                  <HorizontalLine />
+
                   <TextInput
                     style={loginStyle.input}
                     placeholder="Alamat"
@@ -160,19 +185,11 @@ const RegistrasiScreen = ({route, navigation}) => {
                   ) : (
                     <Text style={loginStyle.valid}></Text>
                   )}
+                  <HorizontalLine />
 
                   <TouchableOpacity
                     activeOpacity={0.5}
-                    style={{
-                      backgroundColor: '#04b040',
-                      borderRadius: 15,
-                      paddingHorizontal: 15,
-                      paddingVertical: 5,
-                      alignItems: 'center',
-                      shadowColor: '#E67E22',
-                      shadowOpacity: 0.8,
-                      elevation: 8,
-                    }}
+                    style={loginStyle.uploadButton}
                     onPress={() => {
                       launchImageLibrary({noData: true}, response => {
                         if (response) {
@@ -191,16 +208,7 @@ const RegistrasiScreen = ({route, navigation}) => {
 
                   <TouchableOpacity
                     activeOpacity={0.5}
-                    style={{
-                      backgroundColor: '#04b040',
-                      borderRadius: 15,
-                      paddingHorizontal: 15,
-                      paddingVertical: 5,
-                      alignItems: 'center',
-                      shadowColor: '#E67E22',
-                      shadowOpacity: 0.8,
-                      elevation: 8,
-                    }}
+                    style={loginStyle.uploadButton}
                     onPress={() => {
                       launchImageLibrary({noData: true}, response => {
                         if (response) {

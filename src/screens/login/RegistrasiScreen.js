@@ -12,6 +12,9 @@ import * as Yup from 'yup';
 
 import layoutStyle from '../../styles/layoutStyle';
 import loginStyle from '../../styles/loginStyle';
+import HorizontalLine from '../../components/HorizontalLine';
+import textStyle from '../../styles/textStyle';
+import colorStyle from '../../styles/colorStyle';
 
 const RegistrasiScreen = ({navigation}) => {
   const registrasi = async credentials => {
@@ -31,24 +34,37 @@ const RegistrasiScreen = ({navigation}) => {
               validasiKataSandi: '',
             }}
             onSubmit={(values, actions) => {
-              console.log(values);
-              registrasi(values);
-              actions.setSubmitting(false);
+              // console.log(values);
+              if (values.password === values.validasiKataSandi) {
+                registrasi(values);
+                actions.setSubmitting(false);
+              } else {
+                alert('Kata sandi tidak sama');
+              }
             }}
             validationSchema={Yup.object({
-              nama: Yup.string().required('nama dibutuhkan!').min(3, 'nama'),
+              nama: Yup.string()
+                .required('nama dibutuhkan!')
+                .min(3, 'nama minimal 3 karakter'),
               username: Yup.string()
-                .required('username dibutuhkan minimal 5 karakter!')
-                .min(5, 'username'),
-              no_telepon: Yup.string()
+                .required('username dibutuhkan!')
+                .min(5, 'username minimal 5 karakter!'),
+              no_telepon: Yup.number()
                 .required('No Telp dibutuhkan!')
-                .min(8, 'no_telepon'),
+                .integer('No Telp harus angka')
+                .min(8, 'no_telepon minimal 8 digit!'),
               password: Yup.string()
-                .required('Kata Sandi dibutuhkan minimal 8 karakter')
-                .min(8, 'password'),
+                .required('Kata Sandi dibutuhkan!')
+                .min(8, 'password minimal 8 karakter!'),
               validasiKataSandi: Yup.string()
-                .required('Silahkan ketik ulang kata sandi!')
-                .min(8, 'validasiKataSandi'),
+                .when('password', {
+                  is: val => (val && val.length > 0 ? true : false),
+                  then: Yup.string().oneOf(
+                    [Yup.ref('password')],
+                    'Password tidak sama',
+                  ),
+                })
+                .required('Validasi Kata Sandi dibutuhkan!'),
             })}>
             {formikProps => {
               const {handleChange, handleBlur, handleSubmit, values, errors} =
@@ -72,6 +88,7 @@ const RegistrasiScreen = ({navigation}) => {
                   ) : (
                     <Text style={loginStyle.valid}></Text>
                   )}
+                  <HorizontalLine />
 
                   <TextInput
                     style={loginStyle.input}
@@ -90,6 +107,7 @@ const RegistrasiScreen = ({navigation}) => {
                   ) : (
                     <Text style={loginStyle.valid}></Text>
                   )}
+                  <HorizontalLine />
 
                   <TextInput
                     style={loginStyle.input}
@@ -108,6 +126,7 @@ const RegistrasiScreen = ({navigation}) => {
                   ) : (
                     <Text style={loginStyle.valid}></Text>
                   )}
+                  <HorizontalLine />
 
                   <TextInput
                     style={loginStyle.input}
@@ -125,6 +144,7 @@ const RegistrasiScreen = ({navigation}) => {
                   ) : (
                     <Text style={loginStyle.valid}></Text>
                   )}
+                  <HorizontalLine />
 
                   <TextInput
                     style={loginStyle.input}
@@ -144,14 +164,20 @@ const RegistrasiScreen = ({navigation}) => {
                   ) : (
                     <Text style={loginStyle.valid}></Text>
                   )}
-
-                  <TouchableOpacity
-                    mode="contained"
-                    onPress={() => {
-                      handleSubmit();
-                    }}>
-                    <Text style={loginStyle.ButtonSubmit}>Submit</Text>
-                  </TouchableOpacity>
+                  <HorizontalLine />
+                  <View style={loginStyle.buttonContainer}>
+                    <TouchableOpacity
+                      style={loginStyle.button}
+                      mode="contained"
+                      onPress={() => {
+                        handleSubmit();
+                      }}>
+                      <Text
+                        style={[textStyle.button, colorStyle.primerBackground]}>
+                        Selanjutnya
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               );
             }}

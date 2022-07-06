@@ -48,7 +48,11 @@ function LoginRoute({navigation}) {
       />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Registrasi" component={RegistrasiScreen} />
-      <Stack.Screen name="Registrasi2" component={Registrasi2Screen} />
+      <Stack.Screen
+        name="Registrasi2"
+        component={Registrasi2Screen}
+        options={{title: 'Registrasi'}}
+      />
       <Stack.Screen name="Reset Password" component={ResetPasswordScreen} />
     </Stack.Navigator>
   );
