@@ -51,7 +51,7 @@ const LoginScreen = ({navigation}) => {
   };
 
   const loginUser = async credentials => {
-    return await fetch(`http://192.168.0.5:8000/bang-salam-api/login-user/`, {
+    return await fetch(`http://192.168.1.10:8000/bang-salam-api/login-user/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

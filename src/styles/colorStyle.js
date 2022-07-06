@@ -1,5 +1,6 @@
 import {View, Text, StyleSheet, Colors} from 'react-native';
 
+
 const colorStyle = StyleSheet.create({
   youngGreen: {
     color: '#54E346',
@@ -78,7 +79,7 @@ const colorStyle = StyleSheet.create({
     backgroundColor: '#FCFFFC',
   },
   backgroundGreenGradient: {
-    color: '#63E798',
+    backgroundColor: '#63E798',
   },
   backgroundBlackForFontAndAnything: {
     backgroundColor: '#1D2E3D',
@@ -94,7 +95,7 @@ const colorStyle = StyleSheet.create({
     backgroundColor: '#F3EFFF',
   },
   backgroundSoftGreen: {
-    color: '#E8FFF1',
+    backgroundColor: '#E8FFF1',
   },
   backgroundSoftYellow: {
     backgroundColor: '#FFF9EC',
@@ -120,7 +121,7 @@ const colorStyle = StyleSheet.create({
   borderColorGreenActive:{
     borderColor: '#40CD78',
     borderWidth : 1,
-  }
+  },
 });
 
 export default colorStyle;
