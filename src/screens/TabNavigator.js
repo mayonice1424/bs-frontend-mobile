@@ -61,7 +61,7 @@ const TabNavigator = ({navigation}) => {
       />
       <Tab.Screen
         name="Artikel"
-        component={HomeRoutes}
+        component={ArtikelRoutes}
         options={{
           headerShown: false,
           unmountOnBlur: true,
@@ -90,7 +90,7 @@ const TabNavigator = ({navigation}) => {
       />
       <Tab.Screen
         name="Kerajinan"
-        component={HomeRoutes}
+        component={KerajinanRoutes}
         options={{
           headerShown: false,
           unmountOnBlur: true,
@@ -119,7 +119,7 @@ const TabNavigator = ({navigation}) => {
       />
       <Tab.Screen
         name="Profil"
-        component={HomeRoutes}
+        component={ProfilRoutes}
         options={{
           headerShown: false,
           unmountOnBlur: true,

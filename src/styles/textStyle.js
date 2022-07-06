@@ -43,6 +43,17 @@ const textStyle = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  body1:{
+    fontFamily: 'Poppins-Medium',
+    fontSize: 16,
+  },
+  body4:{
+    fontFamily:'Poppins-Medium',
+    fontSize: 13,
+  },body5:{
+    fontSize: 10,
+    fontFamily:'Poppins-Regular',
   }
 });
 

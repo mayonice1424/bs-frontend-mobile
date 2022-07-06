@@ -4,7 +4,7 @@ import colorStyle from './colorStyle';
 const layoutStyle = StyleSheet.create({
   container: {
     // alignItems:"center",
-    flex: 1,
+    height: '100%',
     backgroundColor: '#FCFFFC',
     padding: 0,
   },
@@ -22,7 +22,7 @@ const layoutStyle = StyleSheet.create({
     flex: 1,
   },
   content: {
-    flex: 9,
+    paddingBottom: '40%',
     marginLeft: '4%',
     marginRight: '4%',
   },
