@@ -9,6 +9,8 @@ import DetailPenjualanScreen from '../home/DetailPenjualanScreen';
 import DetailPencairanScreen from '../home/DetailPencairanScreen';
 import Artikel from './ArtikelRoutes';
 import PenjualanSampahScreen from '../home/PenjualanSampahScreen';
+import JualSampahScreen from '../home/JualSampahScreen';
+import KalkulatorScreen from '../home/KalkulatorScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -52,14 +54,21 @@ function HomeRoute() {
         component={DetailPencairanScreen}
         options={{title: 'Detail Pencairan'}}
       />
-      <Stack.Screen 
+      <Stack.Screen
         name="PenjualanSampah"
         component={PenjualanSampahScreen}
         options={{title: 'Penjualan Sampah'}}
       />
-      <Stack.Screen 
-        name="ArtikelRoutes" 
-        component={Artikel} 
+      <Stack.Screen name="ArtikelRoutes" component={Artikel} />
+      <Stack.Screen
+        name="JualSampahScreen"
+        component={JualSampahScreen}
+        options={{title: 'Jual Sampah'}}
+      />
+      <Stack.Screen
+        name="KalkulatorScreen"
+        component={KalkulatorScreen}
+        options={{title: 'Skema Perhitungan'}}
       />
     </Stack.Navigator>
   );
