@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import LoginScreen from '../login/LoginScreen';
 import ResetPasswordScreen from '../login/ResetPasswordScreen';
+import ResetPassword2Screen from '../login/ResetPassword2Screen';
 import RegistrasiScreen from '../login/RegistrasiScreen';
 import Registrasi2Screen from '../login/Registrasi2Screen';
 import UserOnBoarding from '../login/UserOnBoarding';
@@ -53,6 +54,11 @@ function LoginRoute({navigation}) {
       <Stack.Screen
         name="Reset Password"
         component={ResetPasswordScreen}
+        options={{title: 'Lupa Kata Sandi'}}
+      />
+      <Stack.Screen
+        name="Reset Password 2"
+        component={ResetPassword2Screen}
         options={{title: 'Lupa Kata Sandi'}}
       />
     </Stack.Navigator>

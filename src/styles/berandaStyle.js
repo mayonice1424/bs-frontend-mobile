@@ -6,26 +6,26 @@ const berandaStyle = StyleSheet.create({
   },
   image: {
     width: 68,
-    height:68,
-    borderRadius:10,
+    height: 68,
+    borderRadius: 10,
     marginLeft: '3%',
-    marginRight: '2%'
+    marginRight: '2%',
   },
   content: {
     paddingBottom: '40%',
     marginLeft: '4%',
     marginRight: '4%',
   },
-  profile:{
+  profile: {
     marginTop: '10%',
     justifyContent: 'flex-start',
     flexDirection: 'row',
-    alignItems:'flex-start',
+    alignItems: 'flex-start',
   },
-  textProfile :{
+  textProfile: {
     marginTop: '2.5%',
   },
-  userInfo :{
+  userInfo: {
     borderRadius: 10,
     marginTop: '5%',
     width: '100%',
@@ -33,8 +33,8 @@ const berandaStyle = StyleSheet.create({
   },
   linearGradient: {
     width: '100%',
-    height: 120 ,
-    borderRadius:10,
+    height: 120,
+    borderRadius: 10,
   },
   imageCoin: {
     width: 24,
@@ -48,39 +48,39 @@ const berandaStyle = StyleSheet.create({
     alignItems: 'center',
     marginRight: '25%',
   },
-  leftWrap:{
+  leftWrap: {
     width: '50%',
     flexDirection: 'column',
   },
-  rightWrap:{
+  rightWrap: {
     width: '50%',
   },
-  wrap:{
+  wrap: {
     marginTop: '5%',
     marginLeft: '5%',
     flexDirection: 'row',
   },
-  viewNoRek:{
+  viewNoRek: {
     marginLeft: '5%',
   },
-  containerBox:{
+  containerBox: {
     alignItems: 'center',
     justifyContent: 'center',
     width: '49%',
     marginRight: '2%',
     borderRadius: 10,
-  },  
-  boxRow:{
-    height:'13%',
-    flexDirection: 'row',
-    marginBottom:'1%',
-    marginTop:'3%'
   },
-  boxContent:{
-    flexDirection : 'row',
-    width:'70%',
-    marginTop:11,
-  }
+  boxRow: {
+    height: '13%',
+    flexDirection: 'row',
+    marginBottom: '1%',
+    marginTop: '3%',
+  },
+  boxContent: {
+    flexDirection: 'row',
+    width: '70%',
+    marginTop: 11,
+  },
 });
 
 export default berandaStyle;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, SafeAreaView, ScrollView} from 'react-native';
+import {View, Text} from 'react-native';
 
 import layoutStyle from '../styles/layoutStyle';
 
@@ -8,11 +8,15 @@ const LayoutScreen = () => {
 
   return (
     <View style={layoutStyle.container}>
-      <View style={layoutStyle.header}>
-        <HeaderBackComponent halaman={namaHalaman} />
-      </View>
-      <View style={layoutStyle.content}>
-        <Text>{namaHalaman}</Text>
+      <View style={[layoutStyle.content, {justifyContent: 'center'}]}>
+        <Text
+          style={{
+            color: 'black',
+            textAlign: 'center',
+            justifyContent: 'center',
+          }}>
+          {namaHalaman}
+        </Text>
       </View>
     </View>
   );

@@ -13,6 +13,10 @@ const textStyle = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
     fontSize: 15,
   },
+  title2: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 18,
+  },
   caption: {
     fontFamily: 'Poppins-Regular',
     fontSize: 16,
@@ -38,23 +42,24 @@ const textStyle = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
   },
-  button : {
+  button: {
     fontFamily: 'Poppins-Semibold',
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  body1:{
+  body1: {
     fontFamily: 'Poppins-Medium',
     fontSize: 16,
   },
-  body4:{
-    fontFamily:'Poppins-Medium',
+  body4: {
+    fontFamily: 'Poppins-Medium',
     fontSize: 13,
-  },body5:{
+  },
+  body5: {
     fontSize: 10,
-    fontFamily:'Poppins-Regular',
-  }
+    fontFamily: 'Poppins-Regular',
+  },
 });
 
 export default textStyle;

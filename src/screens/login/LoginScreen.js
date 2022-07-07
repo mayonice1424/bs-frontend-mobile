@@ -5,7 +5,6 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
-  KeyboardAvoidingView,
 } from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
@@ -32,12 +31,12 @@ const LoginScreen = ({navigation}) => {
         }
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
   const setData = async respons => {
-    console.log(respons);
+    // console.log(respons);
     if (respons != null) {
       try {
         var user = {
@@ -46,9 +45,9 @@ const LoginScreen = ({navigation}) => {
         };
         await AsyncStorage.setItem('token', JSON.stringify(user));
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       } finally {
-        console.log('masuk sini');
+        // console.log('masuk sini');
         navigation.navigate('TabNavigator');
       }
     }
@@ -67,16 +66,18 @@ const LoginScreen = ({navigation}) => {
     )
       .then(response => response.json())
       .then(response => {
-        console.log(response);
+        // console.log(response);
         setCheckToken(response);
         if (response.token != null) {
           setData(response);
         } else if (response.non_field_errors[0] == 'Incorrect Credentials') {
-          console.log('Salah');
+          // console.log('Salah');
           setModalVisible(true);
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        // console.log(error);
+      });
   };
 
   const namaHalaman = 'Masuk';
@@ -88,17 +89,15 @@ const LoginScreen = ({navigation}) => {
           <Formik
             initialValues={{username: '', password: ''}}
             onSubmit={(values, actions) => {
-              console.log(values);
+              // console.log(values);
               loginUser(values);
               actions.setSubmitting(false);
             }}
             validationSchema={Yup.object({
               username: Yup.string()
-                .required('username is required!')
+                .required('username dibutuhkan!')
                 .min(3, 'username'),
-              password: Yup.string()
-                .required('Password is required!')
-                .min(8, 'Password is too short!'),
+              password: Yup.string().required('Password dibutuhkan!'),
             })}>
             {formikProps => {
               const {handleChange, handleBlur, handleSubmit, values, errors} =

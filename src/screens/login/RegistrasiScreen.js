@@ -166,6 +166,7 @@ const RegistrasiScreen = ({navigation}) => {
                     ) : (
                       <Text style={loginStyle.valid}></Text>
                     )}
+                    <HorizontalLine />
 
                     <View style={loginStyle.buttonContainer}>
                       <TouchableOpacity

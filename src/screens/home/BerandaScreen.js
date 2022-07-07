@@ -1,12 +1,5 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Text, ScrollView, Image, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import layoutStyle from '../../styles/layoutStyle';
 import berandaStyle from '../../styles/berandaStyle';
@@ -15,6 +8,9 @@ import colorStyle from '../../styles/colorStyle';
 import cardStyle from '../../styles/cardStyle';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foundation from 'react-native-vector-icons/Foundation';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const BerandaScreen = ({navigation}) => {
   const [artikel, setArtikel] = useState([
     {
@@ -42,6 +38,21 @@ const BerandaScreen = ({navigation}) => {
       date: '2020-01-01',
     },
   ]);
+
+  async function getToken() {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      const tokens = JSON.parse(token);
+      console.log(tokens.token);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getToken();
+  }, []);
+
   return (
     <ScrollView>
       <View style={layoutStyle.container}>
@@ -70,43 +81,45 @@ const BerandaScreen = ({navigation}) => {
               </Text>
             </View>
           </View>
-          <View style={[berandaStyle.userInfo]}>
-            <LinearGradient
-              start={{x: 0.91, y: 0}}
-              end={{x: 0.91, y: 1.12}}
-              colors={['#63E798', '#3CCA75']}
-              style={[berandaStyle.linearGradient]}>
-              <View style={{flexDirection: 'column'}}>
-                <View style={berandaStyle.wrap}>
-                  <View style={berandaStyle.viewSaldo}>
-                    <Image
-                      style={berandaStyle.imageCoin}
-                      source={require('../../images/Image/WhiteCoin.png')}
-                    />
-                    <Text style={[textStyle.body1, colorStyle.whiteForCard]}>
-                      Salam Coin: 70.0000{' '}
-                    </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('CekSaldo')}>
+            <View style={[berandaStyle.userInfo]}>
+              <LinearGradient
+                start={{x: 0.91, y: 0}}
+                end={{x: 0.91, y: 1.12}}
+                colors={['#63E798', '#3CCA75']}
+                style={[berandaStyle.linearGradient]}>
+                <View style={{flexDirection: 'column'}}>
+                  <View style={berandaStyle.wrap}>
+                    <View style={berandaStyle.viewSaldo}>
+                      <Image
+                        style={berandaStyle.imageCoin}
+                        source={require('../../images/Image/WhiteCoin.png')}
+                      />
+                      <Text style={[textStyle.body1, colorStyle.whiteForCard]}>
+                        Salam Coin: 70.0000{' '}
+                      </Text>
+                    </View>
+                    <View style={berandaStyle.rightWrap}>
+                      <Text style={[textStyle.body4, colorStyle.whiteForCard]}>
+                        {' '}
+                        No Rekening : 131938131929129
+                      </Text>
+                    </View>
                   </View>
-                  <View style={berandaStyle.rightWrap}>
-                    <Text style={[textStyle.body4, colorStyle.whiteForCard]}>
-                      {' '}
-                      No Rekening : 131938131929129
+                  <View>
+                    <Text
+                      style={[
+                        textStyle.body1,
+                        colorStyle.whiteForCard,
+                        {marginLeft: '5%'},
+                      ]}>
+                      Total Sampah Terkumpul: 1000 Kg
                     </Text>
                   </View>
                 </View>
-                <View>
-                  <Text
-                    style={[
-                      textStyle.body1,
-                      colorStyle.whiteForCard,
-                      {marginLeft: '5%'},
-                    ]}>
-                    Total Sampah Terkumpul: 1000 Kg
-                  </Text>
-                </View>
-              </View>
-            </LinearGradient>
-          </View>
+              </LinearGradient>
+            </View>
+          </TouchableOpacity>
           <View style={[berandaStyle.boxRow]}>
             <TouchableOpacity
               style={[
@@ -156,7 +169,8 @@ const BerandaScreen = ({navigation}) => {
               style={[
                 colorStyle.backgroundSoftGreen,
                 berandaStyle.containerBox,
-              ]}>
+              ]}
+              onPress={() => navigation.navigate('PencairanDana')}>
               <View style={berandaStyle.boxContent}>
                 <Ionicons
                   name="wallet"

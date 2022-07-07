@@ -29,6 +29,7 @@ const TabNavigator = ({navigation}) => {
             height: 100,
           },
         },
+        tabBarHideOnKeyboard: true,
       }}>
       <Tab.Screen
         name="Home"

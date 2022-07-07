@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -17,26 +17,29 @@ import HorizontalLine from '../../components/HorizontalLine';
 import textStyle from '../../styles/textStyle';
 import colorStyle from '../../styles/colorStyle';
 
-const ResetPasswordScreen = ({navigation}) => {
+const ResetPassword2Screen = ({route, navigation}) => {
   const resetPassword = async credentials => {
+    // console.log({password: credentials});
     return await fetch(
-      `http://192.168.74.221:8000/bang-salam-api/reset-password/`,
+      `http://192.168.74.221:8000/bang-salam-api/update-password/` +
+        route.params.user_id +
+        '/',
       {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(credentials),
+        body: JSON.stringify({password: credentials}),
       },
     )
       .then(response => response.json())
       .then(response => {
-        console.log(response);
-        if (response.message === 'Data tidak sesuai') {
-          Alert.alert('Tidak Sesuai', 'Username atau NIK tidak sesuai');
-        } else {
-          navigation.navigate('Reset Password 2', {user_id: response.user_id});
-        }
+        // console.log(response.user_id);
+        navigation.navigate('Login');
+      })
+      .catch(error => {
+        // console.log(error);
+        Alert.alert('Tidak Sesuai', 'Kata sandi tidak sesuai dengan data');
       });
   };
 
@@ -45,21 +48,25 @@ const ResetPasswordScreen = ({navigation}) => {
       <View style={layoutStyle.content}>
         <ScrollView>
           <Formik
-            initialValues={{username: '', nik: ''}}
+            initialValues={{password: '', validasiKataSandi: ''}}
             onSubmit={(values, actions) => {
               // console.log(values);
-              resetPassword(values);
+              resetPassword(values.password);
               actions.setSubmitting(false);
             }}
             validationSchema={Yup.object({
-              username: Yup.string()
-                .required('username dibutuhkan!')
-                .min(5, 'username minimal 5 karakter!'),
-              nik: Yup.string()
-                .required('nik dibutuhkan!')
-                .matches(/^[0-9]+$/, 'NIK harus berupa angka!')
-                .min(16, 'nik harus 16 digit!')
-                .max(16, 'nik harus 16 digit!'),
+              password: Yup.string()
+                .required('Kata Sandi dibutuhkan!')
+                .min(8, 'password minimal 8 karakter!'),
+              validasiKataSandi: Yup.string()
+                .when('password', {
+                  is: val => (val && val.length > 0 ? true : false),
+                  then: Yup.string().oneOf(
+                    [Yup.ref('password')],
+                    'Password tidak sama',
+                  ),
+                })
+                .required('Validasi Kata Sandi dibutuhkan!'),
             })}>
             {formikProps => {
               const {handleChange, handleBlur, handleSubmit, values, errors} =
@@ -68,18 +75,17 @@ const ResetPasswordScreen = ({navigation}) => {
                 <View>
                   <TextInput
                     style={loginStyle.input}
-                    placeholder="Username"
-                    value={values.username}
+                    placeholder="kata Sandi"
+                    value={values.password}
                     underlineColorAndroid="transparent"
                     placeholderTextColor={'#c4c4c4'}
-                    keyboardType="username-address"
                     autoCapitalize="none"
-                    autoCompleteType="username"
-                    onChangeText={handleChange('username')}
-                    onBlur={handleBlur('username')}
+                    secureTextEntry
+                    onChangeText={handleChange('password')}
+                    onBlur={handleBlur('password')}
                   />
-                  {errors.username ? (
-                    <Text style={loginStyle.valid}>{errors.username}</Text>
+                  {errors.password ? (
+                    <Text style={loginStyle.valid}>{errors.password}</Text>
                   ) : (
                     <Text style={loginStyle.valid}></Text>
                   )}
@@ -87,18 +93,19 @@ const ResetPasswordScreen = ({navigation}) => {
 
                   <TextInput
                     style={loginStyle.input}
-                    placeholder="NIK"
-                    value={values.nik}
+                    placeholder="Ketik Ulang Kata Sandi"
+                    value={values.validasiKataSandi}
                     underlineColorAndroid="transparent"
                     placeholderTextColor={'#c4c4c4'}
-                    keyboardType="numeric"
                     autoCapitalize="none"
-                    autoCompleteType="nik"
-                    onChangeText={handleChange('nik')}
-                    onBlur={handleBlur('nik')}
+                    secureTextEntry
+                    onChangeText={handleChange('validasiKataSandi')}
+                    onBlur={handleBlur('validasiKataSandi')}
                   />
-                  {errors.nik ? (
-                    <Text style={loginStyle.valid}>{errors.nik}</Text>
+                  {errors.validasiKataSandi ? (
+                    <Text style={loginStyle.valid}>
+                      {errors.validasiKataSandi}
+                    </Text>
                   ) : (
                     <Text style={loginStyle.valid}></Text>
                   )}
@@ -127,4 +134,4 @@ const ResetPasswordScreen = ({navigation}) => {
   );
 };
 
-export default ResetPasswordScreen;
+export default ResetPassword2Screen;
