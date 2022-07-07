@@ -146,7 +146,8 @@ const BerandaScreen = ({navigation}) => {
               style={[
                 colorStyle.backgroundSoftYellow,
                 berandaStyle.containerBox,
-              ]}>
+              ]}
+              onPress = {() => navigation.navigate('PenjualanSampah')}>
               <View style={berandaStyle.boxContent}>
                 <Ionicons
                   name="receipt"

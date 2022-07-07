@@ -8,6 +8,7 @@ import PencairanDanaScreen from '../home/PencairanDanaScreen';
 import DetailPenjualanScreen from '../home/DetailPenjualanScreen';
 import DetailPencairanScreen from '../home/DetailPencairanScreen';
 import Artikel from './ArtikelRoutes';
+import PenjualanSampahScreen from '../home/PenjualanSampahScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -51,7 +52,15 @@ function HomeRoute() {
         component={DetailPencairanScreen}
         options={{title: 'Detail Pencairan'}}
       />
-      <Stack.Screen name="ArtikelRoutes" component={Artikel} />
+      <Stack.Screen 
+        name="PenjualanSampah"
+        component={PenjualanSampahScreen}
+        options={{title: 'Penjualan Sampah'}}
+      />
+      <Stack.Screen 
+        name="ArtikelRoutes" 
+        component={Artikel} 
+      />
     </Stack.Navigator>
   );
 }
