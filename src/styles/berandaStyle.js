@@ -16,6 +16,11 @@ const berandaStyle = StyleSheet.create({
     marginLeft: '4%',
     marginRight: '4%',
   },
+  artikelLayout: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    marginTop: '5%',
+  },
   profile:{
     marginTop: '10%',
     justifyContent: 'flex-start',

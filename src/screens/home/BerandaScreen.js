@@ -26,7 +26,7 @@ const BerandaScreen = ({navigation}) => {
       date: '2020-01-01',
     },
     {
-      id: 1,
+      id: 2,
       thumbnail: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
       title: 'Sampah Bekas',
       description:
@@ -34,7 +34,7 @@ const BerandaScreen = ({navigation}) => {
       date: '2020-01-01',
     },
     {
-      id: 1,
+      id: 3,
       thumbnail: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
       title: 'Sampah Bekas',
       description:
@@ -192,14 +192,22 @@ const BerandaScreen = ({navigation}) => {
               </View>
             </TouchableOpacity>
           </View>
-          <Text
-            style={[
-              textStyle.body1,
-              colorStyle.blackForFontAndAnything,
-              {marginTop: 15},
-            ]}>
-            Pengumuman
-          </Text>
+          <View style = {[berandaStyle.artikelLayout]}>
+            <Text
+              style={[
+                textStyle.body1,
+                colorStyle.blackForFontAndAnything,
+              ]}>
+              Pengumuman
+            </Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Artikel')}
+            >
+              <Text style={[colorStyle.blackForFontAndAnything,textStyle.caption2]}>
+                Selebihnya >
+              </Text>
+            </TouchableOpacity>
+          </View>
           <View style={cardStyle.body}>
             {artikel.map((item, index) => {
               return (
