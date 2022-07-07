@@ -7,6 +7,7 @@ import CekSaldoScreen from '../home/CekSaldoScreen';
 import PencairanDanaScreen from '../home/PencairanDanaScreen';
 import DetailPenjualanScreen from '../home/DetailPenjualanScreen';
 import DetailPencairanScreen from '../home/DetailPencairanScreen';
+import Artikel from './ArtikelRoutes';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +51,7 @@ function HomeRoute() {
         component={DetailPencairanScreen}
         options={{title: 'Detail Pencairan'}}
       />
+      <Stack.Screen name="ArtikelRoutes" component={Artikel} />
     </Stack.Navigator>
   );
 }

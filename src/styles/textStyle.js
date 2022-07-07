@@ -21,6 +21,14 @@ const textStyle = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     fontSize: 16,
   },
+  caption1:{
+    fontFamily: 'Poppins-Regular', 
+    fontSize: 14,
+  },
+  caption2: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 12,
+  },
   judul: {
     fontFamily: 'Poppins-Bold',
     fontSize: 24,

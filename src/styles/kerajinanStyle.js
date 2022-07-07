@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-const artikelStyle = StyleSheet.create({
+const kerajinanStyle = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#FCFFFC",
@@ -13,4 +13,4 @@ const artikelStyle = StyleSheet.create({
         marginRight: '4%',
     }
 });
-export default artikelStyle;
+export default kerajinanStyle;

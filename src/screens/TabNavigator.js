@@ -10,6 +10,7 @@ import ProfilRoutes from './routes/ProfilRoutes';
 
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Kerajinan from './routes/KerajinanRoutes';
 
 const Tab = createBottomTabNavigator();
 
@@ -74,7 +75,7 @@ const TabNavigator = ({navigation}) => {
                   fontWeight: 'bold',
                   color: props.focused ? '#4AD482' : '#1D2E3D',
                 }}>
-                Artikel
+                Pengumuman
               </Text>
             );
           },
@@ -91,7 +92,7 @@ const TabNavigator = ({navigation}) => {
       />
       <Tab.Screen
         name="Kerajinan"
-        component={KerajinanRoutes}
+        component={Kerajinan}
         options={{
           headerShown: false,
           unmountOnBlur: true,
