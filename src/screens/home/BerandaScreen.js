@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, ScrollView, Image, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+
 import layoutStyle from '../../styles/layoutStyle';
 import berandaStyle from '../../styles/berandaStyle';
 import textStyle from '../../styles/textStyle';
 import colorStyle from '../../styles/colorStyle';
 import cardStyle from '../../styles/cardStyle';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foundation from 'react-native-vector-icons/Foundation';
 
@@ -39,15 +41,32 @@ const BerandaScreen = ({navigation}) => {
     },
   ]);
 
-  async function getToken() {
+  const [user, setUser] = useState();
+
+  const getToken = async () => {
+    const token = await AsyncStorage.getItem('token');
+    const tokens = JSON.parse(token);
+    let data = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Token ' + tokens.token,
+      },
+    };
     try {
-      const token = await AsyncStorage.getItem('token');
-      const tokens = JSON.parse(token);
-      console.log(tokens.token);
+      let response = await fetch(
+        `http://192.168.74.221:8000/bang-salam-api/lihat-users/` +
+          tokens.id +
+          `/`,
+        data,
+      );
+      let res = await response.json();
+      console.log(res);
+      setUser(res);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     getToken();
@@ -61,7 +80,7 @@ const BerandaScreen = ({navigation}) => {
             <View>
               <Image
                 style={berandaStyle.image}
-                source={require('../../images/Image/foto.png')}
+                source={{uri: user.foto_profil}}
               />
             </View>
             <View style={berandaStyle.textProfile}>
@@ -70,7 +89,7 @@ const BerandaScreen = ({navigation}) => {
                   textStyle.titleItem,
                   colorStyle.blackForFontAndAnything,
                 ]}>
-                Hai, Sarah Amelia
+                Hai, {user.nama}
               </Text>
               <Text
                 style={[
@@ -96,25 +115,15 @@ const BerandaScreen = ({navigation}) => {
                         source={require('../../images/Image/WhiteCoin.png')}
                       />
                       <Text style={[textStyle.body1, colorStyle.whiteForCard]}>
-                        Salam Coin: 70.0000{' '}
+                        Salam Coin: {user.saldo}{' '}
                       </Text>
                     </View>
                     <View style={berandaStyle.rightWrap}>
                       <Text style={[textStyle.body4, colorStyle.whiteForCard]}>
                         {' '}
-                        No Rekening : 131938131929129
+                        No Rekening : {user.id}
                       </Text>
                     </View>
-                  </View>
-                  <View>
-                    <Text
-                      style={[
-                        textStyle.body1,
-                        colorStyle.whiteForCard,
-                        {marginLeft: '5%'},
-                      ]}>
-                      Total Sampah Terkumpul: 1000 Kg
-                    </Text>
                   </View>
                 </View>
               </LinearGradient>
@@ -147,7 +156,7 @@ const BerandaScreen = ({navigation}) => {
                 colorStyle.backgroundSoftYellow,
                 berandaStyle.containerBox,
               ]}
-              onPress = {() => navigation.navigate('PenjualanSampah')}>
+              onPress={() => navigation.navigate('PenjualanSampah')}>
               <View style={berandaStyle.boxContent}>
                 <Ionicons
                   name="receipt"
@@ -207,19 +216,17 @@ const BerandaScreen = ({navigation}) => {
               </View>
             </TouchableOpacity>
           </View>
-          <View style = {[berandaStyle.artikelLayout]}>
-            <Text
-              style={[
-                textStyle.body1,
-                colorStyle.blackForFontAndAnything,
-              ]}>
+          <View style={[berandaStyle.artikelLayout]}>
+            <Text style={[textStyle.body1, colorStyle.blackForFontAndAnything]}>
               Pengumuman
             </Text>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Artikel')}
-            >
-              <Text style={[colorStyle.blackForFontAndAnything,textStyle.caption2]}>
-                Selebihnya >
+            <TouchableOpacity onPress={() => navigation.navigate('Artikel')}>
+              <Text
+                style={[
+                  colorStyle.blackForFontAndAnything,
+                  textStyle.caption2,
+                ]}>
+                Selebihnya {'>'}
               </Text>
             </TouchableOpacity>
           </View>
