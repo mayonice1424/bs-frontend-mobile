@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import KerajinanScreen from "../Kerajinan/KerajinanScreen";
+import DetailKerajinanScreen from "../Kerajinan/DetailKerajinanScreen";
 const Stack = createNativeStackNavigator();
 const Kerajinan = () => {
   return (
@@ -19,6 +20,7 @@ const Kerajinan = () => {
         headerShadowVisible: false,
       }}>
       <Stack.Screen name="KerajinanScreen" component={KerajinanScreen}  options={{title: 'Kerajinan'}} />
+      <Stack.Screen name="DetailKerajinanScreen" component={DetailKerajinanScreen}  options={{title: 'Detail Kerajinan'}} />
     </Stack.Navigator>
   );
 };

@@ -68,6 +68,7 @@ const KerajinanScreen = ({navigation}) => {
                     {kerajinan.map((item, index) => {
                     return (
                         <TouchableOpacity key={index} style={cardStyle.container}
+                        onPress={() => navigation.navigate('DetailKerajinanScreen',{data:item})}
                         >
                             <View
                                 style={{

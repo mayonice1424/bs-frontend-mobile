@@ -7,13 +7,12 @@ import layoutStyle from '../../styles/layoutStyle';
 import kerajinanStyle from '../../styles/kerajinanStyle';
 import Kerajinan from '../routes/KerajinanRoutes';
 import cardStyle from '../../styles/cardStyle';
-const KerajinanScreen = ({navigation}) => {
+const DetailKerajinanScreen = ({route,navigation}) => {
     return(
     <View style={kerajinanStyle.container}>
         <View style={kerajinanStyle.content}>
             <ScrollView>
                  <View>
-                    
                  </View>
             </ScrollView>
         </View>
@@ -21,4 +20,4 @@ const KerajinanScreen = ({navigation}) => {
    )
 };
 
-export default KerajinanScreen;
+export default DetailKerajinanScreen;
