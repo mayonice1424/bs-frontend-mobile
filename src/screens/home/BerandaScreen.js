@@ -21,6 +21,10 @@ import Foundation from 'react-native-vector-icons/Foundation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const BerandaScreen = ({navigation}) => {
+  const [profil, setProfil] = useState({
+    nama: 'Ilham',
+    foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
+  });
   const [artikel, setArtikel] = useState([
     {
       id: 1,
