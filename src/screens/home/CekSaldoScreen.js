@@ -56,7 +56,7 @@ const CekSaldo = ({navigation}) => {
               <View
                 style={[saldoStyle.navigation, {backgroundColor: '#E94867'}]}>
                 <Text style={[colorStyle.textColorWhite, textStyle.body1]}>
-                  Penjualan
+                  Pencairan
                 </Text>
               </View>
               <Text

@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, ScrollView, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import layoutStyle from '../../styles/layoutStyle';
@@ -41,9 +48,14 @@ const BerandaScreen = ({navigation}) => {
     },
   ]);
 
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({
+    id: '0000-0000-0000',
+    nama: 'Pengguna',
+    foto_profil: 'https://via.placeholder.com/150',
+    saldo: '0',
+  });
 
-  const getToken = async () => {
+  const getData = async () => {
     const token = await AsyncStorage.getItem('token');
     const tokens = JSON.parse(token);
     let data = {
@@ -69,16 +81,16 @@ const BerandaScreen = ({navigation}) => {
   };
 
   useEffect(() => {
-    getToken();
+    getData();
   }, []);
 
   return (
     <ScrollView>
       <View style={layoutStyle.container}>
         <View style={berandaStyle.content}>
-          <TouchableOpacity 
-          style={berandaStyle.profile}
-          onPress={() => navigation.navigate('Profil')}>
+          <TouchableOpacity
+            style={berandaStyle.profile}
+            onPress={() => navigation.navigate('Profil')}>
             <View>
               <Image
                 style={berandaStyle.image}
@@ -201,8 +213,8 @@ const BerandaScreen = ({navigation}) => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[colorStyle.backgroundSoftRed,berandaStyle.containerBox]}
-              onPress={() => navigation.navigate('PusatBantuan')}>        
+              style={[colorStyle.backgroundSoftRed, berandaStyle.containerBox]}
+              onPress={() => navigation.navigate('PusatBantuan')}>
               <View style={berandaStyle.boxContent}>
                 <Foundation
                   name="telephone"
