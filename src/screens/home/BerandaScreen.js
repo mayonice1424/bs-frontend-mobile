@@ -106,16 +106,6 @@ const BerandaScreen = ({navigation}) => {
                       </Text>
                     </View>
                   </View>
-                  <View>
-                    <Text
-                      style={[
-                        textStyle.body1,
-                        colorStyle.whiteForCard,
-                        {marginLeft: '5%'},
-                      ]}>
-                      Total Sampah Terkumpul: 1000 Kg
-                    </Text>
-                  </View>
                 </View>
               </LinearGradient>
             </View>
@@ -125,7 +115,8 @@ const BerandaScreen = ({navigation}) => {
               style={[
                 colorStyle.backgroundSoftPurple,
                 berandaStyle.containerBox,
-              ]}>
+              ]}
+              onPress={() => navigation.navigate('Jadwal')}>
               <View style={{flexDirection: 'row'}}>
                 <Ionicons
                   name="calendar"
@@ -189,7 +180,8 @@ const BerandaScreen = ({navigation}) => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[colorStyle.backgroundSoftRed, berandaStyle.containerBox]}>
+              style={[colorStyle.backgroundSoftRed,berandaStyle.containerBox]}
+              onPress={() => navigation.navigate('PusatBantuan')}>        
               <View style={berandaStyle.boxContent}>
                 <Foundation
                   name="telephone"

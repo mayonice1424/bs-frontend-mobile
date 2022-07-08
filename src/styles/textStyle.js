@@ -40,6 +40,7 @@ const textStyle = StyleSheet.create({
   date: {
     fontFamily: 'Poppins-Regular',
     fontSize: 10,
+    fontWeight: 'bold',
   },
   subtitle1: {
     fontFamily: 'Poppins-Bold',
@@ -60,6 +61,15 @@ const textStyle = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
     fontSize: 16,
   },
+  body2: {
+    fontFamily: 'Poppins-Semibold',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  body3:{
+    fontFamily: 'Poppins-Regular',
+    fontSize: 14,
+  },
   body4: {
     fontFamily: 'Poppins-Medium',
     fontSize: 13,
@@ -68,6 +78,10 @@ const textStyle = StyleSheet.create({
     fontSize: 10,
     fontFamily: 'Poppins-Regular',
   },
+  judul:{
+    fontFamily: 'Poppins-Bold',
+    fontSize: 24,
+  }
 });
 
 export default textStyle;

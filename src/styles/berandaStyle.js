@@ -38,7 +38,7 @@ const berandaStyle = StyleSheet.create({
   },
   linearGradient: {
     width: '100%',
-    height: 120,
+    height: 90,
     borderRadius: 10,
   },
   imageCoin: {
@@ -64,6 +64,7 @@ const berandaStyle = StyleSheet.create({
     marginTop: '5%',
     marginLeft: '5%',
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   viewNoRek: {
     marginLeft: '5%',

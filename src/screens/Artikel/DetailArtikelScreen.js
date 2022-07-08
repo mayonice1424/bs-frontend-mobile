@@ -8,7 +8,7 @@ import detailArtikelStyle from '../../styles/detailArtikelStyle';
 import layoutStyle from '../../styles/layoutStyle';
 import textStyle from '../../styles/textStyle';
 
-const DetailKerajinanScreen = ({route,navigation}) => {
+const DetailArtikelScreen = ({route,navigation}) => {
   useEffect(() => {
     console.log(route.params.data);
   });
@@ -34,4 +34,4 @@ const DetailKerajinanScreen = ({route,navigation}) => {
   );
 };
 
-export default DetailKerajinanScreen;
+export default DetailArtikelScreen;

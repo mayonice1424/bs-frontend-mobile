@@ -1,0 +1,70 @@
+import {View, Text, StyleSheet, Colors} from 'react-native';
+
+const jadwalStyle = StyleSheet.create({
+    container: {
+        flex: 1,
+        // alignItems:"center",
+        height: '100%',
+        backgroundColor: '#FCFFFC',
+        padding: 0,
+    },
+    content: {
+        paddingBottom: 80,
+        marginLeft: '4%',
+        marginRight: '4%',
+        height: '100%',
+      },
+      boxSchedule: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+        marginTop: '6%',
+        width: '100%',
+        borderRadius: 10,
+        backgroundColor: '#000000',
+        alignContent: 'center',
+      },
+      linearGradient: {
+        width: '100%',
+        height: 60,
+        borderRadius: 10,
+      },
+      circle:{
+        width: '24%',
+        height: '80%',
+        borderRadius: 180/2,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      jadwalCard: {
+        flexDirection:'row',
+        justifyContent:'space-around',
+        backgroundColor:'white',
+        alignItems:'center',
+        width:'98%',
+        height:'20%',
+        marginLeft:'1%',
+        shadowOpacity: 0.8,
+        borderBottomEndRadius: 10,
+        borderBottomStartRadius: 10,
+        elevation: 6,
+        shadowRadius: 15 ,
+      },
+      jadwalCardDetail: {
+        flexDirection:'column',
+        textAlign:'center',
+        alignItems:'center',
+        justifyContent:'space-around',
+        backgroundColor:'white',
+        width:'98%',
+        height:'45%',
+        marginLeft:'1%',
+        shadowOpacity: 0.8,
+        borderBottomEndRadius: 10,
+        borderBottomStartRadius: 10,
+        elevation: 6,
+        shadowRadius: 15 ,
+      },
+});
+
+export default jadwalStyle;
