@@ -3,7 +3,7 @@ import React from "react";
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ProfilScreen from "../Profil/ProfilScreen";
 const Stack = createNativeStackNavigator();
-const ProfilRoutes = () => {
+const Profil= () => {
   return (
     <Stack.Navigator
       initialRouteName="ProfilScreen"
@@ -18,10 +18,10 @@ const ProfilRoutes = () => {
         headerTitleAlign: 'center',
         headerShadowVisible: false,
       }}>
-      <Stack.Screen name="ProfilScreen" component={ProfilScreen}  options={{title: 'Profil Screen'}} />
+      <Stack.Screen name="ProfilScreen" component={ProfilScreen}  options={{title: 'Profil'}} />
     </Stack.Navigator>
   );
 };
 
-export default ProfilRoutes;
+export default Profil;
 
