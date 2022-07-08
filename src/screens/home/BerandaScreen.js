@@ -12,6 +12,12 @@ import Foundation from 'react-native-vector-icons/Foundation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const BerandaScreen = ({navigation}) => {
+  const [profil,setProfil] = useState(
+    {
+      nama: 'Ilham',
+      foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
+    },
+    );
   const [artikel, setArtikel] = useState([
     {
       id: 1,
@@ -59,11 +65,11 @@ const BerandaScreen = ({navigation}) => {
         <View style={berandaStyle.content}>
           <TouchableOpacity 
           style={berandaStyle.profile}
-          onPress={() => navigation.navigate('Profil')}>
+          onPress={() => navigation.navigate('Profil',{item:profil})}>
             <View>
               <Image
                 style={berandaStyle.image}
-                source={require('../../images/Image/foto.png')}
+                source={profil.foto}
               />
             </View>
             <View style={berandaStyle.textProfile}>
@@ -72,7 +78,7 @@ const BerandaScreen = ({navigation}) => {
                   textStyle.titleItem,
                   colorStyle.blackForFontAndAnything,
                 ]}>
-                Hai, Sarah Amelia
+                Hai, {profil.nama}
               </Text>
               <Text
                 style={[
