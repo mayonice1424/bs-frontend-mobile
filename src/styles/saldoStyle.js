@@ -62,5 +62,11 @@ const saldoStyle = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
+  line: {
+    borderBottomColor: 'black',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    marginBottom: 10,
+    marginTop: 5,
+  },
 });
 export default saldoStyle;
