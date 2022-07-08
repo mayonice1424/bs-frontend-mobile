@@ -67,7 +67,7 @@ const RegistrasiScreen = ({route, navigation}) => {
     // console.log('halloo', final_data);
 
     return await fetch(
-      `http://192.168.74.221:8000/bang-salam-api/register-user/`,
+      `http://10.0.242.48:8000/bang-salam-api/register-user/`,
       {
         method: 'POST',
         headers: {
