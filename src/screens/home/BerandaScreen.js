@@ -76,7 +76,9 @@ const BerandaScreen = ({navigation}) => {
     <ScrollView>
       <View style={layoutStyle.container}>
         <View style={berandaStyle.content}>
-          <View style={berandaStyle.profile}>
+          <TouchableOpacity 
+          style={berandaStyle.profile}
+          onPress={() => navigation.navigate('Profil')}>
             <View>
               <Image
                 style={berandaStyle.image}
@@ -99,7 +101,7 @@ const BerandaScreen = ({navigation}) => {
                 Apakah sudah menjual sampah hari ini?
               </Text>
             </View>
-          </View>
+          </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate('CekSaldo')}>
             <View style={[berandaStyle.userInfo]}>
               <LinearGradient
@@ -134,7 +136,8 @@ const BerandaScreen = ({navigation}) => {
               style={[
                 colorStyle.backgroundSoftPurple,
                 berandaStyle.containerBox,
-              ]}>
+              ]}
+              onPress={() => navigation.navigate('Jadwal')}>
               <View style={{flexDirection: 'row'}}>
                 <Ionicons
                   name="calendar"
@@ -198,7 +201,8 @@ const BerandaScreen = ({navigation}) => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[colorStyle.backgroundSoftRed, berandaStyle.containerBox]}>
+              style={[colorStyle.backgroundSoftRed,berandaStyle.containerBox]}
+              onPress={() => navigation.navigate('PusatBantuan')}>        
               <View style={berandaStyle.boxContent}>
                 <Foundation
                   name="telephone"

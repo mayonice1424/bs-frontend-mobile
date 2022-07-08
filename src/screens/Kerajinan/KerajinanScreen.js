@@ -16,6 +16,8 @@ const KerajinanScreen = ({navigation}) => {
             stok: 200,
             panjang:200,
             lebar:200,
+            tinggi:200,
+            bahan:'plastik',
         },
         {
             id: 2,
@@ -26,6 +28,8 @@ const KerajinanScreen = ({navigation}) => {
             stok: 200,
             panjang:200,
             lebar:200,
+            tinggi:200,
+            bahan:'plastik',
           },
           {
             id: 3,
@@ -36,6 +40,8 @@ const KerajinanScreen = ({navigation}) => {
             stok: 200,
             panjang:200,
             lebar:200,
+            tinggi:200,
+            bahan:'plastik',
           },
           {
             id: 4,
@@ -46,6 +52,8 @@ const KerajinanScreen = ({navigation}) => {
             stok: 200,
             panjang:200,
             lebar:200,
+            tinggi:200,
+            bahan:'plastik',
           },
           {
             id: 5,
@@ -56,6 +64,8 @@ const KerajinanScreen = ({navigation}) => {
             stok: 200,
             panjang:200,
             lebar:200,
+            tinggi:200,
+            bahan:'plastik',
           },
     ]);
     return(
