@@ -7,7 +7,9 @@ import layoutStyle from '../../styles/layoutStyle';
 import saldoStyle from '../../styles/saldoStyle';
 import textStyle from '../../styles/textStyle';
 
-const DetailPenjualanScreen = ({navigation}) => {
+const DetailPenjualanScreen = ({route, navigation}) => {
+  const data = route.params;
+  console.log('transfered data :', data);
   const logSaldo = () => {
     return (
       <View>

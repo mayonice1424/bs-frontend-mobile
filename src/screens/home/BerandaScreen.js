@@ -57,7 +57,10 @@ const BerandaScreen = ({navigation}) => {
     nama: 'Pengguna',
     foto_profil: 'https://via.placeholder.com/150',
     saldo: '0',
+    token: '',
   });
+
+  const [token, setToken] = useState('');
 
   const getData = async () => {
     const token = await AsyncStorage.getItem('token');
@@ -71,14 +74,13 @@ const BerandaScreen = ({navigation}) => {
     };
     try {
       let response = await fetch(
-        `http://192.168.74.221:8000/bang-salam-api/lihat-users/` +
-          tokens.id +
-          `/`,
+        `http://10.0.242.48:8000/bang-salam-api/lihat-users/` + tokens.id + `/`,
         data,
       );
       let res = await response.json();
       console.log(res);
       setUser(res);
+      setToken(tokens.token);
     } catch (error) {
       console.log(error);
     }
@@ -118,7 +120,10 @@ const BerandaScreen = ({navigation}) => {
               </Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('CekSaldo')}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('CekSaldo', {data_user: user, token: token})
+            }>
             <View style={[berandaStyle.userInfo]}>
               <LinearGradient
                 start={{x: 0.91, y: 0}}
