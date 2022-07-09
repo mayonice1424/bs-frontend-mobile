@@ -20,6 +20,7 @@ const textStyle = StyleSheet.create({
   caption: {
     fontFamily: 'Poppins-Regular',
     fontSize: 16,
+    fontweight: 'bold',
   },
   caption1:{
     fontFamily: 'Poppins-Regular', 
@@ -81,6 +82,11 @@ const textStyle = StyleSheet.create({
   judul:{
     fontFamily: 'Poppins-Bold',
     fontSize: 24,
+  },
+  boxSlideFont:{
+    fontFamily: 'Roboto-Regular',
+    fontSize: 14,
+    fontWeight: 'bold',
   }
 });
 
