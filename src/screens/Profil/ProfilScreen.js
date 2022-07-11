@@ -9,7 +9,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ip } from '../Ip';
 const ProfilScreen = ({navigation}) => {
-  const [profil, setProfil] = useState({
+  const [user, setUser] = useState({
     id: '0000-0000-0000',
     nama: 'Pengguna',
     foto_profil: 'https://via.placeholder.com/150',
@@ -17,11 +17,12 @@ const ProfilScreen = ({navigation}) => {
     status_verifikasi: '0',
   });
 
-  const [user, setUser] = useState({});
+  const [token, setToken] = useState('');
 
   const getData = async () => {
     const token = await AsyncStorage.getItem('token');
     const tokens = JSON.parse(token);
+    setToken(tokens.token);
     let data = {
       method: 'GET',
       headers: {
@@ -38,11 +39,15 @@ const ProfilScreen = ({navigation}) => {
       );
       let res = await response.json();
       console.log(res);
-      setProfil(res);
+      setUser(res);
+      // console.log(tokens.token);
     } catch (error) {
       console.log(error);
     }
   };
+
+  console.log('cekkk : ',token)
+  console.log('cekkk 2 : ',user)
 
   useEffect(() => {
     getData();
@@ -55,7 +60,7 @@ const ProfilScreen = ({navigation}) => {
           <View style={[profilStyleScreen.imageContainer]}>
             <Image
               style={profilStyleScreen.image}
-              source={{uri: profil.foto_profil}}
+              source={{uri: user.foto_profil}}
             />
           </View>
           <View style={{marginLeft: '5%'}}>
@@ -66,7 +71,7 @@ const ProfilScreen = ({navigation}) => {
                   profilStyleScreen.name,
                   textStyle.body2,
                 ]}>
-                {profil.nama}
+                {user.nama}
               </Text>
               <Text
                 style={[
@@ -74,7 +79,7 @@ const ProfilScreen = ({navigation}) => {
                   profilStyleScreen.name,
                   textStyle.body4,
                 ]}>
-                {profil.username}
+                {user.username}
               </Text>
             </View>
             <View
@@ -88,7 +93,7 @@ const ProfilScreen = ({navigation}) => {
                   profilStyleScreen.name,
                   textStyle.body1,
                 ]}>
-                {profil.status_verifikasi === '0'
+                {user.status_verifikasi === '0'
                   ? 'Belum diverifikasi'
                   : 'Terverifikasi'}
               </Text>
@@ -96,6 +101,7 @@ const ProfilScreen = ({navigation}) => {
           </View>
         </View>
         <TouchableOpacity
+          onPress={() => {navigation.navigate('CekSaldo', {data_user: user, token: token})}}
           style={[
             colorStyle.backgroundPrimerGreenActive,
             profilStyleScreen.profilButton,
