@@ -20,7 +20,7 @@ import colorStyle from '../../styles/colorStyle';
 const ResetPasswordScreen = ({navigation}) => {
   const resetPassword = async credentials => {
     return await fetch(
-      `http://10.0.242.48:8000/bang-salam-api/reset-password/`,
+      `http://192.168.74.221:8000/bang-salam-api/reset-password/`,
       {
         method: 'POST',
         headers: {

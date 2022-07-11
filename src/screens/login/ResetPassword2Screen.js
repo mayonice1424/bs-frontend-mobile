@@ -21,7 +21,7 @@ const ResetPassword2Screen = ({route, navigation}) => {
   const resetPassword = async credentials => {
     // console.log({password: credentials});
     return await fetch(
-      `http://10.0.242.48:8000/bang-salam-api/update-password/` +
+      `http://192.168.74.221:8000/bang-salam-api/update-password/` +
         route.params.user_id +
         '/',
       {

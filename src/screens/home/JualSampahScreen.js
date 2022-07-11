@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
+  Alert,
 } from 'react-native';
 
 import colorStyle from '../../styles/colorStyle';
@@ -13,25 +14,113 @@ import layoutStyle from '../../styles/layoutStyle';
 import saldoStyle from '../../styles/saldoStyle';
 import textStyle from '../../styles/textStyle';
 import loginStyle from '../../styles/loginStyle';
-import HorizontalLine from '../../components/HorizontalLine';
 
-import {Formik} from 'formik';
-import * as Yup from 'yup';
+import moment from 'moment';
+import 'moment/locale/id';
+moment.locale('id');
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const JualSampahScreen = () => {
-  const jualan = () => {
-    return (
-      <View style={loginStyle.buttonContainer}>
-        <TouchableOpacity
-          style={loginStyle.button}
-          mode="contained"
-          onPress={() => {}}>
-          <Text style={[textStyle.button, colorStyle.primerBackground]}>
-            Jual Sampah
-          </Text>
-        </TouchableOpacity>
-      </View>
-    );
+const JualSampahScreen = ({navigation}) => {
+  const [data, setDataSampah] = useState(0);
+  const postSampahData = async () => {
+    const token = await AsyncStorage.getItem('token');
+    const tokens = JSON.parse(token);
+    const body = {id_pengguna: tokens.id};
+    console.log(body);
+    let data = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Token ' + tokens.token,
+      },
+      body: JSON.stringify(body),
+    };
+    try {
+      let response = await fetch(
+        `http://192.168.74.221:8000/bang-salam-api/penjualan/`,
+        data,
+      );
+      let res = await response.json();
+      console.log(res);
+      Alert.alert(
+        'Berhasil',
+        'Pengajuan penjualan sampah berhasil dilakukan, silahkan bawa sampah ke bank sampah untuk dilakukan perhitungan',
+      );
+      navigation.navigate('BerandaScreen');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getDataSampah = async () => {
+    const token = await AsyncStorage.getItem('token');
+    const tokens = JSON.parse(token);
+    let data = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Token ' + tokens.token,
+      },
+    };
+    try {
+      let response = await fetch(
+        `http://192.168.74.221:8000/bang-salam-api/penjualan-onprocess/?user_id=` +
+          tokens.id,
+        data,
+      );
+      let res = await response.json();
+      // console.log(res);
+      setDataSampah(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getDataSampah();
+  }, []);
+
+  const Jualan = () => {
+    console.log(data[0]);
+    if (data.length > 0) {
+      return (
+        <View style={[saldoStyle.boxSmaller, {marginBottom: '5%'}]}>
+          <Image
+            style={saldoStyle.imageCoin}
+            source={require('../../images/Image/YellowCoin.png')}
+          />
+          <View style={saldoStyle.textContainer}>
+            <View style={[saldoStyle.navigation, {backgroundColor: '#C2B919'}]}>
+              <Text style={[colorStyle.textColorWhite, textStyle.body1]}>
+                Penjualan
+              </Text>
+            </View>
+            <Text
+              style={[textStyle.titleItem, colorStyle.blackForFontAndAnything]}>
+              {'P-' + data[0].id}
+            </Text>
+            <Text style={[textStyle.body4, colorStyle.blackForFontAndAnything]}>
+              {data[0].tanggal}
+            </Text>
+          </View>
+        </View>
+      );
+    } else {
+      return (
+        <View style={loginStyle.buttonContainer}>
+          <TouchableOpacity
+            style={loginStyle.button}
+            mode="contained"
+            onPress={() => {
+              postSampahData();
+            }}>
+            <Text style={[textStyle.button, colorStyle.primerBackground]}>
+              Jual Sampah
+            </Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
   };
   return (
     <View style={layoutStyle.container}>
@@ -95,7 +184,9 @@ const JualSampahScreen = () => {
               </Text>
             </View>
           </View>
-          <View>{jualan()}</View>
+          <View style={{height: '100%'}}>
+            <Jualan />
+          </View>
         </View>
       </ScrollView>
     </View>

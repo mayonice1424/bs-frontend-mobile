@@ -44,7 +44,12 @@ export default class UserOnBoarding extends React.Component {
         <View style={[Onboarding.circleContainer]}></View>
         <TouchableOpacity
           style={[Onboarding.button, colorStyle.backgroundPrimerGreenActive]}
-          onPress={() => this.props.navigation.navigate('UserDashboard')}>
+          onPress={() => {
+            try {
+              AsyncStorage.setItem('onBoarding', 'true');
+            } catch (error) {}
+            this.props.navigation.navigate('UserDashboard');
+          }}>
           <Text style={[textStyle.button, colorStyle.whiteForCard]}>
             Get Started
           </Text>
