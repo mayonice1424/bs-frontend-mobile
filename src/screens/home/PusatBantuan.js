@@ -1,11 +1,7 @@
 import {View,Text, TouchableOpacity, ScrollView} from 'react-native';
 import React from 'react';
 import { Modal } from 'react-native';
-import pusatBantuanStyle from '../../styles/pusatBantuan';
 import colorStyle from '../../styles/colorStyle';
-import GlobalIp from './Ip';
-
-
 const PusatBantuan = () => {
     const [modalVisible, setModalVisible] = React.useState(false);
     return(
@@ -14,7 +10,7 @@ const PusatBantuan = () => {
                 <ScrollView>
                     <View>
                         <TouchableOpacity>
-                            <GlobalIp />
+                            <Text style={colorStyle.blackForFontAndAnything}>Pusat Bantuan</Text>
                         </TouchableOpacity>
                     </View>
                 </ScrollView>

@@ -30,7 +30,7 @@ const ProfilScreen = ({navigation}) => {
     };
     try {
       let response = await fetch(
-        `http://192.168.74.221:8000/bang-salam-api/lihat-users/` +
+        ip + `bang-salam-api/lihat-users/` +
           tokens.id +
           `/`,
         data,

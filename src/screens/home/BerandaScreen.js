@@ -14,11 +14,10 @@ import berandaStyle from '../../styles/berandaStyle';
 import textStyle from '../../styles/textStyle';
 import colorStyle from '../../styles/colorStyle';
 import cardStyle from '../../styles/cardStyle';
-
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foundation from 'react-native-vector-icons/Foundation';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ip } from '../Ip';
 
 const BerandaScreen = ({navigation}) => {
   const [profil, setProfil] = useState({
@@ -48,20 +47,19 @@ const BerandaScreen = ({navigation}) => {
       title: 'Sampah Bekas',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      date: '2020-01-01',
-    },
-  ]);
+        date: '2020-01-01',
+      },
+    ]);
 
-  const [user, setUser] = useState({
+    const [user, setUser] = useState({
     id: '0000-0000-0000',
     nama: 'Pengguna',
     foto_profil: 'https://via.placeholder.com/150',
     saldo: '0',
     token: '',
   });
-
   const [token, setToken] = useState('');
-
+  
   const getData = async () => {
     const token = await AsyncStorage.getItem('token');
     const tokens = JSON.parse(token);
@@ -74,7 +72,7 @@ const BerandaScreen = ({navigation}) => {
     };
     try {
       let response = await fetch(
-        `http://192.168.74.221:8000/bang-salam-api/lihat-users/` +
+      ip +`bang-salam-api/lihat-users/` +
           tokens.id +
           `/`,
         data,
