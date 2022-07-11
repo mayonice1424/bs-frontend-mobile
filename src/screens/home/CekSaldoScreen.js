@@ -13,7 +13,7 @@ import layoutStyle from '../../styles/layoutStyle';
 import saldoStyle from '../../styles/saldoStyle';
 import textStyle from '../../styles/textStyle';
 import moment from 'moment';
-
+import { ip } from '../Ip';
 const CekSaldo = ({route, navigation}) => {
   const userData = route.params;
   console.log('transfered data :', userData.token);
@@ -24,7 +24,7 @@ const CekSaldo = ({route, navigation}) => {
     try {
       let response = await fetch(
         // 'https://api.jalantikus.com/api/v1/transaction/' + userData.id,
-        `http://10.0.242.48:8000/bang-salam-api/cash-flow-user/?user_id=${userData.data_user.id}&status=completed`,
+        `${ip}bang-salam-api/cash-flow-user/?user_id=${userData.data_user.id}&status=completed`,
         {
           method: 'GET',
           headers: {
