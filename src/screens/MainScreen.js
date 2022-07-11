@@ -7,6 +7,7 @@ import LoginRoutes from './routes/LoginRoutes';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
+import SplashScreen from './SplashScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,8 +15,9 @@ const MainScreen = ({navigation}) => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="LoginRoutes"
+        initialRouteName="SplashScreen"
         screenOptions={{headerShown: false}}>
+        <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="LoginRoutes" component={LoginRoutes} />
         <Stack.Screen name="TabNavigator" component={TabNavigator} />
       </Stack.Navigator>
