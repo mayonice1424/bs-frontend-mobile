@@ -20,7 +20,7 @@ const TabNavigator = ({navigation}) => {
       screenOptions={{
         tabBarStyle: {
           position: 'absolute',
-          height: 60,
+          height: 40,
           borderTopEndRadius: 20,
           borderTopStartRadius: 20,
           shadowColor: '#000',
