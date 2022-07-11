@@ -7,6 +7,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ip } from '../Ip';
 const ProfilScreen = ({navigation}) => {
   const [profil, setProfil] = useState({
     id: '0000-0000-0000',
