@@ -10,7 +10,7 @@ const Onboarding = StyleSheet.create({
         marginTop: '10%',
         marginBottom:'2%',
         height: '15%',
-        width: '95%',
+        width: '91%',
         alignItems:'center',
         justifyContent:'center',
         borderRadius: 10,

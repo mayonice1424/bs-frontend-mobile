@@ -2,6 +2,8 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ProfilScreen from "../Profil/ProfilScreen";
+import HomeRoute from "./HomeRoutes";
+import CekSaldo from "../home/CekSaldoScreen";
 const Stack = createNativeStackNavigator();
 const Profil= () => {
   return (
@@ -19,6 +21,7 @@ const Profil= () => {
         headerShadowVisible: false,
       }}>
       <Stack.Screen name="ProfilScreen" component={ProfilScreen}  options={{title: 'Profil'}} />
+      <Stack.Screen name="CekSaldo" component={CekSaldo}  options={{title: 'Cek Saldo'}} />
     </Stack.Navigator>
   );
 };

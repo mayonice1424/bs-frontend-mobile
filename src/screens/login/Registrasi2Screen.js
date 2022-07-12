@@ -22,6 +22,7 @@ import loginStyle from '../../styles/loginStyle';
 import HorizontalLine from '../../components/HorizontalLine';
 import textStyle from '../../styles/textStyle';
 import colorStyle from '../../styles/colorStyle';
+import { ip } from '../Ip';
 
 const RegistrasiScreen = ({route, navigation}) => {
   let data = route.params;
@@ -67,7 +68,7 @@ const RegistrasiScreen = ({route, navigation}) => {
     // console.log('halloo', final_data);
 
     return await fetch(
-      `http://192.168.74.221:8000/bang-salam-api/register-user/`,
+      ip + `bang-salam-api/register-user/`,
       {
         method: 'POST',
         headers: {

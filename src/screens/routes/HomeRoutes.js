@@ -13,7 +13,6 @@ import JualSampahScreen from '../home/JualSampahScreen';
 import KalkulatorScreen from '../home/KalkulatorScreen';
 import Jadwal from '../home/Jadwal';
 import PusatBantuan from '../home/PusatBantuan';
-import DetailArtikelScreen from '../Artikel/DetailArtikelScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -82,11 +81,6 @@ function HomeRoute() {
         name="PusatBantuan"
         component={PusatBantuan}
         options={{title: 'Pusat Bantuan'}}
-      />
-      <Stack.Screen
-        name="DetailArtikelScreen"
-        component={DetailArtikelScreen}
-        options={{title: 'Detail Artikel'}}
       />
     </Stack.Navigator>
   );

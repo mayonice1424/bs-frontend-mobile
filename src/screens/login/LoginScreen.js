@@ -15,6 +15,7 @@ import loginStyle from '../../styles/loginStyle';
 import HorizontalLine from '../../components/HorizontalLine';
 import textStyle from '../../styles/textStyle';
 import colorStyle from '../../styles/colorStyle';
+import { ip } from '../Ip';
 
 const LoginScreen = ({navigation}) => {
   const [checkToken, setCheckToken] = useState(null);
@@ -55,7 +56,7 @@ const LoginScreen = ({navigation}) => {
 
   const loginUser = async credentials => {
     return await fetch(
-      `http://192.168.74.221:8000/bang-salam-api/login-user/`,
+      ip + `bang-salam-api/login-user/`,
       {
         method: 'POST',
         headers: {

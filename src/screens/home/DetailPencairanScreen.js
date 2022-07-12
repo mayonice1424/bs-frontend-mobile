@@ -5,7 +5,6 @@ import colorStyle from '../../styles/colorStyle';
 import layoutStyle from '../../styles/layoutStyle';
 import saldoStyle from '../../styles/saldoStyle';
 import textStyle from '../../styles/textStyle';
-
 const DetailPencairanScreen = ({navigation}) => {
   const logSaldo = () => {
     return (
