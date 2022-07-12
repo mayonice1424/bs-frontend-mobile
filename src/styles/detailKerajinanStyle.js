@@ -14,8 +14,10 @@ const detailKerajinanStyle = StyleSheet.create({
   },
   image: {
     margintoTop: '5%',
-    width: '80%',
-    height: '80%',
+    width: '70%',
+    height: '70%',
+    minWidth: '95%',
+    minHeight: '60%',
   },
   imageContainer: {
     marginVertical: '5%',

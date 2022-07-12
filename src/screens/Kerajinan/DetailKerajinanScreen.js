@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, SafeAreaView, ScrollView, Image} from 'react-native';
+import {View, Text, ScrollView, Image} from 'react-native';
 import artikelCardStyle from '../../styles/artikelCardStyle';
 import cardStyle from '../../styles/cardStyle';
 import colorStyle from '../../styles/colorStyle';
@@ -7,11 +7,12 @@ import detailKerajinanStyle from '../../styles/detailKerajinanStyle';
 import layoutStyle from '../../styles/layoutStyle';
 import textStyle from '../../styles/textStyle';
 import HorizontalLine from '../../components/HorizontalLine';
+import { ip } from '../Ip';
 const DetailKerajinanScreen = ({route, navigation}) => {
   const getDetailKerajinan = async () => {
     try {
       let response = await fetch(
-        `http://192.168.74.221:8000/bang-salam-api/kerajinan/` +
+        ip+`bang-salam-api/kerajinan/` +
           route.params.data +
           `/`,
       );

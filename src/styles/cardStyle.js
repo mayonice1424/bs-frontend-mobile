@@ -21,12 +21,17 @@ const cardStyle = StyleSheet.create({
   image:{
     borderRadius: 10,
     marginVertical: '3%',
-    marginHorizontal: '2%',
-    width: 140,
+    marginHorizontal: '5%',
+    width: 120,
     height: 120,
   },
   body:{
     height:"20%",
+  },
+  text:{
+    marginTop: '3%',
+    width: '50%',
+    height: '100%',
   }
 });
 

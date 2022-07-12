@@ -11,11 +11,12 @@ import colorStyle from '../../styles/colorStyle';
 import textStyle from '../../styles/textStyle';
 import kerajinanStyle from '../../styles/kerajinanStyle';
 import cardStyle from '../../styles/cardStyle';
+import { ip } from '../Ip';
 const KerajinanScreen = ({navigation}) => {
   const getDataKerajinan = async () => {
     try {
       let response = await fetch(
-        `http://192.168.74.221:8000/bang-salam-api/kerajinan/`,
+        ip+`bang-salam-api/kerajinan/`,
       );
       let res = await response.json();
       console.log(res);
@@ -59,11 +60,12 @@ const KerajinanScreen = ({navigation}) => {
                         style={cardStyle.image}
                       />
                     </View>
-                    <View>
+                    <View style={ cardStyle.text}>
                       <Text
                         style={[
                           textStyle.caption,
                           colorStyle.blackForFontAndAnything,
+                         
                         ]}>
                         {item.nama_kerajinan}
                       </Text>
