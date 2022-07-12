@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, SafeAreaView, ScrollView, Image} from 'react-native';
 import artikelCardStyle from '../../styles/artikelCardStyle';
 import cardStyle from '../../styles/cardStyle';
@@ -9,9 +9,26 @@ import layoutStyle from '../../styles/layoutStyle';
 import textStyle from '../../styles/textStyle';
 
 const DetailArtikelScreen = ({route, navigation}) => {
+  const [artikel, setArtikel] = useState([]);
+
+  const getDetailArtikel = async () => {
+    try {
+      let response = await fetch(
+        `http://192.168.74.221:8000/bang-salam-api/data-informasi/` +
+          route.params.data +
+          `/`,
+      );
+      let res = await response.json();
+      console.log(res);
+      setArtikel(res);
+    } catch (error) {
+      console.log('error: ', error);
+    }
+  };
+
   useEffect(() => {
-    console.log(route.params.data);
-  });
+    getDetailArtikel();
+  }, []);
   return (
     <View style={detailArtikelStyle.container}>
       <View style={detailArtikelStyle.content}>
@@ -19,18 +36,18 @@ const DetailArtikelScreen = ({route, navigation}) => {
           <View>
             <Text
               style={[colorStyle.blackForFontAndAnything, textStyle.header]}>
-              {route.params.data.judul_informasi}
+              {artikel.judul_informasi}
             </Text>
           </View>
           <View style={detailArtikelStyle.imageContainer}>
             <Image
               style={detailArtikelStyle.image}
-              source={{uri: route.params.data.thumbnail_informasi}}
+              source={{uri: artikel.thumbnail_informasi}}
             />
           </View>
           <View style={[detailArtikelStyle.date]}>
             <Text style={[colorStyle.blackForFontAndAnything, textStyle.date]}>
-              {route.params.data.tanggal_dibuat}
+              {artikel.tanggal_dibuat}
             </Text>
           </View>
           <View>
@@ -40,7 +57,7 @@ const DetailArtikelScreen = ({route, navigation}) => {
                 colorStyle.blackForFontAndAnything,
                 detailArtikelStyle.text,
               ]}>
-              {route.params.data.isi_informasi}
+              {artikel.isi_informasi}
             </Text>
           </View>
         </ScrollView>

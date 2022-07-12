@@ -245,7 +245,14 @@ const BerandaScreen = ({navigation}) => {
               .slice(0, 3)
               .map((item, index) => {
                 return (
-                  <TouchableOpacity key={index} style={cardStyle.container}>
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => {
+                      navigation.navigate('DetailArtikelScreen', {
+                        data: item.id,
+                      });
+                    }}
+                    style={cardStyle.container}>
                     <View
                       style={{
                         flexDirection: 'row',

@@ -24,7 +24,7 @@ const CekSaldo = ({route, navigation}) => {
     try {
       let response = await fetch(
         // 'https://api.jalantikus.com/api/v1/transaction/' + userData.id,
-        `http://10.0.242.48:8000/bang-salam-api/cash-flow-user/?user_id=${userData.data_user.id}&status=completed`,
+        `http://192.168.74.221:8000/bang-salam-api/cash-flow-user/?user_id=${userData.data_user.id}&status=completed`,
         {
           method: 'GET',
           headers: {

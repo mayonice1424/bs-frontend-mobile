@@ -45,7 +45,9 @@ const ArtikelScreen = ({navigation}) => {
                     key={index}
                     style={[artikelCardStyle.container]}
                     onPress={() =>
-                      navigation.navigate('DetailArtikelScreen', {data: item})
+                      navigation.navigate('DetailArtikelScreen', {
+                        data: item.id,
+                      })
                     }>
                     <View
                       style={{
