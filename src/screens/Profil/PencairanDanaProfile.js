@@ -22,7 +22,7 @@ import * as Yup from 'yup';
 import {ip} from '../Ip';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const PencairanDanaScreen = ({route, navigation}) => {
+const PencairanDanaProfileScreen = ({route, navigation}) => {
   const userData = route.params.data;
   // console.log('transfered data :', userData.token);
   const [isLoading, setLoading] = useState(true);
@@ -79,7 +79,7 @@ const PencairanDanaScreen = ({route, navigation}) => {
             response.total_nominal.slice(0, -3) +
             ' silahkan ke bank salam untuk mengambil uang Anda',
         );
-        navigation.navigate('BerandaScreen');
+        navigation.navigate('Home');
       })
       .catch(error => {
         console.log(error);
@@ -245,4 +245,4 @@ const PencairanDanaScreen = ({route, navigation}) => {
   );
 };
 
-export default PencairanDanaScreen;
+export default PencairanDanaProfileScreen;

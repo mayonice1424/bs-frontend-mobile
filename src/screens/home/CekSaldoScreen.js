@@ -13,7 +13,7 @@ import layoutStyle from '../../styles/layoutStyle';
 import saldoStyle from '../../styles/saldoStyle';
 import textStyle from '../../styles/textStyle';
 import moment from 'moment';
-import { ip } from '../Ip';
+import {ip} from '../Ip';
 const CekSaldo = ({route, navigation}) => {
   const userData = route.params;
   console.log('transfered data :', userData.token);
@@ -151,7 +151,7 @@ const CekSaldo = ({route, navigation}) => {
               textStyle.title2,
               {fontWeight: '500'},
             ]}>
-            {userData.data_user.id}
+            No Rekening : {makeStripInString(userData.data_user.id)}
           </Text>
           <Image
             style={saldoStyle.imageCoin}
@@ -163,11 +163,13 @@ const CekSaldo = ({route, navigation}) => {
               textStyle.title2,
               {fontWeight: '500'},
             ]}>
-            Salam Coin : {userData.data_user.saldo}
+            Salam Coin : {userData.data_user.saldo.slice(0, -3)}
           </Text>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('PencairanDana');
+              navigation.navigate('PencairanDana', {
+                data: userData.data_user,
+              });
             }}>
             <View style={saldoStyle.button}>
               <Text style={[textStyle.button, {color: 'white'}]}>Cairkan</Text>

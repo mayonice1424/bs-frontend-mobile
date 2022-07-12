@@ -8,15 +8,17 @@ import detailArtikelStyle from '../../styles/detailArtikelStyle';
 import layoutStyle from '../../styles/layoutStyle';
 import textStyle from '../../styles/textStyle';
 
+import moment from 'moment';
+
+import {ip} from '../Ip';
+
 const DetailArtikelScreen = ({route, navigation}) => {
   const [artikel, setArtikel] = useState([]);
 
   const getDetailArtikel = async () => {
     try {
       let response = await fetch(
-        `http://192.168.74.221:8000/bang-salam-api/data-informasi/` +
-          route.params.data +
-          `/`,
+        ip + `bang-salam-api/lihat-data-informasi/` + route.params.data + `/`,
       );
       let res = await response.json();
       console.log(res);
@@ -47,7 +49,7 @@ const DetailArtikelScreen = ({route, navigation}) => {
           </View>
           <View style={[detailArtikelStyle.date]}>
             <Text style={[colorStyle.blackForFontAndAnything, textStyle.date]}>
-              {artikel.tanggal_dibuat}
+              {moment(artikel.tanggal_dibuat).format('DD MMMM YYYY')}
             </Text>
           </View>
           <View>
