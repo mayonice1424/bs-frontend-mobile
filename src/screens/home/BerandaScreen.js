@@ -74,9 +74,7 @@ const BerandaScreen = ({navigation}) => {
     };
     try {
       let response = await fetch(
-        `http://192.168.74.221:8000/bang-salam-api/lihat-users/` +
-          tokens.id +
-          `/`,
+        `http://10.0.242.48:8000/bang-salam-api/lihat-users/` + tokens.id + `/`,
         data,
       );
       let res = await response.json();

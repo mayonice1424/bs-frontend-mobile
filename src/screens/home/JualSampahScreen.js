@@ -37,7 +37,7 @@ const JualSampahScreen = ({navigation}) => {
     };
     try {
       let response = await fetch(
-        `http://192.168.74.221:8000/bang-salam-api/penjualan/`,
+        `http://10.0.242.48:8000/bang-salam-api/penjualan/`,
         data,
       );
       let res = await response.json();
@@ -64,7 +64,7 @@ const JualSampahScreen = ({navigation}) => {
     };
     try {
       let response = await fetch(
-        `http://192.168.74.221:8000/bang-salam-api/penjualan-onprocess/?user_id=` +
+        `http://10.0.242.48:8000/bang-salam-api/penjualan-onprocess/?user_id=` +
           tokens.id,
         data,
       );
