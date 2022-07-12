@@ -8,7 +8,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ip } from '../Ip';
+import {ip} from '../Ip';
 const ProfilScreen = ({navigation}) => {
   const [user, setUser] = useState({
     id: '0000-0000-0000',
@@ -33,9 +33,7 @@ const ProfilScreen = ({navigation}) => {
     };
     try {
       let response = await fetch(
-        ip + `bang-salam-api/lihat-users/` +
-          tokens.id +
-          `/`,
+        ip + `bang-salam-api/lihat-users/` + tokens.id + `/`,
         data,
       );
       let res = await response.json();
@@ -47,8 +45,8 @@ const ProfilScreen = ({navigation}) => {
     }
   };
 
-  console.log('cekkk : ',token)
-  console.log('cekkk 2 : ',user)
+  console.log('cekkk : ', token);
+  console.log('cekkk 2 : ', user);
 
   useEffect(() => {
     getData();
@@ -102,30 +100,32 @@ const ProfilScreen = ({navigation}) => {
           </View>
         </View>
         <TouchableOpacity
-          onPress={() => {navigation.navigate('CekSaldo', {data_user: user, token: token})}}
+          onPress={() => {
+            navigation.navigate('CekSaldo', {data_user: user, token: token});
+          }}
           style={[
             colorStyle.backgroundPrimerGreenActive,
             profilStyleScreen.profilButton,
           ]}>
-              <View style={{flexDirection: 'row'}}>
-                <MaterialIcons
-                  name="history"
-                  size={25}
-                  style={colorStyle.whiteForCard}
-                />
-                <Text
-                  style={[
-                    colorStyle.whiteForCard,
-                    profilStyleScreen.name,
-                    textStyle.body1,
-                    {marginLeft: 20},
-                  ]}>
-                  Riwayat Transaksi
-                </Text>
-              </View>
-              <View style={{marginLeft:"35%"}}>
-                <AntDesign name="right" size={20} style={colorStyle.whiteForCard} />
-              </View>
+          <View style={{flexDirection: 'row'}}>
+            <MaterialIcons
+              name="history"
+              size={25}
+              style={colorStyle.whiteForCard}
+            />
+            <Text
+              style={[
+                colorStyle.whiteForCard,
+                profilStyleScreen.name,
+                textStyle.body1,
+                {marginLeft: 20},
+              ]}>
+              Riwayat Transaksi
+            </Text>
+          </View>
+          <View style={{marginLeft: '35%'}}>
+            <AntDesign name="right" size={20} style={colorStyle.whiteForCard} />
+          </View>
         </TouchableOpacity>
         <TouchableOpacity
           style={[
@@ -144,7 +144,7 @@ const ProfilScreen = ({navigation}) => {
               Edit Profil
             </Text>
           </View>
-          <View style={{marginLeft:'60%'}}>
+          <View style={{marginLeft: '60%'}}>
             <AntDesign name="right" size={20} style={colorStyle.whiteForCard} />
           </View>
         </TouchableOpacity>
@@ -169,7 +169,7 @@ const ProfilScreen = ({navigation}) => {
               Pengaturan
             </Text>
           </View>
-          <View style={{marginLeft:'52%'}}>
+          <View style={{marginLeft: '52%'}}>
             <AntDesign name="right" size={20} style={colorStyle.whiteForCard} />
           </View>
         </TouchableOpacity>
@@ -194,7 +194,7 @@ const ProfilScreen = ({navigation}) => {
               Keluar
             </Text>
           </View>
-          <View style={{marginLeft:'66%'}}>
+          <View style={{marginLeft: '66%'}}>
             <AntDesign name="right" size={20} style={colorStyle.whiteForCard} />
           </View>
         </TouchableOpacity>

@@ -15,7 +15,7 @@ import loginStyle from '../../styles/loginStyle';
 import HorizontalLine from '../../components/HorizontalLine';
 import textStyle from '../../styles/textStyle';
 import colorStyle from '../../styles/colorStyle';
-import { ip } from '../Ip';
+import {ip} from '../Ip';
 
 const LoginScreen = ({navigation}) => {
   const [checkToken, setCheckToken] = useState(null);
@@ -64,6 +64,7 @@ const LoginScreen = ({navigation}) => {
         },
         body: JSON.stringify(credentials),
       },
+      // body: JSON.stringify(credentials),
     )
       .then(response => response.json())
       .then(response => {
