@@ -22,7 +22,7 @@ import moment from 'moment';
 
 const BerandaScreen = ({navigation}) => {
   const [user, setUser] = useState({
-    id: '0000-0000-0000',
+    id: '000000000000',
     nama: 'Pengguna',
     foto_profil: 'https://via.placeholder.com/150',
     saldo: '0',
@@ -81,7 +81,7 @@ const BerandaScreen = ({navigation}) => {
 
   return (
     <View style={layoutStyle.container}>
-        <View style={berandaStyle.content}>
+      <View style={berandaStyle.content}>
         <ScrollView>
           <TouchableOpacity
             style={berandaStyle.profile}
@@ -302,9 +302,9 @@ const BerandaScreen = ({navigation}) => {
                 );
               })}
           </View>
-    </ScrollView>
-        </View>
+        </ScrollView>
       </View>
+    </View>
   );
 };
 
