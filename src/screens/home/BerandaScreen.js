@@ -17,10 +17,9 @@ import cardStyle from '../../styles/cardStyle';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foundation from 'react-native-vector-icons/Foundation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ip } from '../Ip';
+import {ip} from '../Ip';
 
 const BerandaScreen = ({navigation}) => {
-
   const [user, setUser] = useState({
     id: '0000-0000-0000',
     nama: 'Pengguna',
@@ -30,9 +29,12 @@ const BerandaScreen = ({navigation}) => {
   });
 
   const [artikel, setArtikel] = useState([]);
+  const [token, setToken] = useState('');
+
   const getData = async () => {
     const token = await AsyncStorage.getItem('token');
     const tokens = JSON.parse(token);
+    setToken(tokens.token);
     let data = {
       method: 'GET',
       headers: {
@@ -42,9 +44,7 @@ const BerandaScreen = ({navigation}) => {
     };
     try {
       let response = await fetch(
-      ip +`bang-salam-api/lihat-users/` +
-          tokens.id +
-          `/`,
+        ip + `bang-salam-api/lihat-users/` + tokens.id + `/`,
         data,
       );
       let res = await response.json();
@@ -57,9 +57,7 @@ const BerandaScreen = ({navigation}) => {
 
   const getDataPengumuman = async () => {
     try {
-      let response = await fetch(
-        `http://192.168.74.221:8000/bang-salam-api/data-informasi/`,
-      );
+      let response = await fetch(ip + `bang-salam-api/lihat-data-informasi/`);
       let res = await response.json();
       // console.log(res);
       setArtikel(res);

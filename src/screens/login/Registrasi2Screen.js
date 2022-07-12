@@ -22,7 +22,7 @@ import loginStyle from '../../styles/loginStyle';
 import HorizontalLine from '../../components/HorizontalLine';
 import textStyle from '../../styles/textStyle';
 import colorStyle from '../../styles/colorStyle';
-import { ip } from '../Ip';
+import {ip} from '../Ip';
 
 const RegistrasiScreen = ({route, navigation}) => {
   let data = route.params;
@@ -67,20 +67,17 @@ const RegistrasiScreen = ({route, navigation}) => {
     final_data.append('foto_ktp', all_data.foto_ktp);
     // console.log('halloo', final_data);
 
-    return await fetch(
-      ip + `bang-salam-api/register-user/`,
-      {
-        method: 'POST',
-        headers: {
-          // 'Content-Type': 'application/json',
-          Accept: 'application/json',
-          'Content-Type':
-            'multipart/form-data; boundary=6ff46e0b6b5148d984f148b6542e5a5d',
-        },
-        // body: upload_data,
-        body: final_data,
+    return await fetch(ip + `bang-salam-api/register-user/`, {
+      method: 'POST',
+      headers: {
+        // 'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Content-Type':
+          'multipart/form-data; boundary=6ff46e0b6b5148d984f148b6542e5a5d',
       },
-    )
+      // body: upload_data,
+      body: final_data,
+    })
       .then(response => {
         // console.log(response);
         // console.log('status: ', response.status);

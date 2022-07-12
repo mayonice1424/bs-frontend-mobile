@@ -13,7 +13,7 @@ import layoutStyle from '../../styles/layoutStyle';
 import saldoStyle from '../../styles/saldoStyle';
 import textStyle from '../../styles/textStyle';
 import loginStyle from '../../styles/loginStyle';
-import { ip } from '../Ip';
+import {ip} from '../Ip';
 import moment from 'moment';
 import 'moment/locale/id';
 moment.locale('id');
@@ -36,10 +36,7 @@ const JualSampahScreen = ({navigation}) => {
       body: JSON.stringify(body),
     };
     try {
-      let response = await fetch(
-        ip + `bang-salam-api/penjualan/`,
-        data,
-      );
+      let response = await fetch(ip + `bang-salam-api/penjualan/`, data);
       let res = await response.json();
       console.log(res);
       Alert.alert(
@@ -64,12 +61,7 @@ const JualSampahScreen = ({navigation}) => {
     };
     try {
       let response = await fetch(
-<<<<<<< HEAD
-        `http://10.0.242.48:8000/bang-salam-api/penjualan-onprocess/?user_id=` +
-=======
-        ip +`bang-salam-api/penjualan-onprocess/?user_id=` +
->>>>>>> 6ceb00edf971dec77396cabbc35facbef24d53fe
-          tokens.id,
+        ip + `bang-salam-api/penjualan-onprocess/?user_id=` + tokens.id,
         data,
       );
       let res = await response.json();

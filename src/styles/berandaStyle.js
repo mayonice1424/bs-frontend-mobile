@@ -15,6 +15,7 @@ const berandaStyle = StyleSheet.create({
     paddingBottom: '40%',
     marginLeft: '4%',
     marginRight: '4%',
+    height: '100%',
   },
   artikelLayout: {
     justifyContent: 'space-between',
@@ -34,7 +35,6 @@ const berandaStyle = StyleSheet.create({
     borderRadius: 10,
     marginTop: '5%',
     width: '100%',
-    borderRadius: 10,
   },
   linearGradient: {
     width: '100%',
@@ -77,6 +77,7 @@ const berandaStyle = StyleSheet.create({
     borderRadius: 10,
   },
   boxRow: {
+    minHeight: 90,
     height: '13%',
     flexDirection: 'row',
     marginBottom: '1%',
@@ -86,6 +87,9 @@ const berandaStyle = StyleSheet.create({
     flexDirection: 'row',
     width: '70%',
     marginTop: 11,
+  },
+  emptyAnnouncementView: {
+    height: '20%',
   },
 });
 
