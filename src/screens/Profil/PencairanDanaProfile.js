@@ -21,12 +21,14 @@ import * as Yup from 'yup';
 
 import {ip} from '../Ip';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import moment from 'moment';
 
-const PencairanDanaProfileScreen = ({route, navigation}) => {
+const PencairanDanaScreen = ({route, navigation}) => {
   const userData = route.params.data;
   // console.log('transfered data :', userData.token);
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [dataSampah, setDataSampah] = useState([]);
 
   const getTransaction = async () => {
     try {
@@ -92,8 +94,38 @@ const PencairanDanaProfileScreen = ({route, navigation}) => {
     return result;
   };
 
+  const getDataSampah = async () => {
+    const token = await AsyncStorage.getItem('token');
+    const tokens = JSON.parse(token);
+    let data = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Token ' + tokens.token,
+      },
+    };
+    try {
+      let response = await fetch(
+        ip + `bang-salam-api/pencairan-onprocess/?user_id=` + tokens.id,
+        data,
+      );
+      let res = await response.json();
+      console.log('responseeee : ', res);
+      setDataSampah(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const moneySplitbyDot = money => {
+    let number = money;
+    let str = number.toString();
+    let result = str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return result;
+  };
+
   useEffect(() => {
     getTransaction();
+    getDataSampah();
     // console.log('data :', route.params.data);
   }, []);
 
@@ -120,7 +152,7 @@ const PencairanDanaProfileScreen = ({route, navigation}) => {
                 textStyle.title2,
                 {fontWeight: '500'},
               ]}>
-              Salam Coin : {userData.saldo.slice(0, -3)}
+              Salam Coin : {moneySplitbyDot(userData.saldo.slice(0, -3))}
             </Text>
           </View>
           <View style={saldoStyle.keterangan}>
@@ -239,10 +271,53 @@ const PencairanDanaProfileScreen = ({route, navigation}) => {
               );
             }}
           </Formik>
+          <View style={{marginTop: '5%', marginBottom: '20%'}}>
+            {dataSampah.map((item, index) => {
+              return (
+                <View
+                  key={index}
+                  style={[saldoStyle.boxSmaller, {marginBottom: '5%'}]}>
+                  <Image
+                    style={saldoStyle.imageCoin}
+                    source={require('../../images/Image/YellowCoin.png')}
+                  />
+                  <View style={saldoStyle.textContainer}>
+                    <View
+                      style={[
+                        saldoStyle.navigation,
+                        {backgroundColor: '#C2B919'},
+                      ]}>
+                      <Text
+                        style={[colorStyle.textColorWhite, textStyle.body1]}>
+                        Pencairan
+                      </Text>
+                    </View>
+                    <Text
+                      style={[
+                        textStyle.titleItem,
+                        colorStyle.blackForFontAndAnything,
+                      ]}>
+                      {'C-' + makeStripInString(item.id)}
+                    </Text>
+                    <Text
+                      style={[
+                        textStyle.body4,
+                        colorStyle.blackForFontAndAnything,
+                      ]}>
+                      {moment(item.tanggal).format('DD MMMM YYYY')}
+                    </Text>
+                    <Text style={[colorStyle.yellow, textStyle.body1]}>
+                      - {moneySplitbyDot(item.total_nominal.slice(0, -3))} Coin
+                    </Text>
+                  </View>
+                </View>
+              );
+            })}
+          </View>
         </View>
       </ScrollView>
     </View>
   );
 };
 
-export default PencairanDanaProfileScreen;
+export default PencairanDanaScreen;

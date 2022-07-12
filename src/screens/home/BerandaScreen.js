@@ -74,6 +74,13 @@ const BerandaScreen = ({navigation}) => {
     return result;
   };
 
+  const moneySplitbyDot = money => {
+    let number = money;
+    let str = number.toString();
+    let result = str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return result;
+  };
+
   useEffect(() => {
     getData();
     getDataPengumuman();
@@ -127,7 +134,7 @@ const BerandaScreen = ({navigation}) => {
                         source={require('../../images/Image/WhiteCoin.png')}
                       />
                       <Text style={[textStyle.body1, colorStyle.whiteForCard]}>
-                        Salam Coin: {user.saldo.slice(0, -3)}{' '}
+                        Salam Coin: {moneySplitbyDot(user.saldo.slice(0, -3))}{' '}
                       </Text>
                     </View>
                     <View style={berandaStyle.rightWrap}>

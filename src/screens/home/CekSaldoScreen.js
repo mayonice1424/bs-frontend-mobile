@@ -58,6 +58,13 @@ const CekSaldo = ({route, navigation}) => {
     return result;
   };
 
+  const moneySplitbyDot = money => {
+    let number = money;
+    let str = number.toString();
+    let result = str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return result;
+  };
+
   const CardPenjualan = props => {
     return (
       <View>
@@ -133,7 +140,7 @@ const CekSaldo = ({route, navigation}) => {
                 {moment(props.created_at).format('DD MMMM YYYY')}
               </Text>
               <Text style={[{color: '#E94867'}, textStyle.body1]}>
-                - {props.transaction_nominal.slice(0, -3)} Coin
+                - {moneySplitbyDot(props.transaction_nominal.slice(0, -3))} Coin
               </Text>
             </View>
           </View>
@@ -163,7 +170,8 @@ const CekSaldo = ({route, navigation}) => {
               textStyle.title2,
               {fontWeight: '500'},
             ]}>
-            Salam Coin : {userData.data_user.saldo.slice(0, -3)}
+            Salam Coin :{' '}
+            {moneySplitbyDot(userData.data_user.saldo.slice(0, -3))}
           </Text>
           <TouchableOpacity
             onPress={() => {

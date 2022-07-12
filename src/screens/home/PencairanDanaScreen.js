@@ -116,6 +116,12 @@ const PencairanDanaScreen = ({route, navigation}) => {
       console.log(error);
     }
   };
+  const moneySplitbyDot = money => {
+    let number = money;
+    let str = number.toString();
+    let result = str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return result;
+  };
 
   useEffect(() => {
     getTransaction();
@@ -146,7 +152,7 @@ const PencairanDanaScreen = ({route, navigation}) => {
                 textStyle.title2,
                 {fontWeight: '500'},
               ]}>
-              Salam Coin : {userData.saldo.slice(0, -3)}
+              Salam Coin : {moneySplitbyDot(userData.saldo.slice(0, -3))}
             </Text>
           </View>
           <View style={saldoStyle.keterangan}>
@@ -291,7 +297,7 @@ const PencairanDanaScreen = ({route, navigation}) => {
                         textStyle.titleItem,
                         colorStyle.blackForFontAndAnything,
                       ]}>
-                      {'C-' + item.id}
+                      {'C-' + makeStripInString(item.id)}
                     </Text>
                     <Text
                       style={[
@@ -301,7 +307,7 @@ const PencairanDanaScreen = ({route, navigation}) => {
                       {moment(item.tanggal).format('DD MMMM YYYY')}
                     </Text>
                     <Text style={[colorStyle.yellow, textStyle.body1]}>
-                      - {item.total_nominal.slice(0, -3)} Coin
+                      - {moneySplitbyDot(item.total_nominal.slice(0, -3))} Coin
                     </Text>
                   </View>
                 </View>
