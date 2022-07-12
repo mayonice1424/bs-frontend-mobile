@@ -1,7 +1,5 @@
 import {View,Text, TouchableOpacity, ScrollView} from 'react-native';
 import React,{useState} from 'react';
-import Accordion from 'react-native-collapsible/Accordion';
-import { Modal } from 'react-native';
 import colorStyle from '../../styles/colorStyle';
 import pusatBantuanStyle from '../../styles/pusatBantuanStyle';
 import textStyle from '../../styles/textStyle';
