@@ -27,6 +27,7 @@ const cardStyle = StyleSheet.create({
   },
   body:{
     height:"20%",
+    marginBottom: '19%',
   },
   text:{
     marginTop: '3%',

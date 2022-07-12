@@ -65,7 +65,6 @@ const KerajinanScreen = ({navigation}) => {
                         style={[
                           textStyle.caption,
                           colorStyle.blackForFontAndAnything,
-                         
                         ]}>
                         {item.nama_kerajinan}
                       </Text>

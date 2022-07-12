@@ -72,9 +72,9 @@ const BerandaScreen = ({navigation}) => {
   }, []);
 
   return (
-    <ScrollView>
-      <View style={layoutStyle.container}>
+    <View style={layoutStyle.container}>
         <View style={berandaStyle.content}>
+        <ScrollView>
           <TouchableOpacity
             style={berandaStyle.profile}
             onPress={() => navigation.navigate('Profil')}>
@@ -264,7 +264,7 @@ const BerandaScreen = ({navigation}) => {
                           style={cardStyle.image}
                         />
                       </View>
-                      <View>
+                      <View style={cardStyle.text}>
                         <Text
                           style={[
                             textStyle.caption,
@@ -292,9 +292,9 @@ const BerandaScreen = ({navigation}) => {
                 );
               })}
           </View>
+    </ScrollView>
         </View>
       </View>
-    </ScrollView>
   );
 };
 
