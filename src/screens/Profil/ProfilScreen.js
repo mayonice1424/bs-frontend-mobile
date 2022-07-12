@@ -6,6 +6,7 @@ import textStyle from '../../styles/textStyle';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ip } from '../Ip';
 const ProfilScreen = ({navigation}) => {
@@ -106,22 +107,25 @@ const ProfilScreen = ({navigation}) => {
             colorStyle.backgroundPrimerGreenActive,
             profilStyleScreen.profilButton,
           ]}>
-          <View style={{flexDirection: 'row'}}>
-            <MaterialIcons
-              name="history"
-              size={25}
-              color={colorStyle.whiteForCard}
-            />
-            <Text
-              style={[
-                colorStyle.whiteForCard,
-                profilStyleScreen.name,
-                textStyle.body1,
-                {marginLeft: 20},
-              ]}>
-              Riwayat Transaksi
-            </Text>
-          </View>
+              <View style={{flexDirection: 'row'}}>
+                <MaterialIcons
+                  name="history"
+                  size={25}
+                  style={colorStyle.whiteForCard}
+                />
+                <Text
+                  style={[
+                    colorStyle.whiteForCard,
+                    profilStyleScreen.name,
+                    textStyle.body1,
+                    {marginLeft: 20},
+                  ]}>
+                  Riwayat Transaksi
+                </Text>
+              </View>
+              <View style={{marginLeft:"35%"}}>
+                <AntDesign name="right" size={20} style={colorStyle.whiteForCard} />
+              </View>
         </TouchableOpacity>
         <TouchableOpacity
           style={[
@@ -129,7 +133,7 @@ const ProfilScreen = ({navigation}) => {
             profilStyleScreen.profilButton,
           ]}>
           <View style={{flexDirection: 'row'}}>
-            <Feather name="edit" size={23} color={colorStyle.whiteForCard} />
+            <Feather name="edit" size={23} style={colorStyle.whiteForCard} />
             <Text
               style={[
                 colorStyle.whiteForCard,
@@ -139,6 +143,9 @@ const ProfilScreen = ({navigation}) => {
               ]}>
               Edit Profil
             </Text>
+          </View>
+          <View style={{marginLeft:'60%'}}>
+            <AntDesign name="right" size={20} style={colorStyle.whiteForCard} />
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -150,7 +157,7 @@ const ProfilScreen = ({navigation}) => {
             <Ionicons
               name="settings"
               size={25}
-              color={colorStyle.whiteForCard}
+              style={colorStyle.whiteForCard}
             />
             <Text
               style={[
@@ -161,6 +168,9 @@ const ProfilScreen = ({navigation}) => {
               ]}>
               Pengaturan
             </Text>
+          </View>
+          <View style={{marginLeft:'52%'}}>
+            <AntDesign name="right" size={20} style={colorStyle.whiteForCard} />
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -173,7 +183,7 @@ const ProfilScreen = ({navigation}) => {
             navigation.navigate('LoginRoutes');
           }}>
           <View style={{flexDirection: 'row'}}>
-            <Ionicons name="exit" size={25} color={colorStyle.whiteForCard} />
+            <Ionicons name="exit" size={25} style={colorStyle.whiteForCard} />
             <Text
               style={[
                 colorStyle.whiteForCard,
@@ -183,6 +193,9 @@ const ProfilScreen = ({navigation}) => {
               ]}>
               Keluar
             </Text>
+          </View>
+          <View style={{marginLeft:'66%'}}>
+            <AntDesign name="right" size={20} style={colorStyle.whiteForCard} />
           </View>
         </TouchableOpacity>
       </View>
