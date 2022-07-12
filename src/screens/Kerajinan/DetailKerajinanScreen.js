@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, SafeAreaView, ScrollView, Image} from 'react-native';
 import artikelCardStyle from '../../styles/artikelCardStyle';
 import cardStyle from '../../styles/cardStyle';
@@ -8,50 +8,28 @@ import layoutStyle from '../../styles/layoutStyle';
 import textStyle from '../../styles/textStyle';
 import HorizontalLine from '../../components/HorizontalLine';
 const DetailKerajinanScreen = ({route, navigation}) => {
-  const getDetailKerajinan = async () => {
-    try {
-      let response = await fetch(
-        `http://192.168.74.221:8000/bang-salam-api/kerajinan/` +
-          route.params.data +
-          `/`,
-      );
-      let res = await response.json();
-      console.log(res);
-      // console.log(res.bahan_kerajinan);
-      setKerajinan(res);
-    } catch (error) {
-      console.log('error: ', error);
-    }
-  };
-
   useEffect(() => {
-    getDetailKerajinan();
-    // console.log(kerajinan.foto_kerajinan);
-    // console.log(route.params.data);
-    // console.log(route.params.data[0]);
-  }, []);
-
-  const [kerajinan, setKerajinan] = useState({});
-
+    console.log(route.params.data);
+  });
   return (
     <View style={detailKerajinanStyle.container}>
       <View style={detailKerajinanStyle.content}>
         <ScrollView>
           <View style={detailKerajinanStyle.imageContainer}>
             <Image
-              source={{uri: kerajinan.foto_kerajinan}}
+              source={route.params.data.thumbnail}
               style={detailKerajinanStyle.image}
             />
           </View>
           <View>
             <Text
               style={[colorStyle.blackForFontAndAnything, textStyle.header]}>
-              {kerajinan.nama_kerajinan}
+              {route.params.data.namaBarang}
             </Text>
           </View>
           <View>
             <Text style={[colorStyle.primerGreenActive, textStyle.body2]}>
-              Rp.{kerajinan.harga_kerajinan}
+              Rp.{route.params.data.harga}
             </Text>
           </View>
           <View style={{marginVertical: '8%'}}>
@@ -69,7 +47,7 @@ const DetailKerajinanScreen = ({route, navigation}) => {
               Stok
             </Text>
             <Text style={[colorStyle.blackForFontAndAnything, textStyle.body3]}>
-              {kerajinan.stock_kerajinan} Barang
+              {route.params.data.stok} Cm
             </Text>
           </View>
           <View
@@ -81,7 +59,7 @@ const DetailKerajinanScreen = ({route, navigation}) => {
               Bahan
             </Text>
             <Text style={[colorStyle.blackForFontAndAnything, textStyle.body3]}>
-              {kerajinan.bahan_kerajinan}
+              {route.params.data.bahan}
             </Text>
           </View>
           <View
@@ -93,7 +71,7 @@ const DetailKerajinanScreen = ({route, navigation}) => {
               Panjang
             </Text>
             <Text style={[colorStyle.blackForFontAndAnything, textStyle.body3]}>
-              {kerajinan.panjang_kerajinan} Cm
+              {route.params.data.panjang} Cm
             </Text>
           </View>
           <View
@@ -105,7 +83,7 @@ const DetailKerajinanScreen = ({route, navigation}) => {
               Lebar
             </Text>
             <Text style={[colorStyle.blackForFontAndAnything, textStyle.body3]}>
-              {kerajinan.lebar_kerajinan} Cm
+              {route.params.data.lebar} Cm
             </Text>
           </View>
           <View
@@ -117,7 +95,7 @@ const DetailKerajinanScreen = ({route, navigation}) => {
               Tinggi
             </Text>
             <Text style={[colorStyle.blackForFontAndAnything, textStyle.body3]}>
-              {kerajinan.tinggi_kerajinan} Cm
+              {route.params.data.tinggi} Cm
             </Text>
           </View>
         </ScrollView>

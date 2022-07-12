@@ -1,97 +1,125 @@
-import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  SafeAreaView,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+
+import React,{useState} from 'react';
+import {View, Text,Image, SafeAreaView,TouchableOpacity, ScrollView} from 'react-native';
 import colorStyle from '../../styles/colorStyle';
 import textStyle from '../../styles/textStyle';
 import kerajinanStyle from '../../styles/kerajinanStyle';
 import cardStyle from '../../styles/cardStyle';
 const KerajinanScreen = ({navigation}) => {
-  const getDataKerajinan = async () => {
-    try {
-      let response = await fetch(
-        `http://192.168.74.221:8000/bang-salam-api/kerajinan/`,
-      );
-      let res = await response.json();
-      console.log(res);
-      setKerajinan(res);
-    } catch (error) {
-      console.log('error: ', error);
-    }
-  };
-
-  useEffect(() => {
-    getDataKerajinan();
-  }, []);
-
-  const [kerajinan, setKerajinan] = useState([]);
-
-  return (
+    const [kerajinan, setKerajinan] = useState([
+        {
+            id: 1,
+            thumbnail: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
+            namaBarang: 'Vas Bunga',
+            description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            harga :2000,
+            stok: 200,
+            panjang:200,
+            lebar:200,
+            tinggi:200,
+            bahan:'plastik',
+        },
+        {
+            id: 2,
+            thumbnail: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
+            namaBarang: 'Vas Bunga',
+            description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            harga :2000,
+            stok: 200,
+            panjang:200,
+            lebar:200,
+            tinggi:200,
+            bahan:'plastik',
+          },
+          {
+            id: 3,
+            thumbnail: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
+            namaBarang: 'Vas Bunga',
+            description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            harga :2000,
+            stok: 200,
+            panjang:200,
+            lebar:200,
+            tinggi:200,
+            bahan:'plastik',
+          },
+          {
+            id: 4,
+            thumbnail: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
+            namaBarang: 'Vas Bunga',
+            description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            harga :2000,
+            stok: 200,
+            panjang:200,
+            lebar:200,
+            tinggi:200,
+            bahan:'plastik',
+          },
+          {
+            id: 5,
+            thumbnail: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
+            namaBarang: 'Vas Bunga',
+            description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            harga :2000,
+            stok: 200,
+            panjang:200,
+            lebar:200,
+            tinggi:200,
+            bahan:'plastik',
+          },
+    ]);
+    return(
     <View style={kerajinanStyle.container}>
-      <View style={kerajinanStyle.content}>
-        <ScrollView>
-          <View style={cardStyle.body}>
-            {kerajinan.map((item, index) => {
-              return (
-                <TouchableOpacity
-                  key={index}
-                  style={cardStyle.container}
-                  onPress={() =>
-                    navigation.navigate('DetailKerajinanScreen', {
-                      data: item.id,
-                    })
-                  }>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignContent: 'center',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
-                    <View>
-                      <Image
-                        source={{uri: item.foto_kerajinan}}
-                        style={cardStyle.image}
-                      />
-                    </View>
-                    <View>
-                      <Text
-                        style={[
-                          textStyle.caption,
-                          colorStyle.blackForFontAndAnything,
-                        ]}>
-                        {item.nama_kerajinan}
-                      </Text>
-                      <Text style={[textStyle.body1, colorStyle.darkGreen]}>
-                        <Text>Rp. </Text>
-                        {item.harga_kerajinan}
-                      </Text>
-                      <View style={{width: 190}}>
-                        <Text
-                          style={[
-                            textStyle.body5,
-                            colorStyle.blackForFontAndAnything,
-                          ]}
-                          numberOfLines={2}
-                          ellipsizeMode="tail">
-                          {item.description}
-                        </Text>
-                      </View>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-        </ScrollView>
-      </View>
-    </View>
-  );
+        <View style={kerajinanStyle.content}>
+            <ScrollView>
+                 <View style={cardStyle.body}>
+                    {kerajinan.map((item, index) => {
+                    return (
+                        <TouchableOpacity key={index} style={cardStyle.container}
+                        onPress={() => navigation.navigate('DetailKerajinanScreen',{data:item})}
+                        >
+                            <View
+                                style={{
+                                flexDirection: 'row',
+                                alignContent: 'center',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                }}>
+                                <View>
+                                    <Image source={item.thumbnail} style={cardStyle.image} />
+                                </View>
+                                <View>
+                                    <Text
+                                        style={[
+                                        textStyle.caption,
+                                        colorStyle.blackForFontAndAnything,
+                                        ]}>
+                                        {item.namaBarang}
+                                    </Text>
+                                    <Text style={[textStyle.body1, colorStyle.darkGreen]}>
+                                        <Text>Rp. </Text>{item.harga}
+                                    </Text>
+                                    <View style={{width: 190}}>
+                                        <Text
+                                        style={[
+                                            textStyle.body5,
+                                            colorStyle.blackForFontAndAnything,
+                                        ]}
+                                        numberOfLines={2}
+                                        ellipsizeMode="tail">
+                                        {item.description}
+                                        </Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+                    );
+                    })}
+                </View>
+            </ScrollView>
+        </View>
+   </View>
+   )
 };
 
 export default KerajinanScreen;
