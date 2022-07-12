@@ -11,13 +11,11 @@ import colorStyle from '../../styles/colorStyle';
 import textStyle from '../../styles/textStyle';
 import kerajinanStyle from '../../styles/kerajinanStyle';
 import cardStyle from '../../styles/cardStyle';
-import { ip } from '../Ip';
+import {ip} from '../Ip';
 const KerajinanScreen = ({navigation}) => {
   const getDataKerajinan = async () => {
     try {
-      let response = await fetch(
-        ip+`bang-salam-api/kerajinan/`,
-      );
+      let response = await fetch(ip + `bang-salam-api/kerajinan/`);
       let res = await response.json();
       console.log(res);
       setKerajinan(res);
@@ -31,6 +29,13 @@ const KerajinanScreen = ({navigation}) => {
   }, []);
 
   const [kerajinan, setKerajinan] = useState([]);
+
+  const moneySplitbyDot = money => {
+    let number = money;
+    let str = number.toString();
+    let result = str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return result;
+  };
 
   return (
     <View style={kerajinanStyle.container}>
@@ -60,7 +65,7 @@ const KerajinanScreen = ({navigation}) => {
                         style={cardStyle.image}
                       />
                     </View>
-                    <View style={ cardStyle.text}>
+                    <View style={cardStyle.text}>
                       <Text
                         style={[
                           textStyle.caption,
@@ -70,7 +75,7 @@ const KerajinanScreen = ({navigation}) => {
                       </Text>
                       <Text style={[textStyle.body1, colorStyle.darkGreen]}>
                         <Text>Coin </Text>
-                        {item.harga_kerajinan}
+                        {moneySplitbyDot(item.harga_kerajinan)}
                       </Text>
                       <View style={{width: 190}}>
                         <Text
