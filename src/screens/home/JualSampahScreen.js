@@ -96,7 +96,7 @@ const JualSampahScreen = ({navigation}) => {
               {'P-' + data[0].id}
             </Text>
             <Text style={[textStyle.body4, colorStyle.blackForFontAndAnything]}>
-              {data[0].tanggal}
+              {moment(data[0].tanggal).format('DD MMMM YYYY')}
             </Text>
           </View>
         </View>

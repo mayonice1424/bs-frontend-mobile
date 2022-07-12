@@ -167,11 +167,14 @@ const CekSaldo = ({route, navigation}) => {
               textStyle.title2,
               {fontWeight: '500'},
             ]}>
+
             Salam Coin : {SliceDecimal(userData.data_user.saldo)}
           </Text>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('PencairanDana');
+              navigation.navigate('PencairanDana', {
+                data: userData.data_user,
+              });
             }}>
             <View style={saldoStyle.button}>
               <Text style={[textStyle.button, {color: 'white'}]}>Cairkan</Text>

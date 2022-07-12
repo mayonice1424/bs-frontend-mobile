@@ -18,10 +18,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foundation from 'react-native-vector-icons/Foundation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ip} from '../Ip';
+import moment from 'moment';
 
 const BerandaScreen = ({navigation}) => {
   const [user, setUser] = useState({
-    id: '0000-0000-0000',
+    id: '000000000000',
     nama: 'Pengguna',
     foto_profil: 'https://via.placeholder.com/150',
     saldo: '0',
@@ -66,15 +67,29 @@ const BerandaScreen = ({navigation}) => {
     }
   };
 
+  const makeStripInString = transaction_id => {
+    let number = transaction_id;
+    let str = number.toString();
+    let result = str.replace(/\d{4}(?=.)/g, '$&-');
+    return result;
+  };
+
+  const moneySplitbyDot = money => {
+    let number = money;
+    let str = number.toString();
+    let result = str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return result;
+  };
+
   useEffect(() => {
     getData();
     getDataPengumuman();
   }, []);
 
   return (
-    <ScrollView>
-      <View style={layoutStyle.container}>
-        <View style={berandaStyle.content}>
+    <View style={layoutStyle.container}>
+      <View style={berandaStyle.content}>
+        <ScrollView>
           <TouchableOpacity
             style={berandaStyle.profile}
             onPress={() => navigation.navigate('Profil')}>
@@ -119,13 +134,13 @@ const BerandaScreen = ({navigation}) => {
                         source={require('../../images/Image/WhiteCoin.png')}
                       />
                       <Text style={[textStyle.body1, colorStyle.whiteForCard]}>
-                        Salam Coin: {user.saldo}{' '}
+                        Salam Coin: {moneySplitbyDot(user.saldo.slice(0, -3))}{' '}
                       </Text>
                     </View>
                     <View style={berandaStyle.rightWrap}>
                       <Text style={[textStyle.body4, colorStyle.whiteForCard]}>
                         {' '}
-                        No Rekening : {user.id}
+                        No Rekening : {makeStripInString(user.id)}
                       </Text>
                     </View>
                   </View>
@@ -185,7 +200,9 @@ const BerandaScreen = ({navigation}) => {
                 colorStyle.backgroundSoftGreen,
                 berandaStyle.containerBox,
               ]}
-              onPress={() => navigation.navigate('PencairanDana')}>
+              onPress={() =>
+                navigation.navigate('PencairanDana', {data: user})
+              }>
               <View style={berandaStyle.boxContent}>
                 <Ionicons
                   name="wallet"
@@ -264,7 +281,7 @@ const BerandaScreen = ({navigation}) => {
                           style={cardStyle.image}
                         />
                       </View>
-                      <View>
+                      <View style={cardStyle.text}>
                         <Text
                           style={[
                             textStyle.caption,
@@ -273,7 +290,7 @@ const BerandaScreen = ({navigation}) => {
                           {item.judul_informasi}
                         </Text>
                         <Text style={[textStyle.date, colorStyle.darkGreen]}>
-                          {item.tanggal_dibuat}
+                          {moment(item.tanggal_dibuat).format('DD MMMM YYYY')}
                         </Text>
                         <View style={{width: 190}}>
                           <Text
@@ -292,9 +309,9 @@ const BerandaScreen = ({navigation}) => {
                 );
               })}
           </View>
-        </View>
+        </ScrollView>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 

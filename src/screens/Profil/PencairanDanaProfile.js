@@ -81,7 +81,7 @@ const PencairanDanaScreen = ({route, navigation}) => {
             response.total_nominal.slice(0, -3) +
             ' silahkan ke bank salam untuk mengambil uang Anda',
         );
-        navigation.navigate('BerandaScreen');
+        navigation.navigate('Home');
       })
       .catch(error => {
         console.log(error);
