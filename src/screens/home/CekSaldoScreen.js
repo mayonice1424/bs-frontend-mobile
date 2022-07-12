@@ -12,11 +12,16 @@ import colorStyle from '../../styles/colorStyle';
 import layoutStyle from '../../styles/layoutStyle';
 import saldoStyle from '../../styles/saldoStyle';
 import textStyle from '../../styles/textStyle';
-import moment from 'moment';
-import { ip } from '../Ip';
+import {ip} from '../Ip';
+import {
+  MakeStripInString,
+  ConvertTime,
+  SliceDecimal,
+} from '../../utility/FunctionForUI';
+
 const CekSaldo = ({route, navigation}) => {
   const userData = route.params;
-  console.log('transfered data :', userData.token);
+  // console.log('transfered data :', userData.token);
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
@@ -36,7 +41,7 @@ const CekSaldo = ({route, navigation}) => {
         },
       );
       const responseJson = await response.json();
-      console.log('responseJson :', responseJson);
+      // console.log('responseJson :', responseJson);
       setData(responseJson);
     } catch (error) {
       console.log('error :', error);
@@ -47,16 +52,9 @@ const CekSaldo = ({route, navigation}) => {
 
   useEffect(() => {
     getTransaction();
-    console.log('data :', data);
+    // console.log('data :', data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const makeStripInString = transaction_id => {
-    let number = transaction_id;
-    let str = number.toString();
-    let result = str.replace(/\d{4}(?=.)/g, '$&-');
-    return result;
-  };
 
   const CardPenjualan = props => {
     return (
@@ -66,6 +64,9 @@ const CekSaldo = ({route, navigation}) => {
             navigation.navigate('DetailPenjualan', {
               data_user: userData.data_user,
               id_penjualan: props.transaction_id,
+              tanggal: props.transaction_date,
+              nominal: props.transaction_nominal,
+              token: userData.token,
             });
           }}>
           <View style={saldoStyle.boxSmaller}>
@@ -84,14 +85,14 @@ const CekSaldo = ({route, navigation}) => {
                   textStyle.titleItem,
                   colorStyle.blackForFontAndAnything,
                 ]}>
-                P-{makeStripInString(props.transaction_id)}
+                P-{MakeStripInString(props.transaction_id)}
               </Text>
               <Text
                 style={[textStyle.body4, colorStyle.blackForFontAndAnything]}>
-                {moment(props.created_at).format('DD MMMM YYYY')}
+                {ConvertTime(props.transaction_date)}
               </Text>
               <Text style={[colorStyle.darkGreen, textStyle.body1]}>
-                + {props.transaction_nominal.slice(0, -3)} Coin
+                + {SliceDecimal(props.transaction_nominal)} Coin
               </Text>
             </View>
           </View>
@@ -107,6 +108,9 @@ const CekSaldo = ({route, navigation}) => {
             navigation.navigate('DetailPencairan', {
               data_user: userData.data_user,
               id_penjualan: props.transaction_id,
+              tanggal: props.transaction_date,
+              nominal: props.transaction_nominal,
+              token: userData.token,
             });
           }}>
           <View style={saldoStyle.boxSmaller}>
@@ -126,14 +130,14 @@ const CekSaldo = ({route, navigation}) => {
                   textStyle.titleItem,
                   colorStyle.blackForFontAndAnything,
                 ]}>
-                C-{makeStripInString(props.transaction_id)}
+                C-{MakeStripInString(props.transaction_id)}
               </Text>
               <Text
                 style={[textStyle.body4, colorStyle.blackForFontAndAnything]}>
-                {moment(props.created_at).format('DD MMMM YYYY')}
+                {ConvertTime(props.transaction_date)}
               </Text>
               <Text style={[{color: '#E94867'}, textStyle.body1]}>
-                - {props.transaction_nominal.slice(0, -3)} Coin
+                - {SliceDecimal(props.transaction_nominal)} Coin
               </Text>
             </View>
           </View>
@@ -151,7 +155,7 @@ const CekSaldo = ({route, navigation}) => {
               textStyle.title2,
               {fontWeight: '500'},
             ]}>
-            {userData.data_user.id}
+            {MakeStripInString(userData.data_user.id)}
           </Text>
           <Image
             style={saldoStyle.imageCoin}
@@ -163,7 +167,7 @@ const CekSaldo = ({route, navigation}) => {
               textStyle.title2,
               {fontWeight: '500'},
             ]}>
-            Salam Coin : {userData.data_user.saldo}
+            Salam Coin : {SliceDecimal(userData.data_user.saldo)}
           </Text>
           <TouchableOpacity
             onPress={() => {

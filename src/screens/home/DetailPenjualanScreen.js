@@ -1,16 +1,64 @@
-import React from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ActivityIndicator,
+  FlatList,
+} from 'react-native';
 import HorizontalLine from '../../components/HorizontalLine';
-
 import colorStyle from '../../styles/colorStyle';
 import layoutStyle from '../../styles/layoutStyle';
 import saldoStyle from '../../styles/saldoStyle';
 import textStyle from '../../styles/textStyle';
+import {ip} from '../Ip';
+import {
+  MakeStripInString,
+  ConvertTime,
+  SliceDecimal,
+  ChangeTypeOfQuantity,
+} from '../../utility/FunctionForUI';
 
 const DetailPenjualanScreen = ({route, navigation}) => {
   const data = route.params;
-  console.log('transfered data :', data);
-  const logSaldo = () => {
+  // console.log('transfered data :', data);
+  // console.log('data :', data.data_user);
+  const [isLoading, setLoading] = useState(true);
+  const [detail, setDetail] = useState([]);
+
+  const getDetail = async () => {
+    try {
+      let response = await fetch(
+        // 'https://api.jalantikus.com/api/v1/transaction/' + userData.id,
+
+        `${ip}bang-salam-api/detail-penjualan-user/${data.id_penjualan}`,
+
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Token ' + data.token,
+          },
+        },
+      );
+      const responseJson = await response.json();
+      // console.log('responseJson :', responseJson);
+      setDetail(responseJson);
+    } catch (error) {
+      console.log('error :', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getDetail();
+    console.log('data :', detail);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const LogSaldo = props => {
     return (
       <View>
         <View style={saldoStyle.boxLarge}>
@@ -30,63 +78,78 @@ const DetailPenjualanScreen = ({route, navigation}) => {
                   textStyle.titleItem,
                   colorStyle.blackForFontAndAnything,
                 ]}>
-                C-293-9202-2391-1203
+                P-{MakeStripInString(data.id_penjualan)}
               </Text>
               <Text
                 style={[textStyle.body4, colorStyle.blackForFontAndAnything]}>
-                27 Januari 2022
+                {ConvertTime(data.tanggal)}
               </Text>
               <Text style={[colorStyle.darkGreen, textStyle.body1]}>
-                + 500 Coin
+                + {SliceDecimal(data.nominal)} Coin
               </Text>
             </View>
           </View>
           <HorizontalLine />
           <View>
             <View style={{marginBottom: '5%'}}>
-              <Text
-                style={[
-                  textStyle.subtitle2,
-                  colorStyle.darkGreen,
-                  {textAlign: 'auto'},
-                ]}>
-                • Botol
-              </Text>
-              <Text
-                style={[
-                  textStyle.caption,
-                  colorStyle.blackForFontAndAnything,
-                  {textAlign: 'auto'},
-                ]}>
-                ID Sampah : 11-11-111-212121
-              </Text>
-              <Text
-                style={[
-                  textStyle.caption,
-                  colorStyle.blackForFontAndAnything,
-                  {textAlign: 'auto', marginBottom: '2%'},
-                ]}>
-                Kuantitas : 10 Kg
-              </Text>
-              <View
-                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <Text
-                  style={[
-                    textStyle.innerTeks,
-                    colorStyle.darkGreen,
-                    {textAlign: 'auto'},
-                  ]}>
-                  Total Coin :
-                </Text>
-                <Text
-                  style={[
-                    textStyle.innerTeks,
-                    colorStyle.darkGreen,
-                    {textAlign: 'auto'},
-                  ]}>
-                  13.000 Coin
-                </Text>
-              </View>
+              <FlatList
+                data={props.data_sampah.sampah}
+                renderItem={({item}) => (
+                  <View>
+                    <Text
+                      style={[
+                        textStyle.subtitle2,
+                        colorStyle.darkGreen,
+                        {textAlign: 'auto'},
+                      ]}>
+                      • {item.id_sampah.nama_sampah}
+                    </Text>
+                    <Text
+                      style={[
+                        textStyle.caption,
+                        colorStyle.blackForFontAndAnything,
+                        {textAlign: 'auto'},
+                      ]}>
+                      ID Sampah : {item.id_sampah.id}
+                    </Text>
+                    <Text
+                      style={[
+                        textStyle.caption,
+                        colorStyle.blackForFontAndAnything,
+                        {textAlign: 'auto', marginBottom: '2%'},
+                      ]}>
+                      Kuantitas :{' '}
+                      {ChangeTypeOfQuantity(
+                        item.kuantitas_sampah,
+                        item.id_sampah.jenis_kuantitas,
+                      )}
+                    </Text>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                      }}>
+                      <Text
+                        style={[
+                          textStyle.innerTeks,
+                          colorStyle.darkGreen,
+                          {textAlign: 'auto'},
+                        ]}>
+                        Total Coin :
+                      </Text>
+                      <Text
+                        style={[
+                          textStyle.innerTeks,
+                          colorStyle.darkGreen,
+                          {textAlign: 'auto'},
+                        ]}>
+                        {SliceDecimal(detail.total_nominal)} Coin
+                      </Text>
+                    </View>
+                  </View>
+                )}
+                keyExtractor={item => item.id}
+              />
             </View>
           </View>
         </View>
@@ -104,7 +167,7 @@ const DetailPenjualanScreen = ({route, navigation}) => {
               textStyle.title2,
               {fontWeight: '500'},
             ]}>
-            No Rekening : 1232-4342-3232
+            No Rekening : {data.data_user.id}
           </Text>
           <Image
             style={saldoStyle.imageCoin}
@@ -116,11 +179,17 @@ const DetailPenjualanScreen = ({route, navigation}) => {
               textStyle.title2,
               {fontWeight: '500'},
             ]}>
-            Salam Coin : 50.000
+            Salam Coin : {data.data_user.saldo}
           </Text>
         </View>
 
-        <View>{logSaldo()}</View>
+        <View>
+          {isLoading ? (
+            <ActivityIndicator />
+          ) : (
+            <LogSaldo data_sampah={detail} />
+          )}
+        </View>
       </View>
     </View>
   );
