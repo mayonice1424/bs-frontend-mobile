@@ -20,7 +20,7 @@ const ArtikelScreen = ({navigation}) => {
 
   const getDataPengumuman = async () => {
     try {
-      let response = await fetch(ip + `bang-salam-api/lihat-data-informasi/`);
+      let response = await fetch(ip + `bang-salam-api/lihat-data-informasi/`);;
       let res = await response.json();
       // console.log(res);
       setArtikel(res);
@@ -36,21 +36,21 @@ const ArtikelScreen = ({navigation}) => {
     <View style={artikelStyle.container}>
       <View style={artikelStyle.content}>
         <ScrollView>
-          <View style={artikelCardStyle.body}>
+          <View>
             {artikel
-              .slice(0)
-              .reverse()
-              .map((item, index) => {
-                return (
-                  <TouchableOpacity
-                    key={index}
-                    style={[artikelCardStyle.container]}
-                    onPress={() =>
-                      navigation.navigate('DetailArtikelScreen', {
-                        data: item.id,
-                      })
-                    }>
-                    <View
+            .slice(0)
+            .reverse()
+            .map((item, index) => {
+              return (
+                <TouchableOpacity
+                  key={index}
+                  style={artikelCardStyle.container}
+                  onPress={() =>
+                    navigation.navigate('DetailArtikelScreen', {
+                      data: item.id,
+                    })
+                  }>
+                      <View
                       style={{
                         justifyContent: 'center',
                         width: '100%',
@@ -85,9 +85,10 @@ const ArtikelScreen = ({navigation}) => {
                         </Text>
                       </View>
                     </View>
-                  </TouchableOpacity>
-                );
-              })}
+                </TouchableOpacity>
+              );
+            }
+            )}
           </View>
         </ScrollView>
       </View>

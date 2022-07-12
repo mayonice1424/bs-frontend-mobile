@@ -41,12 +41,10 @@ const DetailArtikelScreen = ({route, navigation}) => {
               {artikel.judul_informasi}
             </Text>
           </View>
-          <View style={detailArtikelStyle.imageContainer}>
             <Image
-              style={detailArtikelStyle.image}
+              style={detailArtikelStyle.imageContainer}
               source={{uri: artikel.thumbnail_informasi}}
             />
-          </View>
           <View style={[detailArtikelStyle.date]}>
             <Text style={[colorStyle.blackForFontAndAnything, textStyle.date]}>
               {moment(artikel.tanggal_dibuat).format('DD MMMM YYYY')}
