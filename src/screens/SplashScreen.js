@@ -7,14 +7,16 @@ export default class SplashScreen extends Component {
   componentDidMount(navigation) { 
     setTimeout(() => {
       this.props.navigation.dispatch(StackActions.replace('LoginRoutes'))
-    }, 2000)
+    }, 1500)
   }
   render() {
     return (
       <View style={splashScreenStyle.container}>
-          <View>
-            <Image source={
-              require('../../src//images//Image/Logo.png')
+          <View style = {splashScreenStyle.logo}>
+            <Image
+            style={{width: 240, height: 280}}
+            source={
+              require('../../src//images//Image/LogoSplashscreen.png')
             }/>
           </View>
       </View>

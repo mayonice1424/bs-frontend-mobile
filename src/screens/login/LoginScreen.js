@@ -15,6 +15,7 @@ import loginStyle from '../../styles/loginStyle';
 import HorizontalLine from '../../components/HorizontalLine';
 import textStyle from '../../styles/textStyle';
 import colorStyle from '../../styles/colorStyle';
+import { ip } from '../Ip';
 
 const LoginScreen = ({navigation}) => {
   const [checkToken, setCheckToken] = useState(null);
@@ -54,10 +55,14 @@ const LoginScreen = ({navigation}) => {
   };
 
   const loginUser = async credentials => {
-    return await fetch(`http://10.0.242.48:8000/bang-salam-api/login-user/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    return await fetch(
+      ip + `bang-salam-api/login-user/`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
       },
       body: JSON.stringify(credentials),
     })

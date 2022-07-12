@@ -8,17 +8,17 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
-
 import colorStyle from '../../styles/colorStyle';
 import layoutStyle from '../../styles/layoutStyle';
 import saldoStyle from '../../styles/saldoStyle';
 import textStyle from '../../styles/textStyle';
 import loginStyle from '../../styles/loginStyle';
-
+import { ip } from '../Ip';
 import moment from 'moment';
 import 'moment/locale/id';
 moment.locale('id');
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import BerandaScreen from './BerandaScreen';
 
 const JualSampahScreen = ({navigation}) => {
   const [data, setDataSampah] = useState(0);
@@ -37,7 +37,7 @@ const JualSampahScreen = ({navigation}) => {
     };
     try {
       let response = await fetch(
-        `http://10.0.242.48:8000/bang-salam-api/penjualan/`,
+        ip + `bang-salam-api/penjualan/`,
         data,
       );
       let res = await response.json();
@@ -64,7 +64,11 @@ const JualSampahScreen = ({navigation}) => {
     };
     try {
       let response = await fetch(
+<<<<<<< HEAD
         `http://10.0.242.48:8000/bang-salam-api/penjualan-onprocess/?user_id=` +
+=======
+        ip +`bang-salam-api/penjualan-onprocess/?user_id=` +
+>>>>>>> 6ceb00edf971dec77396cabbc35facbef24d53fe
           tokens.id,
         data,
       );

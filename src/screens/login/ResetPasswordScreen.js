@@ -16,11 +16,12 @@ import loginStyle from '../../styles/loginStyle';
 import HorizontalLine from '../../components/HorizontalLine';
 import textStyle from '../../styles/textStyle';
 import colorStyle from '../../styles/colorStyle';
+import { ip } from '../Ip';
 
 const ResetPasswordScreen = ({navigation}) => {
   const resetPassword = async credentials => {
     return await fetch(
-      `http://10.0.242.48:8000/bang-salam-api/reset-password/`,
+      ip + `bang-salam-api/reset-password/`,
       {
         method: 'POST',
         headers: {
