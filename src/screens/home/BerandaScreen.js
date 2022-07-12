@@ -21,37 +21,6 @@ import Foundation from 'react-native-vector-icons/Foundation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const BerandaScreen = ({navigation}) => {
-  const [profil, setProfil] = useState({
-    nama: 'Ilham',
-    foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-  });
-  const [artikel, setArtikel] = useState([
-    {
-      id: 1,
-      thumbnail: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-      title: 'Sampah Bekas',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      date: '2020-01-01',
-    },
-    {
-      id: 2,
-      thumbnail: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-      title: 'Sampah Bekas',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      date: '2020-01-01',
-    },
-    {
-      id: 3,
-      thumbnail: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-      title: 'Sampah Bekas',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      date: '2020-01-01',
-    },
-  ]);
-
   const [user, setUser] = useState({
     id: '0000-0000-0000',
     nama: 'Pengguna',
@@ -59,8 +28,7 @@ const BerandaScreen = ({navigation}) => {
     saldo: '0',
     token: '',
   });
-
-  const [token, setToken] = useState('');
+  const [artikel, setArtikel] = useState([]);
 
   const getData = async () => {
     const token = await AsyncStorage.getItem('token');
@@ -80,9 +48,21 @@ const BerandaScreen = ({navigation}) => {
         data,
       );
       let res = await response.json();
-      console.log(res);
+      // console.log(res);
       setUser(res);
-      setToken(tokens.token);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getDataPengumuman = async () => {
+    try {
+      let response = await fetch(
+        `http://192.168.74.221:8000/bang-salam-api/data-informasi/`,
+      );
+      let res = await response.json();
+      // console.log(res);
+      setArtikel(res);
     } catch (error) {
       console.log(error);
     }
@@ -90,6 +70,7 @@ const BerandaScreen = ({navigation}) => {
 
   useEffect(() => {
     getData();
+    getDataPengumuman();
   }, []);
 
   return (
@@ -258,46 +239,53 @@ const BerandaScreen = ({navigation}) => {
             </TouchableOpacity>
           </View>
           <View style={cardStyle.body}>
-            {artikel.map((item, index) => {
-              return (
-                <TouchableOpacity key={index} style={cardStyle.container}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignContent: 'center',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
-                    <View>
-                      <Image source={item.thumbnail} style={cardStyle.image} />
-                    </View>
-                    <View>
-                      <Text
-                        style={[
-                          textStyle.caption,
-                          colorStyle.blackForFontAndAnything,
-                        ]}>
-                        {item.title}
-                      </Text>
-                      <Text style={[textStyle.date, colorStyle.darkGreen]}>
-                        {item.date}
-                      </Text>
-                      <View style={{width: 190}}>
+            {artikel
+              .slice(0)
+              .reverse()
+              .slice(0, 3)
+              .map((item, index) => {
+                return (
+                  <TouchableOpacity key={index} style={cardStyle.container}>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        alignContent: 'center',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
+                      <View>
+                        <Image
+                          source={{uri: item.thumbnail_informasi}}
+                          style={cardStyle.image}
+                        />
+                      </View>
+                      <View>
                         <Text
                           style={[
-                            textStyle.body5,
+                            textStyle.caption,
                             colorStyle.blackForFontAndAnything,
-                          ]}
-                          numberOfLines={2}
-                          ellipsizeMode="tail">
-                          {item.description}
+                          ]}>
+                          {item.judul_informasi}
                         </Text>
+                        <Text style={[textStyle.date, colorStyle.darkGreen]}>
+                          {item.tanggal_dibuat}
+                        </Text>
+                        <View style={{width: 190}}>
+                          <Text
+                            style={[
+                              textStyle.body5,
+                              colorStyle.blackForFontAndAnything,
+                            ]}
+                            numberOfLines={2}
+                            ellipsizeMode="tail">
+                            {item.isi_informasi}
+                          </Text>
+                        </View>
                       </View>
                     </View>
-                  </View>
-                </TouchableOpacity>
-              );
-            })}
+                  </TouchableOpacity>
+                );
+              })}
           </View>
         </View>
       </View>
