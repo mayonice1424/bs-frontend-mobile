@@ -343,7 +343,7 @@ const PenjualanSampahScreen = ({navigation}) => {
             Harga Sampah Anorganik
           </Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row',marginBottom:'1%'}}>
               {kategori.map((item, index) => {
                 return (
                   <TouchableOpacity

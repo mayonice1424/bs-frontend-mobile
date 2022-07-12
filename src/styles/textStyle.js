@@ -87,6 +87,10 @@ const textStyle = StyleSheet.create({
     fontFamily: 'Roboto-Regular',
     fontSize: 14,
     fontWeight: 'bold',
+  },
+  faq:{
+    fontFamily: 'Ubuntu-Regular',
+    fontSize: 16,
   }
 });
 
