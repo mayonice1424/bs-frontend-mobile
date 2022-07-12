@@ -38,13 +38,18 @@ const DetailKerajinanScreen = ({route, navigation}) => {
     <View style={detailKerajinanStyle.container}>
       <View style={detailKerajinanStyle.content}>
         <ScrollView>
-          <View style={detailKerajinanStyle.imageContainer}>
-            <Image
-              source={{uri: kerajinan.foto_kerajinan}}
-              style={detailKerajinanStyle.image}
-            />
-          </View>
           <View>
+            <View>
+            <View style={
+             detailKerajinanStyle.imageContainer
+            } >
+              <Image
+                source={{uri: kerajinan.foto_kerajinan}}
+                style={detailKerajinanStyle.image}
+              />
+            </View>
+            </View>
+            <View>
             <Text
               style={[colorStyle.blackForFontAndAnything, textStyle.header]}>
               {kerajinan.nama_kerajinan}
@@ -120,6 +125,7 @@ const DetailKerajinanScreen = ({route, navigation}) => {
             <Text style={[colorStyle.blackForFontAndAnything, textStyle.body3]}>
               {kerajinan.tinggi_kerajinan} Cm
             </Text>
+          </View>
           </View>
         </ScrollView>
       </View>

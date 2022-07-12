@@ -69,7 +69,7 @@ const KerajinanScreen = ({navigation}) => {
                         {item.nama_kerajinan}
                       </Text>
                       <Text style={[textStyle.body1, colorStyle.darkGreen]}>
-                        <Text>Rp. </Text>
+                        <Text>Coin </Text>
                         {item.harga_kerajinan}
                       </Text>
                       <View style={{width: 190}}>
