@@ -8,6 +8,7 @@ const textStyle = StyleSheet.create({
   innerTeks: {
     fontFamily: 'Poppins-Regular',
     fontSize: 14,
+    fontWeight: 'bold',
   },
   titleItem: {
     fontFamily: 'Poppins-Medium',
