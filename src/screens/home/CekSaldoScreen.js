@@ -17,6 +17,7 @@ import {
   MakeStripInString,
   ConvertTime,
   SliceDecimal,
+  MoneySplitbyDot,
 } from '../../utility/FunctionForUI';
 
 const CekSaldo = ({route, navigation}) => {
@@ -137,7 +138,8 @@ const CekSaldo = ({route, navigation}) => {
                 {ConvertTime(props.transaction_date)}
               </Text>
               <Text style={[{color: '#E94867'}, textStyle.body1]}>
-                - {moneySplitbyDot(SliceDecimal(props.transaction_nominal))} Coin
+                - {MoneySplitbyDot(SliceDecimal(props.transaction_nominal))}{' '}
+                Coin
               </Text>
             </View>
           </View>
@@ -168,7 +170,7 @@ const CekSaldo = ({route, navigation}) => {
               {fontWeight: '500'},
             ]}>
             Salam Coin :{' '}
-            {moneySplitbyDot(SliceDecimal(userData.data_user.saldo))}
+            {MoneySplitbyDot(SliceDecimal(userData.data_user.saldo))}
           </Text>
           <TouchableOpacity
             onPress={() => {
