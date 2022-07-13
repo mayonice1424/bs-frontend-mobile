@@ -18,12 +18,11 @@ const artikelCardStyle = StyleSheet.create({
     shadowRadius: 15,
   },
   image: {
-    borderRadius: 10,
-    marginVertical: '10%',
-    marginHorizontal: '10%',
-    height: '100%',
-    width: '100%',
-    marginBottom: '5%',
+      borderRadius: 10,
+      marginTop: '3%',
+      marginBottom: '3%',
+      width: '90%',
+      height: 200 ,
   },
   body: {
     height: '20%',

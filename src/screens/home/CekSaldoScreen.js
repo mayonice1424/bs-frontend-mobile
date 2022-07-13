@@ -137,7 +137,7 @@ const CekSaldo = ({route, navigation}) => {
                 {ConvertTime(props.transaction_date)}
               </Text>
               <Text style={[{color: '#E94867'}, textStyle.body1]}>
-                - {SliceDecimal(props.transaction_nominal)} Coin
+                - {moneySplitbyDot(SliceDecimal(props.transaction_nominal))} Coin
               </Text>
             </View>
           </View>
@@ -155,7 +155,7 @@ const CekSaldo = ({route, navigation}) => {
               textStyle.title2,
               {fontWeight: '500'},
             ]}>
-            {MakeStripInString(userData.data_user.id)}
+            No Rekening : {MakeStripInString(userData.data_user.id)}
           </Text>
           <Image
             style={saldoStyle.imageCoin}
@@ -167,11 +167,14 @@ const CekSaldo = ({route, navigation}) => {
               textStyle.title2,
               {fontWeight: '500'},
             ]}>
-            Salam Coin : {SliceDecimal(userData.data_user.saldo)}
+            Salam Coin :{' '}
+            {moneySplitbyDot(SliceDecimal(userData.data_user.saldo))}
           </Text>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('PencairanDana');
+              navigation.navigate('PencairanDana', {
+                data: userData.data_user,
+              });
             }}>
             <View style={saldoStyle.button}>
               <Text style={[textStyle.button, {color: 'white'}]}>Cairkan</Text>

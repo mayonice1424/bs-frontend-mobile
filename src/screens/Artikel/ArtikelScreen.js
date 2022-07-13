@@ -12,14 +12,15 @@ import textStyle from '../../styles/textStyle';
 import layoutStyle from '../../styles/layoutStyle';
 import artikelStyle from '../../styles/artikelStyle';
 import artikelCardStyle from '../../styles/artikelCardStyle';
+import moment from 'moment';
+import {ip} from '../Ip';
+
 const ArtikelScreen = ({navigation}) => {
   const [artikel, setArtikel] = useState([]);
 
   const getDataPengumuman = async () => {
     try {
-      let response = await fetch(
-        `http://192.168.74.221:8000/bang-salam-api/data-informasi/`,
-      );
+      let response = await fetch(ip + `bang-salam-api/lihat-data-informasi/`);;
       let res = await response.json();
       // console.log(res);
       setArtikel(res);
@@ -35,21 +36,21 @@ const ArtikelScreen = ({navigation}) => {
     <View style={artikelStyle.container}>
       <View style={artikelStyle.content}>
         <ScrollView>
-          <View style={artikelCardStyle.body}>
+          <View>
             {artikel
-              .slice(0)
-              .reverse()
-              .map((item, index) => {
-                return (
-                  <TouchableOpacity
-                    key={index}
-                    style={[artikelCardStyle.container]}
-                    onPress={() =>
-                      navigation.navigate('DetailArtikelScreen', {
-                        data: item.id,
-                      })
-                    }>
-                    <View
+            .slice(0)
+            .reverse()
+            .map((item, index) => {
+              return (
+                <TouchableOpacity
+                  key={index}
+                  style={artikelCardStyle.container}
+                  onPress={() =>
+                    navigation.navigate('DetailArtikelScreen', {
+                      data: item.id,
+                    })
+                  }>
+                      <View
                       style={{
                         justifyContent: 'center',
                         width: '100%',
@@ -80,13 +81,14 @@ const ArtikelScreen = ({navigation}) => {
                             colorStyle.blackForFontAndAnything,
                             textStyle.date,
                           ]}>
-                          {item.tanggal_dibuat}
+                          {moment(item.tanggal_dibuat).format('DD MMMM YYYY')}
                         </Text>
                       </View>
                     </View>
-                  </TouchableOpacity>
-                );
-              })}
+                </TouchableOpacity>
+              );
+            }
+            )}
           </View>
         </ScrollView>
       </View>

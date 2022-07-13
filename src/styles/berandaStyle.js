@@ -2,7 +2,9 @@ import {StyleSheet} from 'react-native';
 
 const berandaStyle = StyleSheet.create({
   container: {
-    padding: 0,
+    flex: 1,
+    margin: 0,
+    backgroundColor: '#FCFFFC',
   },
   image: {
     width: 68,
@@ -12,7 +14,7 @@ const berandaStyle = StyleSheet.create({
     marginRight: '2%',
   },
   content: {
-    paddingBottom: '40%',
+    paddingBottom: 80,
     marginLeft: '4%',
     marginRight: '4%',
     height: '100%',

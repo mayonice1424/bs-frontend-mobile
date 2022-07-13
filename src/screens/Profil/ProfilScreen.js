@@ -78,7 +78,7 @@ const ProfilScreen = ({navigation}) => {
                   profilStyleScreen.name,
                   textStyle.body4,
                 ]}>
-                {user.username}
+                @{user.username}
               </Text>
             </View>
             <View

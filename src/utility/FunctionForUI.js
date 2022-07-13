@@ -1,4 +1,12 @@
 import moment from 'moment';
+
+const MoneySplitbyDot = money => {
+  let number = money;
+  let str = number.toString();
+  let result = str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return result;
+};
+
 const MakeStripInString = transaction_id => {
   let number = transaction_id;
   let str = number.toString();
@@ -22,4 +30,10 @@ function ChangeTypeOfQuantity(qty, type) {
   }
 }
 
-export {MakeStripInString, ConvertTime, SliceDecimal, ChangeTypeOfQuantity};
+export {
+  MoneySplitbyDot,
+  MakeStripInString,
+  ConvertTime,
+  SliceDecimal,
+  ChangeTypeOfQuantity,
+};
