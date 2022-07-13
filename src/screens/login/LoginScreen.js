@@ -56,7 +56,7 @@ const LoginScreen = ({navigation}) => {
 
   const loginUser = async credentials => {
     return await fetch(
-      ip + `bang-salam-api/login-user/`,
+      `${ip}bang-salam-api/login-user/`,
       {
         method: 'POST',
         headers: {

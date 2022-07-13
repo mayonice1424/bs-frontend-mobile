@@ -21,7 +21,7 @@ import { ip } from '../Ip';
 const ResetPasswordScreen = ({navigation}) => {
   const resetPassword = async credentials => {
     return await fetch(
-      ip + `bang-salam-api/reset-password/`,
+      `${ip}bang-salam-api/reset-password/`,
       {
         method: 'POST',
         headers: {

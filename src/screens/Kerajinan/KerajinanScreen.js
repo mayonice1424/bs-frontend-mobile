@@ -15,7 +15,7 @@ import {ip} from '../Ip';
 const KerajinanScreen = ({navigation}) => {
   const getDataKerajinan = async () => {
     try {
-      let response = await fetch(ip + `bang-salam-api/kerajinan/`);
+      let response = await fetch(`${ip}bang-salam-api/kerajinan/`);
       let res = await response.json();
       console.log(res);
       setKerajinan(res);

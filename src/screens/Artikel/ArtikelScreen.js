@@ -20,7 +20,7 @@ const ArtikelScreen = ({navigation}) => {
 
   const getDataPengumuman = async () => {
     try {
-      let response = await fetch(ip + `bang-salam-api/lihat-data-informasi/`);;
+      let response = await fetch(`${ip}bang-salam-api/lihat-data-informasi/`);;
       let res = await response.json();
       // console.log(res);
       setArtikel(res);

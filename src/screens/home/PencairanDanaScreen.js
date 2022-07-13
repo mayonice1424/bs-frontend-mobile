@@ -64,7 +64,7 @@ const PencairanDanaScreen = ({route, navigation}) => {
       status_pencairan: '0',
     };
     console.log('body : ', body);
-    return await fetch(ip + `bang-salam-api/pencairan/`, {
+    return await fetch(`${ip}bang-salam-api/pencairan/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ const PencairanDanaScreen = ({route, navigation}) => {
     };
     try {
       let response = await fetch(
-        ip + `bang-salam-api/pencairan-onprocess/?user_id=` + tokens.id,
+        `${ip}bang-salam-api/pencairan-onprocess/?user_id=` + tokens.id,
         data,
       );
       let res = await response.json();
