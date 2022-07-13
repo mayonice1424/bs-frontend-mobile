@@ -18,6 +18,7 @@ import {
   ConvertTime,
   SliceDecimal,
   ChangeTypeOfQuantity,
+  MoneySplitbyDot,
 } from '../../utility/FunctionForUI';
 
 const DetailPenjualanScreen = ({route, navigation}) => {
@@ -85,7 +86,7 @@ const DetailPenjualanScreen = ({route, navigation}) => {
                 {ConvertTime(data.tanggal)}
               </Text>
               <Text style={[colorStyle.darkGreen, textStyle.body1]}>
-                + {SliceDecimal(data.nominal)} Coin
+                + {MoneySplitbyDot(SliceDecimal(data.nominal))} Coin
               </Text>
             </View>
           </View>
@@ -143,7 +144,8 @@ const DetailPenjualanScreen = ({route, navigation}) => {
                           colorStyle.darkGreen,
                           {textAlign: 'auto'},
                         ]}>
-                        {SliceDecimal(detail.total_nominal)} Coin
+                        {MoneySplitbyDot(SliceDecimal(detail.total_nominal))}{' '}
+                        Coin
                       </Text>
                     </View>
                   </View>
@@ -167,7 +169,7 @@ const DetailPenjualanScreen = ({route, navigation}) => {
               textStyle.title2,
               {fontWeight: '500'},
             ]}>
-            No Rekening : {data.data_user.id}
+            No Rekening : {MakeStripInString(data.data_user.id)}
           </Text>
           <Image
             style={saldoStyle.imageCoin}
@@ -179,7 +181,7 @@ const DetailPenjualanScreen = ({route, navigation}) => {
               textStyle.title2,
               {fontWeight: '500'},
             ]}>
-            Salam Coin : {data.data_user.saldo}
+            Salam Coin : {MoneySplitbyDot(SliceDecimal(data.data_user.saldo))}
           </Text>
         </View>
 

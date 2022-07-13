@@ -93,7 +93,8 @@ const CekSaldo = ({route, navigation}) => {
                 {ConvertTime(props.transaction_date)}
               </Text>
               <Text style={[colorStyle.darkGreen, textStyle.body1]}>
-                + {SliceDecimal(props.transaction_nominal)} Coin
+                + {MoneySplitbyDot(SliceDecimal(props.transaction_nominal))}{' '}
+                Coin
               </Text>
             </View>
           </View>
