@@ -25,6 +25,9 @@ const jadwalStyle = StyleSheet.create({
         alignContent: 'center',
       },
       linearGradient: {
+        justifyContent: 'center',
+        alignContent: 'center',
+        alignItems: 'center',
         width: '100%',
         height: 60,
         borderRadius: 10,

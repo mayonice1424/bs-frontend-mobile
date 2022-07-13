@@ -65,8 +65,8 @@ const textStyle = StyleSheet.create({
   },
   body2: {
     fontFamily: 'Poppins-Semibold',
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
+    fontWeight: '700',
   },
   body3:{
     fontFamily: 'Poppins-Regular',
@@ -92,6 +92,11 @@ const textStyle = StyleSheet.create({
   faq:{
     fontFamily: 'Ubuntu-Regular',
     fontSize: 16,
+  },
+  faqTitle:{
+    fontFamily: 'Roboto-Regular',
+    fontSize: 18,
+    fontWeight: 'bold',
   }
 });
 

@@ -60,7 +60,7 @@ const DetailKerajinanScreen = ({route, navigation}) => {
             </View>
             <View>
               <Text style={[colorStyle.primerGreenActive, textStyle.body2]}>
-                Rp.{kerajinan.harga_kerajinan}
+                {kerajinan.harga_kerajinan} Coin
               </Text>
             </View>
             <View style={{marginVertical: '8%'}}>

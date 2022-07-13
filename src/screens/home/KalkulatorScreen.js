@@ -7,7 +7,7 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
-
+import CheckBox from "../../components/CheckBox";
 import colorStyle from '../../styles/colorStyle';
 import layoutStyle from '../../styles/layoutStyle';
 import saldoStyle from '../../styles/saldoStyle';
@@ -72,6 +72,7 @@ const KalkulatorScreen = () => {
     }
   ]);
   const [nilai, setNilai] = useState(0);
+  const [checked, setChecked] = useState(false);
   return (
     <View style={layoutStyle.container}>
       <ScrollView>
@@ -85,11 +86,21 @@ const KalkulatorScreen = () => {
                     {
                       item.namaBarang.map((item, index) => {
                         return(
-                          <View key={index} style={[{justifyContent:'space-between',flexDirection:'row',marginVertical:5}]}>
+                          <View key={index} style={[{justifyContent:'space-between',flexDirection:'row',marginVertical:2}]}>
+                            <CheckBox
+                              onChange={() => { 
+                                setChecked(!checked);
+                                if(nilai === 0){
+                                  isChecked = {checked};
+                                }else{
+                                  isChecked = true;
+                                }
+                              }}
+                            />
                             <Text style={[colorStyle.blackForFontAndAnything]}>{item.namaSampah}</Text>
                               <Text style={[colorStyle.blackForFontAndAnything]}>{item.harga} Coin</Text>
-                            <View key={index} style={{flexDirection:'row'}}>
-                              <TouchableOpacity  style ={[colorStyle.backgroundPencairan,{borderRadius:5,paddingHorizontal:7,paddingVertical:4}]}
+                            <View key={index} style={{flexDirection:'row',justifyContent:'space-between'}}>
+                              <TouchableOpacity  style ={[colorStyle.backgroundPencairan,{borderRadius:5,paddingHorizontal:8, justifyContent:'center',alignItems:'center'}]}
                                  onPress={() => {
                                   if(nilai>0){
                                     setNilai(nilai - 1);
@@ -101,9 +112,9 @@ const KalkulatorScreen = () => {
                                 <Text style={[colorStyle.blackForFontAndAnything,{fontSize:15}]}>-</Text>
                               </TouchableOpacity>
                               <View >
-                                <Text style={[colorStyle.blackForFontAndAnything,{fontSize:15}]}> {nilai} {item.nama} </Text>
+                                <Text style={[colorStyle.blackForFontAndAnything,{fontSize:15}]}>  {nilai} {item.nama}  </Text>
                               </View> 
-                              <TouchableOpacity style ={[colorStyle.backgroundPrimerGreenActive,{borderRadius:5,paddingHorizontal:7,paddingVertical:4}]}
+                              <TouchableOpacity style ={[colorStyle.backgroundPrimerGreenActive,{borderRadius:5,paddingHorizontal:8,justifyContent:'center',alignItems:'center'}]}
                                onPress={() => {
                                 setNilai(nilai+1)
                               }}

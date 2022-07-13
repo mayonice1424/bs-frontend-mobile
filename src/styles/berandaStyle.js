@@ -60,7 +60,8 @@ const berandaStyle = StyleSheet.create({
     flexDirection: 'column',
   },
   rightWrap: {
-    width: '50%',
+    paddingRight: '5%',
+    maxWidth: '40%',
   },
   wrap: {
     marginTop: '5%',
@@ -80,7 +81,7 @@ const berandaStyle = StyleSheet.create({
   },
   boxRow: {
     minHeight: 90,
-    height: '13%',
+    height: '12%',
     flexDirection: 'row',
     marginBottom: '1%',
     marginTop: '3%',

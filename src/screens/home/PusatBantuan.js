@@ -23,6 +23,11 @@ const PusatBantuan = () => {
                 pertanyaan: 'Dimana letak Bang Salam ?',
                 jawaban: 'Bang Salam merupakan salah satu bentuk kepedulian terhadap lingkungan dengan memanfaatkan bang sampah '
             },
+            {
+                id : 4,
+                pertanyaan: 'Kenapa saya tidak bisa akses ?',
+                jawaban: 'Bang Salam merupakan salah satu bentuk kepedulian terhadap lingkungan dengan memanfaatkan bang sampah '
+            },
         ]},
         {
             id : 2,
@@ -63,9 +68,8 @@ const PusatBantuan = () => {
                                 return(
                                     <View key={index}>
                                                 <View style={{marginTop:'5%'}}>
-                                                    <Text style={[textStyle.header,colorStyle.blackForFontAndAnything]}>{item.kategori}</Text>
+                                                    <Text style={[textStyle.faqTitle,colorStyle.blackForFontAndAnything]}>{item.kategori}</Text>                                                    
                                                 </View>
-                                                <HorizontalLine />
                                                 {
                                                 item.subKategori.map((item, index) => {
                                                     return(
@@ -75,16 +79,22 @@ const PusatBantuan = () => {
                                                                 setCurrentPertanyaan(item);
                                                             }}
                                                             >
+                                                                <View style= {[
+                                                                    currentPertanyaan === item ? colorStyle.backgroundDarkGreen : colorStyle.backgroundBlackForFontAndAnything,
+                                                                    { paddingVertical:0.5, marginBottom:'3%' },
+                                                                    ]}/>
                                                                 <Text style={[
-                                                                    textStyle.faq,colorStyle.darkGreen,{fontWeight:'700'}]}>
+                                                                    currentPertanyaan === item ? colorStyle.primerGreenActive : colorStyle.blackForFontAndAnything
+                                                                   ,{fontWeight:'700'},
+                                                                   
+                                                                   ]}>
                                                                 {item.pertanyaan}</Text>
+
                                                             </TouchableOpacity>
                                                             {
                                                                 currentPertanyaan === item ?
                                                                 <View>
-                                                                    <View style= {{backgroundColor:'#D9D9D9', paddingVertical:1,marginVertical:20}}/>
-                                                                    <Text style={[textStyle.faq,colorStyle.blackForFontAndAnything,{fontWeight:'700'}]}>{item.jawaban}</Text>
-                                                                    <View style= {{backgroundColor:'#D9D9D9', paddingVertical:0.5,marginVertical:20}}/>
+                                                                    <Text style={[textStyle.faq,colorStyle.blackForFontAndAnything,{fontWeight:'600'}]}>{item.jawaban}</Text>
                                                                 </View>
                                                                 :
                                                                 null
