@@ -23,7 +23,7 @@ import {
   ConvertTime,
   SliceDecimal,} from '../../utility/FunctionForUI';
 
-const BerandaScreen({ navigation }) {
+const BerandaScreen = ({ navigation }) => {
   const [user, setUser] = useState({
     id: '000000000000',
     nama: 'Pengguna',
