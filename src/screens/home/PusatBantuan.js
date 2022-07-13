@@ -75,13 +75,15 @@ const PusatBantuan = () => {
                                                                 setCurrentPertanyaan(item);
                                                             }}
                                                             >
-                                                                <Text style={[textStyle.faq,colorStyle.darkGreen]}>{item.pertanyaan}</Text>
+                                                                <Text style={[
+                                                                    textStyle.faq,colorStyle.darkGreen,{fontWeight:'700'}]}>
+                                                                {item.pertanyaan}</Text>
                                                             </TouchableOpacity>
                                                             {
                                                                 currentPertanyaan === item ?
                                                                 <View>
-                                                                    <View style= {{backgroundColor:'#D9D9D9', paddingVertical:0.5,marginVertical:20}}/>
-                                                                    <Text style={[textStyle.faq,colorStyle.blackForFontAndAnything]}>{item.jawaban}</Text>
+                                                                    <View style= {{backgroundColor:'#D9D9D9', paddingVertical:1,marginVertical:20}}/>
+                                                                    <Text style={[textStyle.faq,colorStyle.blackForFontAndAnything,{fontWeight:'700'}]}>{item.jawaban}</Text>
                                                                     <View style= {{backgroundColor:'#D9D9D9', paddingVertical:0.5,marginVertical:20}}/>
                                                                 </View>
                                                                 :

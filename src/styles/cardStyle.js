@@ -20,7 +20,7 @@ const cardStyle = StyleSheet.create({
   },
   image:{
     borderRadius: 10,
-    marginVertical: '3%',
+    marginVertical: '7%',
     marginHorizontal: '5%',
     width: 120,
     height: 120,

@@ -70,7 +70,10 @@ const KerajinanScreen = ({navigation}) => {
                         style={[
                           textStyle.caption,
                           colorStyle.blackForFontAndAnything,
-                        ]}>
+                        ]}
+                        numberOfLines={2}
+                        ellipsizeMode="tail"
+                        >
                         {item.nama_kerajinan}
                       </Text>
                       <Text style={[textStyle.body1, colorStyle.darkGreen]}>

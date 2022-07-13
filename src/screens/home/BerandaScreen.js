@@ -276,7 +276,10 @@ const BerandaScreen = ({navigation}) => {
                           style={[
                             textStyle.caption,
                             colorStyle.blackForFontAndAnything,
-                          ]}>
+                          ]}
+                          numberOfLines={2}
+                          ellipsizeMode="tail"
+                          >
                           {item.judul_informasi}
                         </Text>
                         <Text style={[textStyle.date, colorStyle.darkGreen]}>

@@ -72,7 +72,10 @@ const ArtikelScreen = ({navigation}) => {
                             artikelCardStyle.title,
                             colorStyle.blackForFontAndAnything,
                             textStyle.titleItem,
-                          ]}>
+                          ]}
+                          numberOfLines={2}
+                          ellipsizeMode="tail"
+                          >
                           {item.judul_informasi}
                         </Text>
                         <Text
