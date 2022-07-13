@@ -77,7 +77,7 @@ const JualSampahScreen = ({navigation}) => {
   }, []);
 
   const Jualan = () => {
-    console.log(data[0]);
+    // console.log(data[0]);
     if (data.length > 0) {
       return (
         <View style={[saldoStyle.boxSmaller, {marginBottom: '5%'}]}>
