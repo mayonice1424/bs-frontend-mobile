@@ -1,4 +1,4 @@
-import {View, Image, Text, TouchableOpacity} from 'react-native';
+import {View, Image, Text, TouchableOpacity, Alert} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import profilStyleScreen from '../../styles/profilStyle';
 import colorStyle from '../../styles/colorStyle';
@@ -101,7 +101,14 @@ const ProfilScreen = ({navigation}) => {
         </View>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('CekSaldo', {data_user: user, token: token});
+            if (user.status_verifikasi === '1') {
+              navigation.navigate('CekSaldo', {data_user: user, token: token});
+            } else {
+              Alert.alert(
+                'Verifikasi Akun Dibutuhkan',
+                'Akun Anda belum terverifikasi, pastikan Anda telah mengisi data KTP dan NIK yang sesuai, dan menunggu konfirmasi dari admin',
+              );
+            }
           }}
           style={[
             colorStyle.backgroundPrimerGreenActive,
@@ -131,7 +138,10 @@ const ProfilScreen = ({navigation}) => {
           style={[
             colorStyle.backgroundPrimerGreenActive,
             profilStyleScreen.profilButton,
-          ]}>
+          ]}
+          onPress={() => {
+            Alert.alert('Bang Salam', 'Fitur ini belum tersedia');
+          }}>
           <View style={{flexDirection: 'row'}}>
             <Feather name="edit" size={23} style={colorStyle.whiteForCard} />
             <Text
@@ -152,7 +162,10 @@ const ProfilScreen = ({navigation}) => {
           style={[
             colorStyle.backgroundPrimerGreenActive,
             profilStyleScreen.profilButton,
-          ]}>
+          ]}
+          onPress={() => {
+            Alert.alert('Bang Salam', 'Fitur ini belum tersedia');
+          }}>
           <View style={{flexDirection: 'row'}}>
             <Ionicons
               name="settings"
@@ -179,8 +192,16 @@ const ProfilScreen = ({navigation}) => {
             profilStyleScreen.profilButton,
           ]}
           onPress={() => {
-            AsyncStorage.removeItem('token');
-            navigation.navigate('LoginRoutes');
+            Alert.alert('Konfirmasi', 'Apakah Anda yakin ingin keluar?', [
+              {text: 'Tidak', style: 'cancel'},
+              {
+                text: 'Ya',
+                onPress: () => {
+                  AsyncStorage.removeItem('token');
+                  navigation.navigate('LoginRoutes');
+                },
+              },
+            ]);
           }}>
           <View style={{flexDirection: 'row'}}>
             <Ionicons name="exit" size={25} style={colorStyle.whiteForCard} />

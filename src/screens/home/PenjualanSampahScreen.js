@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import penjualanSampahStyle from '../../styles/penjualanSampahStyle';
@@ -13,283 +14,39 @@ import colorStyle from '../../styles/colorStyle';
 import textStyle from '../../styles/textStyle';
 import cardStyle from '../../styles/cardStyle';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {ip} from '../Ip';
+import {MoneySplitbyDot} from '../../utility/FunctionForUI';
+
 const Stack = createNativeStackNavigator();
-const PenjualanSampahScreen = ({navigation}) => {
-  const [kategori, setKategori] = useState([
-    {
-      id: 1,
-      kategoriSampah: 'PET',
-      dataSampah: [
-        {
-          id: 1,
-          namaSampah: 'Botol Kaca',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 2,
-          namaSampah: 'Botol Plastik',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 3,
-          namaSampah: 'Botol Metal',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 4,
-          namaSampah: 'Botol Bekas',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-      ],
-    },
-    {
-      id: 2,
-      kategoriSampah: 'KOMPOST',
-      dataSampah: [
-        {
-          id: 1,
-          namaSampah: 'Botol Kaca',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 2,
-          namaSampah: 'Botol Plastik',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 3,
-          namaSampah: 'Botol Metal',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 4,
-          namaSampah: 'Botol Bekas',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-      ],
-    },
-    {
-      id: 3,
-      kategoriSampah: 'PLASTIK',
-      dataSampah: [
-        {
-          id: 1,
-          namaSampah: 'Botol',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 2,
-          namaSampah: 'Botol Plastik',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 3,
-          namaSampah: 'Botol Metal',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 4,
-          namaSampah: 'Botol Bekas',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-      ],
-    },
-    {
-      id: 4,
-      kategoriSampah: 'KACA',
-      dataSampah: [
-        {
-          id: 1,
-          namaSampah: 'Botol Kaca',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 2,
-          namaSampah: 'Botol Plastik',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 3,
-          namaSampah: 'Botol Metal',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 4,
-          namaSampah: 'Botol Bekas',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-      ],
-    },
-    {
-      id: 5,
-      kategoriSampah: 'KULIT',
-      dataSampah: [
-        {
-          id: 1,
-          namaSampah: 'Botol Kaca',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 2,
-          namaSampah: 'Botol Plastik',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 3,
-          namaSampah: 'Botol Metal',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 4,
-          namaSampah: 'Botol Bekas',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-      ],
-    },
-    {
-      id: 6,
-      kategoriSampah: 'PARASUT',
-      dataSampah: [
-        {
-          id: 1,
-          namaSampah: 'Botol Kaca',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 2,
-          namaSampah: 'Botol Plastik',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 3,
-          namaSampah: 'Botol Metal',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 4,
-          namaSampah: 'Botol Bekas',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-      ],
-    },
-    {
-      id: 7,
-      kategoriSampah: 'SIRUP',
-      dataSampah: [
-        {
-          id: 1,
-          namaSampah: 'Botol Kaca',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 2,
-          namaSampah: 'Botol Plastik',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 3,
-          namaSampah: 'Botol Metal',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 4,
-          namaSampah: 'Botol Bekas',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-      ],
-    },
-    {
-      id: 8,
-      kategoriSampah: 'Botol',
-      dataSampah: [
-        {
-          id: 1,
-          namaSampah: 'Botol Kaca',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 2,
-          namaSampah: 'Botol Plastik',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 3,
-          namaSampah: 'Botol Metal',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-        {
-          id: 4,
-          namaSampah: 'Botol Bekas',
-          kuantitas: '1Kg',
-          harga: '+ 10.000',
-          foto: require('../.././images/Image/JenisSampah/BotolKaca.jpg'),
-        },
-      ],
-    },
-  ]);
+const PenjualanSampahScreen = ({route, navigation}) => {
+  const [kategori, setKategori] = useState([]);
   const [active, setActive] = useState(1);
+  const user = route.params.data;
+
+  const getDataSampah = async () => {
+    try {
+      let response = await fetch(
+        ip + `bang-salam-api/lihat-data-sampah/`,
+
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+      const responseJson = await response.json();
+      // console.log('responseJson :', responseJson);
+      setKategori(responseJson);
+    } catch (error) {
+      // console.log('error :', error);
+    }
+  };
+
+  useEffect(() => {
+    getDataSampah();
+  }, []);
+
   return (
     <View style={[penjualanSampahStyle.container]}>
       <View style={[penjualanSampahStyle.content]}>
@@ -326,7 +83,14 @@ const PenjualanSampahScreen = ({navigation}) => {
                 colorStyle.backgroundSoftYellow,
               ]}
               onPress={() => {
-                navigation.navigate('JualSampahScreen');
+                if (user.status_verifikasi === '1') {
+                  navigation.navigate('JualSampahScreen');
+                } else {
+                  Alert.alert(
+                    'Verifikasi Akun Dibutuhkan',
+                    'Akun Anda belum terverifikasi, pastikan Anda telah mengisi data KTP dan NIK yang sesuai, dan menunggu konfirmasi dari admin',
+                  );
+                }
               }}>
               <Ionicons
                 name="receipt"
@@ -340,10 +104,10 @@ const PenjualanSampahScreen = ({navigation}) => {
             </TouchableOpacity>
           </View>
           <Text style={[colorStyle.darkGreen, textStyle.body2]}>
-            Harga Sampah Anorganik
+            Katalog Harga Sampah
           </Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <View style={{flexDirection: 'row',marginBottom:'1%'}}>
+            <View style={{flexDirection: 'row', marginBottom: '1%'}}>
               {kategori.map((item, index) => {
                 return (
                   <TouchableOpacity
@@ -364,7 +128,7 @@ const PenjualanSampahScreen = ({navigation}) => {
                           ? colorStyle.whiteForCard
                           : colorStyle.blackForFontAndAnything,
                       ]}>
-                      {item.kategoriSampah}
+                      {item.nama_kategori_sampah}
                     </Text>
                   </TouchableOpacity>
                 );
@@ -373,10 +137,68 @@ const PenjualanSampahScreen = ({navigation}) => {
           </ScrollView>
           <View style={{marginTop: 10}}>
             {kategori.map((item, index) => {
-              if (item.id === active) {
+              if (item.nama_kategori_sampah === 'Semua' && item.id === active) {
                 return (
                   <View key={index}>
-                    {item.dataSampah.map((item, index) => {
+                    {kategori.map((item, index) => {
+                      return (
+                        <View key={index}>
+                          {item.list_sampah.map((item, index) => {
+                            // console.log(item);
+                            return (
+                              <View key={index} style={[cardStyle.container]}>
+                                <View
+                                  style={{
+                                    flexDirection: 'row',
+                                    alignContent: 'center',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                  }}>
+                                  <View>
+                                    <Image
+                                      source={{uri: item.foto_sampah}}
+                                      style={cardStyle.image}
+                                    />
+                                  </View>
+                                  <View>
+                                    <Text
+                                      style={[
+                                        textStyle.titleItem,
+                                        colorStyle.blackForFontAndAnything,
+                                      ]}>
+                                      {item.nama_sampah}
+                                    </Text>
+                                    <Text
+                                      style={[
+                                        textStyle.body3,
+                                        colorStyle.blackForFontAndAnything,
+                                      ]}>
+                                      {item.kuantitas}{' '}
+                                      {item.jenis_kuantitas === '0'
+                                        ? 'Buah/Pcs'
+                                        : 'Kg'}
+                                    </Text>
+                                    <Text
+                                      style={[
+                                        textStyle.body2,
+                                        colorStyle.darkGreen,
+                                      ]}>
+                                      {MoneySplitbyDot(item.harga)} Coin
+                                    </Text>
+                                  </View>
+                                </View>
+                              </View>
+                            );
+                          })}
+                        </View>
+                      );
+                    })}
+                  </View>
+                );
+              } else if (item.id === active) {
+                return (
+                  <View key={index}>
+                    {item.list_sampah.map((item, index) => {
                       return (
                         <View key={index} style={[cardStyle.container]}>
                           <View
@@ -388,7 +210,7 @@ const PenjualanSampahScreen = ({navigation}) => {
                             }}>
                             <View>
                               <Image
-                                source={item.foto}
+                                source={{uri: item.foto_sampah}}
                                 style={cardStyle.image}
                               />
                             </View>
@@ -398,18 +220,21 @@ const PenjualanSampahScreen = ({navigation}) => {
                                   textStyle.titleItem,
                                   colorStyle.blackForFontAndAnything,
                                 ]}>
-                                {item.namaSampah}
+                                {item.nama_sampah}
                               </Text>
                               <Text
                                 style={[
                                   textStyle.body3,
                                   colorStyle.blackForFontAndAnything,
                                 ]}>
-                                {item.kuantitas}
+                                {item.kuantitas}{' '}
+                                {item.jenis_kuantitas === '0'
+                                  ? 'Buah/Pcs'
+                                  : 'Kg'}
                               </Text>
                               <Text
                                 style={[textStyle.body2, colorStyle.darkGreen]}>
-                                {item.harga}
+                                {MoneySplitbyDot(item.harga)} Coin
                               </Text>
                             </View>
                           </View>
