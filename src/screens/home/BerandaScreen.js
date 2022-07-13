@@ -8,7 +8,6 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-
 import layoutStyle from '../../styles/layoutStyle';
 import berandaStyle from '../../styles/berandaStyle';
 import textStyle from '../../styles/textStyle';
@@ -18,9 +17,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foundation from 'react-native-vector-icons/Foundation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ip} from '../Ip';
-import moment from 'moment';
+import {
+  MoneySplitbyDot,
+  MakeStripInString,
+  ConvertTime,
+  SliceDecimal,} from '../../utility/FunctionForUI';
 
-const BerandaScreen = ({navigation}) => {
+const BerandaScreen({ navigation }) {
   const [user, setUser] = useState({
     id: '000000000000',
     nama: 'Pengguna',
@@ -46,7 +49,7 @@ const BerandaScreen = ({navigation}) => {
     try {
       let response = await fetch(
         ip + `bang-salam-api/lihat-users/` + tokens.id + `/`,
-        data,
+        data
       );
       let res = await response.json();
       // console.log(res);
@@ -67,20 +70,6 @@ const BerandaScreen = ({navigation}) => {
     }
   };
 
-  const makeStripInString = transaction_id => {
-    let number = transaction_id;
-    let str = number.toString();
-    let result = str.replace(/\d{4}(?=.)/g, '$&-');
-    return result;
-  };
-
-  const moneySplitbyDot = money => {
-    let number = money;
-    let str = number.toString();
-    let result = str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    return result;
-  };
-
   useEffect(() => {
     getData();
     getDataPengumuman();
@@ -96,8 +85,7 @@ const BerandaScreen = ({navigation}) => {
             <View>
               <Image
                 style={berandaStyle.image}
-                source={{uri: user.foto_profil}}
-              />
+                source={{ uri: user.foto_profil }} />
             </View>
             <View style={berandaStyle.textProfile}>
               <Text
@@ -117,30 +105,27 @@ const BerandaScreen = ({navigation}) => {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() =>
-              navigation.navigate('CekSaldo', {data_user: user, token: token})
-            }>
+            onPress={() => navigation.navigate('CekSaldo', { data_user: user, token: token })}>
             <View style={[berandaStyle.userInfo]}>
               <LinearGradient
-                start={{x: 0.91, y: 0}}
-                end={{x: 0.91, y: 1.12}}
+                start={{ x: 0.91, y: 0 }}
+                end={{ x: 0.91, y: 1.12 }}
                 colors={['#63E798', '#3CCA75']}
                 style={[berandaStyle.linearGradient]}>
-                <View style={{flexDirection: 'column'}}>
+                <View style={{ flexDirection: 'column' }}>
                   <View style={berandaStyle.wrap}>
                     <View style={berandaStyle.viewSaldo}>
                       <Image
                         style={berandaStyle.imageCoin}
-                        source={require('../../images/Image/WhiteCoin.png')}
-                      />
+                        source={require('../../images/Image/WhiteCoin.png')} />
                       <Text style={[textStyle.body1, colorStyle.whiteForCard]}>
-                        Salam Coin: {moneySplitbyDot(user.saldo.slice(0, -3))}{' '}
+                        Salam Coin: {MoneySplitbyDot(SliceDecimal(user.saldo))}{' '}
                       </Text>
                     </View>
                     <View style={berandaStyle.rightWrap}>
                       <Text style={[textStyle.body4, colorStyle.whiteForCard]}>
                         {' '}
-                        No Rekening : {makeStripInString(user.id)}
+                        No Rekening: {MakeStripInString(user.id)}
                       </Text>
                     </View>
                   </View>
@@ -155,17 +140,16 @@ const BerandaScreen = ({navigation}) => {
                 berandaStyle.containerBox,
               ]}
               onPress={() => navigation.navigate('Jadwal')}>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 <Ionicons
                   name="calendar"
                   size={30}
-                  style={colorStyle.blackForFontAndAnything}
-                />
+                  style={colorStyle.blackForFontAndAnything} />
                 <Text
                   style={[
                     textStyle.body1,
                     colorStyle.blackForFontAndAnything,
-                    {marginLeft: 10, marginTop: 5},
+                    { marginLeft: 10, marginTop: 5 },
                   ]}>
                   Jadwal
                 </Text>
@@ -181,13 +165,12 @@ const BerandaScreen = ({navigation}) => {
                 <Ionicons
                   name="receipt"
                   size={30}
-                  style={colorStyle.blackForFontAndAnything}
-                />
+                  style={colorStyle.blackForFontAndAnything} />
                 <Text
                   style={[
                     textStyle.body1,
                     colorStyle.blackForFontAndAnything,
-                    {marginLeft: 10},
+                    { marginLeft: 10 },
                   ]}>
                   Penjualan Sampah
                 </Text>
@@ -200,20 +183,17 @@ const BerandaScreen = ({navigation}) => {
                 colorStyle.backgroundSoftGreen,
                 berandaStyle.containerBox,
               ]}
-              onPress={() =>
-                navigation.navigate('PencairanDana', {data: user})
-              }>
+              onPress={() => navigation.navigate('PencairanDana', { data: user })}>
               <View style={berandaStyle.boxContent}>
                 <Ionicons
                   name="wallet"
                   size={30}
-                  style={colorStyle.blackForFontAndAnything}
-                />
+                  style={colorStyle.blackForFontAndAnything} />
                 <Text
                   style={[
                     textStyle.body1,
                     colorStyle.blackForFontAndAnything,
-                    {marginLeft: 10},
+                    { marginLeft: 10 },
                   ]}>
                   Pencairan Dana
                 </Text>
@@ -226,13 +206,12 @@ const BerandaScreen = ({navigation}) => {
                 <Foundation
                   name="telephone"
                   size={30}
-                  style={colorStyle.blackForFontAndAnything}
-                />
+                  style={colorStyle.blackForFontAndAnything} />
                 <Text
                   style={[
                     textStyle.body1,
                     colorStyle.blackForFontAndAnything,
-                    {marginLeft: 10},
+                    { marginLeft: 10 },
                   ]}>
                   Pusat Bantuan
                 </Text>
@@ -266,7 +245,7 @@ const BerandaScreen = ({navigation}) => {
                       navigation.navigate('DetailArtikelScreen', {
                         data: item.id,
                       });
-                    }}
+                    } }
                     style={cardStyle.container}>
                     <View
                       style={{
@@ -277,9 +256,8 @@ const BerandaScreen = ({navigation}) => {
                       }}>
                       <View>
                         <Image
-                          source={{uri: item.thumbnail_informasi}}
-                          style={cardStyle.image}
-                        />
+                          source={{ uri: item.thumbnail_informasi }}
+                          style={cardStyle.image} />
                       </View>
                       <View style={cardStyle.text}>
                         <Text
@@ -290,9 +268,9 @@ const BerandaScreen = ({navigation}) => {
                           {item.judul_informasi}
                         </Text>
                         <Text style={[textStyle.date, colorStyle.darkGreen]}>
-                          {moment(item.tanggal_dibuat).format('DD MMMM YYYY')}
+                          {ConvertTime(item.tanggal_dibuat)}
                         </Text>
-                        <View style={{width: 190}}>
+                        <View style={{ width: 190 }}>
                           <Text
                             style={[
                               textStyle.body5,
@@ -313,6 +291,6 @@ const BerandaScreen = ({navigation}) => {
       </View>
     </View>
   );
-};
+}
 
 export default BerandaScreen;
