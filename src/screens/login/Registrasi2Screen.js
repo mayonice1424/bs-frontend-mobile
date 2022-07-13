@@ -67,7 +67,7 @@ const RegistrasiScreen = ({route, navigation}) => {
     final_data.append('foto_ktp', all_data.foto_ktp);
     // console.log('halloo', final_data);
 
-    return await fetch(ip + `bang-salam-api/register-user/`, {
+    return await fetch(`${ip}bang-salam-api/register-user/`, {
       method: 'POST',
       headers: {
         // 'Content-Type': 'application/json',

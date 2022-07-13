@@ -33,7 +33,7 @@ const ProfilScreen = ({navigation}) => {
     };
     try {
       let response = await fetch(
-        ip + `bang-salam-api/lihat-users/` + tokens.id + `/`,
+        `${ip}bang-salam-api/lihat-users/` + tokens.id + `/`,
         data,
       );
       let res = await response.json();

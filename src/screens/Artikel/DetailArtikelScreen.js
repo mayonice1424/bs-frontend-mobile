@@ -18,7 +18,7 @@ const DetailArtikelScreen = ({route, navigation}) => {
   const getDetailArtikel = async () => {
     try {
       let response = await fetch(
-        ip + `bang-salam-api/lihat-data-informasi/` + route.params.data + `/`,
+        `${ip}bang-salam-api/lihat-data-informasi/` + route.params.data + `/`,
       );
       let res = await response.json();
       console.log(res);

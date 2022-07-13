@@ -36,7 +36,7 @@ const JualSampahScreen = ({navigation}) => {
       body: JSON.stringify(body),
     };
     try {
-      let response = await fetch(ip + `bang-salam-api/penjualan/`, data);
+      let response = await fetch(`${ip}bang-salam-api/penjualan/`, data);
       let res = await response.json();
       console.log(res);
       Alert.alert(
@@ -61,7 +61,7 @@ const JualSampahScreen = ({navigation}) => {
     };
     try {
       let response = await fetch(
-        ip + `bang-salam-api/penjualan-onprocess/?user_id=` + tokens.id,
+        `${ip}bang-salam-api/penjualan-onprocess/?user_id=` + tokens.id,
         data,
       );
       let res = await response.json();

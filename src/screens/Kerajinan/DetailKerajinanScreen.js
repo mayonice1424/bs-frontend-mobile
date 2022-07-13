@@ -12,7 +12,7 @@ const DetailKerajinanScreen = ({route, navigation}) => {
   const getDetailKerajinan = async () => {
     try {
       let response = await fetch(
-        ip + `bang-salam-api/kerajinan/` + route.params.data + `/`,
+        `${ip}bang-salam-api/kerajinan/` + route.params.data + `/`,
       );
       let res = await response.json();
       console.log(res);
