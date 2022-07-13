@@ -8,6 +8,7 @@ const textStyle = StyleSheet.create({
   innerTeks: {
     fontFamily: 'Poppins-Regular',
     fontSize: 14,
+    fontWeight: 'bold',
   },
   titleItem: {
     fontFamily: 'Poppins-Medium',
@@ -87,6 +88,10 @@ const textStyle = StyleSheet.create({
     fontFamily: 'Roboto-Regular',
     fontSize: 14,
     fontWeight: 'bold',
+  },
+  faq:{
+    fontFamily: 'Ubuntu-Regular',
+    fontSize: 16,
   }
 });
 
