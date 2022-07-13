@@ -105,16 +105,7 @@ const CekSaldo = ({route, navigation}) => {
   const CardPencairan = props => {
     return (
       <View>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('DetailPencairan', {
-              data_user: userData.data_user,
-              id_penjualan: props.transaction_id,
-              tanggal: props.transaction_date,
-              nominal: props.transaction_nominal,
-              token: userData.token,
-            });
-          }}>
+        <TouchableOpacity>
           <View style={saldoStyle.boxSmaller}>
             <Image
               style={saldoStyle.imageCoin}

@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import penjualanSampahStyle from '../../styles/penjualanSampahStyle';
@@ -14,10 +15,13 @@ import textStyle from '../../styles/textStyle';
 import cardStyle from '../../styles/cardStyle';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {ip} from '../Ip';
+import {MoneySplitbyDot} from '../../utility/FunctionForUI';
+
 const Stack = createNativeStackNavigator();
-const PenjualanSampahScreen = ({navigation}) => {
+const PenjualanSampahScreen = ({route, navigation}) => {
   const [kategori, setKategori] = useState([]);
   const [active, setActive] = useState(1);
+  const user = route.params.data;
 
   const getDataSampah = async () => {
     try {
@@ -79,7 +83,14 @@ const PenjualanSampahScreen = ({navigation}) => {
                 colorStyle.backgroundSoftYellow,
               ]}
               onPress={() => {
-                navigation.navigate('JualSampahScreen');
+                if (user.status_verifikasi === '1') {
+                  navigation.navigate('JualSampahScreen');
+                } else {
+                  Alert.alert(
+                    'Verifikasi Akun Dibutuhkan',
+                    'Akun Anda belum terverifikasi, pastikan Anda telah mengisi data KTP dan NIK yang sesuai, dan menunggu konfirmasi dari admin',
+                  );
+                }
               }}>
               <Ionicons
                 name="receipt"
@@ -128,10 +139,10 @@ const PenjualanSampahScreen = ({navigation}) => {
             {kategori.map((item, index) => {
               if (item.nama_kategori_sampah === 'Semua' && item.id === active) {
                 return (
-                  <View>
+                  <View key={index}>
                     {kategori.map((item, index) => {
                       return (
-                        <View>
+                        <View key={index}>
                           {item.list_sampah.map((item, index) => {
                             // console.log(item);
                             return (
@@ -172,7 +183,7 @@ const PenjualanSampahScreen = ({navigation}) => {
                                         textStyle.body2,
                                         colorStyle.darkGreen,
                                       ]}>
-                                      {item.harga} Coin
+                                      {MoneySplitbyDot(item.harga)} Coin
                                     </Text>
                                   </View>
                                 </View>
@@ -223,7 +234,7 @@ const PenjualanSampahScreen = ({navigation}) => {
                               </Text>
                               <Text
                                 style={[textStyle.body2, colorStyle.darkGreen]}>
-                                {item.harga} Coin
+                                {MoneySplitbyDot(item.harga)} Coin
                               </Text>
                             </View>
                           </View>

@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import layoutStyle from '../../styles/layoutStyle';
@@ -49,7 +50,7 @@ const BerandaScreen = ({navigation}) => {
     };
     try {
       let response = await fetch(
-         `${ip}bang-salam-api/lihat-users/` + tokens.id + `/`,
+        `${ip}bang-salam-api/lihat-users/` + tokens.id + `/`,
         data,
       );
       let res = await response.json();
@@ -107,9 +108,19 @@ const BerandaScreen = ({navigation}) => {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() =>
-              navigation.navigate('CekSaldo', {data_user: user, token: token})
-            }>
+            onPress={() => {
+              if (user.status_verifikasi === '1') {
+                navigation.navigate('CekSaldo', {
+                  data_user: user,
+                  token: token,
+                });
+              } else {
+                Alert.alert(
+                  'Verifikasi Akun Dibutuhkan',
+                  'Akun Anda belum terverifikasi, pastikan Anda telah mengisi data KTP dan NIK yang sesuai, dan menunggu konfirmasi dari admin',
+                );
+              }
+            }}>
             <View style={[berandaStyle.userInfo]}>
               <LinearGradient
                 start={{x: 0.91, y: 0}}
@@ -166,7 +177,9 @@ const BerandaScreen = ({navigation}) => {
                 colorStyle.backgroundSoftYellow,
                 berandaStyle.containerBox,
               ]}
-              onPress={() => navigation.navigate('PenjualanSampah')}>
+              onPress={() => {
+                navigation.navigate('PenjualanSampah', {data: user});
+              }}>
               <View style={berandaStyle.boxContent}>
                 <Ionicons
                   name="receipt"
@@ -190,9 +203,16 @@ const BerandaScreen = ({navigation}) => {
                 colorStyle.backgroundSoftGreen,
                 berandaStyle.containerBox,
               ]}
-              onPress={() =>
-                navigation.navigate('PencairanDana', {data: user})
-              }>
+              onPress={() => {
+                if (user.status_verifikasi === '1') {
+                  navigation.navigate('PencairanDana', {data: user});
+                } else {
+                  Alert.alert(
+                    'Verifikasi Akun Dibutuhkan',
+                    'Akun Anda belum terverifikasi, pastikan Anda telah mengisi data KTP dan NIK yang sesuai, dan menunggu konfirmasi dari admin',
+                  );
+                }
+              }}>
               <View style={berandaStyle.boxContent}>
                 <Ionicons
                   name="wallet"
@@ -278,8 +298,7 @@ const BerandaScreen = ({navigation}) => {
                             colorStyle.blackForFontAndAnything,
                           ]}
                           numberOfLines={2}
-                          ellipsizeMode="tail"
-                          >
+                          ellipsizeMode="tail">
                           {item.judul_informasi}
                         </Text>
                         <Text style={[textStyle.date, colorStyle.darkGreen]}>
