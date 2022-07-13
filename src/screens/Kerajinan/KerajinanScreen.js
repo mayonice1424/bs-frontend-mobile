@@ -17,10 +17,10 @@ const KerajinanScreen = ({navigation}) => {
     try {
       let response = await fetch(`${ip}bang-salam-api/kerajinan/`);
       let res = await response.json();
-      console.log(res);
+      // console.log(res);
       setKerajinan(res);
     } catch (error) {
-      console.log('error: ', error);
+      // console.log('error: ', error);
     }
   };
 
@@ -72,8 +72,7 @@ const KerajinanScreen = ({navigation}) => {
                           colorStyle.blackForFontAndAnything,
                         ]}
                         numberOfLines={2}
-                        ellipsizeMode="tail"
-                        >
+                        ellipsizeMode="tail">
                         {item.nama_kerajinan}
                       </Text>
                       <Text style={[textStyle.body1, colorStyle.darkGreen]}>

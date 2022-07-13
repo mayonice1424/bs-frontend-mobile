@@ -47,11 +47,11 @@ const PencairanDanaScreen = ({route, navigation}) => {
         },
       );
       const responseJson = await response.json();
-      console.log('responseJson :', responseJson);
+      // console.log('responseJson :', responseJson);
       setData(responseJson);
       setSaldoMax(responseJson[0].saldo_user);
     } catch (error) {
-      console.log('error :', error);
+      // console.log('error :', error);
     } finally {
       setLoading(false);
     }
@@ -65,7 +65,7 @@ const PencairanDanaScreen = ({route, navigation}) => {
       total_nominal: credentials.nominal,
       status_pencairan: '0',
     };
-    console.log('body : ', body);
+    // console.log('body : ', body);
     return await fetch(`${ip}bang-salam-api/pencairan/`, {
       method: 'POST',
       headers: {
@@ -76,7 +76,7 @@ const PencairanDanaScreen = ({route, navigation}) => {
     })
       .then(response => response.json())
       .then(response => {
-        console.log('response :', response);
+        // console.log('response :', response);
         Alert.alert(
           'Pencairan Dana',
           'Pencairan dana berhasil sebesar Rp. ' +
@@ -86,7 +86,7 @@ const PencairanDanaScreen = ({route, navigation}) => {
         navigation.navigate('BerandaScreen');
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
   };
   const makeStripInString = transaction_id => {
@@ -112,10 +112,10 @@ const PencairanDanaScreen = ({route, navigation}) => {
         data,
       );
       let res = await response.json();
-      console.log('responseeee : ', res);
+      // console.log('responseeee : ', res);
       setDataSampah(res);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
   const moneySplitbyDot = money => {
@@ -216,7 +216,7 @@ const PencairanDanaScreen = ({route, navigation}) => {
           <Formik
             initialValues={{nominal: ''}}
             onSubmit={(values, actions) => {
-              console.log(values);
+              // console.log(values);
               cairDana(values);
               actions.setSubmitting(false);
             }}

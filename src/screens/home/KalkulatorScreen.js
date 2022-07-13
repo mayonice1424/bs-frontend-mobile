@@ -7,7 +7,6 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
-import CheckBox from "../../components/CheckBox";
 import colorStyle from '../../styles/colorStyle';
 import layoutStyle from '../../styles/layoutStyle';
 import saldoStyle from '../../styles/saldoStyle';
@@ -18,6 +17,8 @@ import HorizontalLine from '../../components/HorizontalLine';
 import {ip} from '../Ip';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
+
+import {CheckBox, NoCheckBox} from '../../components/CheckBox';
 
 const KalkulatorScreen = ({navigation}) => {
   const [satuan, setSatuan] = useState([]);
@@ -56,9 +57,9 @@ const KalkulatorScreen = ({navigation}) => {
         });
       });
       setHarga(hargaNilai);
-      console.log('harga :', hargaNilai);
+      // console.log('harga :', hargaNilai);
     } catch (error) {
-      console.log('error :', error);
+      // console.log('error :', error);
     }
   };
 
@@ -98,6 +99,15 @@ const KalkulatorScreen = ({navigation}) => {
                             marginVertical: 5,
                           },
                         ]}>
+                        {harga.map(item2 => {
+                          if (item2.id === item.id) {
+                            if (item2.kuantitas === 0) {
+                              return <NoCheckBox />;
+                            } else {
+                              return <CheckBox />;
+                            }
+                          }
+                        })}
                         <Text style={[colorStyle.blackForFontAndAnything]}>
                           {item.nama_sampah}
                         </Text>
@@ -152,10 +162,7 @@ const KalkulatorScreen = ({navigation}) => {
                               );
                             }}>
                             <Text
-                              style={[
-                                colorStyle.blackForFontAndAnything,
-                                {fontSize: 15},
-                              ]}>
+                              style={[colorStyle.whiteForCard, {fontSize: 15}]}>
                               -
                             </Text>
                           </TouchableOpacity>
@@ -211,10 +218,7 @@ const KalkulatorScreen = ({navigation}) => {
                               );
                             }}>
                             <Text
-                              style={[
-                                colorStyle.blackForFontAndAnything,
-                                {fontSize: 15},
-                              ]}>
+                              style={[colorStyle.whiteForCard, {fontSize: 15}]}>
                               +
                             </Text>
                           </TouchableOpacity>
@@ -231,23 +235,49 @@ const KalkulatorScreen = ({navigation}) => {
                 justifyContent: 'space-between',
                 marginVertical: 20,
               }}>
-              <Text
-                style={[
-                  colorStyle.blackForFontAndAnything,
-                  {paddingVertical: 10},
-                ]}>
-                Total Pendapatan Coin : {totalPendapatan} Coin
-              </Text>
-              <Text
-                style={[
-                  colorStyle.blackForFontAndAnything,
-                  {paddingVertical: 10},
-                ]}>
-                Biaya Admin : {biayaAdmin} Coin
-              </Text>
-              <Text style={[colorStyle.darkGreen, {paddingVertical: 10}]}>
-                Total Pendapatan : {total} Coin
-              </Text>
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text
+                  style={[
+                    colorStyle.blackForFontAndAnything,
+                    {paddingVertical: 10},
+                  ]}>
+                  Total Pendapatan Coin :
+                </Text>
+                <Text
+                  style={[
+                    colorStyle.blackForFontAndAnything,
+                    {paddingVertical: 10},
+                  ]}>
+                  {totalPendapatan} Coin
+                </Text>
+              </View>
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text
+                  style={[
+                    colorStyle.blackForFontAndAnything,
+                    {paddingVertical: 10},
+                  ]}>
+                  Biaya Admin :
+                </Text>
+                <Text
+                  style={[
+                    colorStyle.blackForFontAndAnything,
+                    {paddingVertical: 10},
+                  ]}>
+                  {biayaAdmin} Coin
+                </Text>
+              </View>
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text style={[colorStyle.darkGreen, {paddingVertical: 10}]}>
+                  Total Pendapatan :
+                </Text>
+                <Text style={[colorStyle.darkGreen, {paddingVertical: 10}]}>
+                  {total} Coin
+                </Text>
+              </View>
             </View>
           </View>
         </View>

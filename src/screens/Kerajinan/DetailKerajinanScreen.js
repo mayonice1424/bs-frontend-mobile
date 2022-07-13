@@ -15,7 +15,7 @@ const DetailKerajinanScreen = ({route, navigation}) => {
         `${ip}bang-salam-api/kerajinan/` + route.params.data + `/`,
       );
       let res = await response.json();
-      console.log(res);
+      // console.log(res);
       // console.log(res.bahan_kerajinan);
       setKerajinan(res);
     } catch (error) {

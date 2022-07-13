@@ -37,16 +37,16 @@ const ProfilScreen = ({navigation}) => {
         data,
       );
       let res = await response.json();
-      console.log(res);
+      // console.log(res);
       setUser(res);
       // console.log(tokens.token);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
-  console.log('cekkk : ', token);
-  console.log('cekkk 2 : ', user);
+  // console.log('cekkk : ', token);
+  // console.log('cekkk 2 : ', user);
 
   useEffect(() => {
     getData();
@@ -81,22 +81,37 @@ const ProfilScreen = ({navigation}) => {
                 @{user.username}
               </Text>
             </View>
-            <View
-              style={[
-                colorStyle.backgroundDarkGreen,
-                profilStyleScreen.status,
-              ]}>
-              <Text
+            {user.status_verifikasi === '0' ? (
+              <View
                 style={[
-                  colorStyle.whiteForCard,
-                  profilStyleScreen.name,
-                  textStyle.body1,
+                  colorStyle.backgroundPencairan,
+                  profilStyleScreen.status,
                 ]}>
-                {user.status_verifikasi === '0'
-                  ? 'Belum diverifikasi'
-                  : 'Terverifikasi'}
-              </Text>
-            </View>
+                <Text
+                  style={[
+                    colorStyle.whiteForCard,
+                    profilStyleScreen.name,
+                    textStyle.body1,
+                  ]}>
+                  Belum diverifikasi
+                </Text>
+              </View>
+            ) : (
+              <View
+                style={[
+                  colorStyle.backgroundDarkGreen,
+                  profilStyleScreen.status,
+                ]}>
+                <Text
+                  style={[
+                    colorStyle.whiteForCard,
+                    profilStyleScreen.name,
+                    textStyle.body1,
+                  ]}>
+                  Terverifikasi
+                </Text>
+              </View>
+            )}
           </View>
         </View>
         <TouchableOpacity

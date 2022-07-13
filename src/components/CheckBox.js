@@ -1,26 +1,38 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import React from "react";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";  
-const CheckBox = (props) => {
-  const iconName = props.isChecked ?
-    "checkbox-blank-outline" : "checkbox-marked";
+import {Pressable, StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+const CheckBox = () => {
   return (
-      <View style={styles.container}>
-              <MaterialCommunityIcons 
-                  name={iconName} size={24} color="#26C165" />
-          <Text style={styles.title}>{props.title}</Text>
-      </View>
+    <View style={styles.container}>
+      <MaterialCommunityIcons
+        name="checkbox-marked"
+        size={24}
+        color="#26C165"
+      />
+    </View>
   );
 };
-export default CheckBox;
-  
+
+const NoCheckBox = () => {
+  return (
+    <View style={styles.container}>
+      <MaterialCommunityIcons
+        name="checkbox-blank-outline"
+        size={24}
+        color="#26C165"
+      />
+    </View>
+  );
+};
+export {CheckBox, NoCheckBox};
+
 const styles = StyleSheet.create({
-    container: {
-        marginHorizontal: 5,
-        borderRadius: 5,
-    },
-    title: {
-        fontSize: 15,
-        color: "#26C165",
-    },
+  container: {
+    marginHorizontal: 5,
+    borderRadius: 5,
+  },
+  title: {
+    fontSize: 15,
+    color: '#26C165',
+  },
 });

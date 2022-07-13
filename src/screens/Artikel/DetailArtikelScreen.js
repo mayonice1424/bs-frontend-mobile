@@ -21,10 +21,10 @@ const DetailArtikelScreen = ({route, navigation}) => {
         `${ip}bang-salam-api/lihat-data-informasi/` + route.params.data + `/`,
       );
       let res = await response.json();
-      console.log(res);
+      // console.log(res);
       setArtikel(res);
     } catch (error) {
-      console.log('error: ', error);
+      // console.log('error: ', error);
     }
   };
 
@@ -41,10 +41,10 @@ const DetailArtikelScreen = ({route, navigation}) => {
               {artikel.judul_informasi}
             </Text>
           </View>
-            <Image
-              style={detailArtikelStyle.imageContainer}
-              source={{uri: artikel.thumbnail_informasi}}
-            />
+          <Image
+            style={detailArtikelStyle.imageContainer}
+            source={{uri: artikel.thumbnail_informasi}}
+          />
           <View style={[detailArtikelStyle.date]}>
             <Text style={[colorStyle.blackForFontAndAnything, textStyle.date]}>
               {moment(artikel.tanggal_dibuat).format('DD MMMM YYYY')}
