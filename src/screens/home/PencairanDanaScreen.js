@@ -29,6 +29,7 @@ const PencairanDanaScreen = ({route, navigation}) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [dataSampah, setDataSampah] = useState([]);
+  const [saldoMax, setSaldoMax] = useState(0);
 
   const getTransaction = async () => {
     try {
@@ -48,6 +49,7 @@ const PencairanDanaScreen = ({route, navigation}) => {
       const responseJson = await response.json();
       console.log('responseJson :', responseJson);
       setData(responseJson);
+      setSaldoMax(responseJson[0].saldo_user);
     } catch (error) {
       console.log('error :', error);
     } finally {
@@ -226,6 +228,13 @@ const PencairanDanaScreen = ({route, navigation}) => {
                   'nominal harus kelipatan 1000',
                   function (value) {
                     return value % 1000 === 0;
+                  },
+                )
+                .test(
+                  'Melebihi batas pencairan',
+                  'Nominal melebihi batas pencairan',
+                  function (value) {
+                    return value <= userData.saldo.slice(0, -3);
                   },
                 )
                 .min(5, 'nominal pencairan minimal 10.000'),
