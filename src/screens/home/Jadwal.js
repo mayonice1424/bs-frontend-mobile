@@ -32,7 +32,12 @@ const Jadwal = () => {
     {
       id: 5,
       hari: 'Jumat',
-      jam: '08:00 - 16:00',
+      jam: '08:00 - 11:00',
+    },
+    {
+      id: 6,
+      hari: 'Sabtu',
+      jam: '08:00 - 12:00',
     },
   ]);
 
