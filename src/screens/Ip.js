@@ -1,1 +1,1 @@
-export const ip = `http://192.168.74.221:8000/`;
+export const ip = `http://192.168.100.224:8000/`;

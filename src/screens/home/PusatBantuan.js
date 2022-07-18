@@ -13,20 +13,20 @@ const PusatBantuan = () => {
             subKategori:[{
                 id : 1,
                 pertanyaan: 'Apa itu Bang Salam ?',
-                jawaban: 'Bang Salam merupakan salah satu bentuk kepedulian terhadap lingkungan dengan memanfaatkan bang sampah '
+                jawaban: 'Bang Salam adalah aplikasi berbasis android yang membantu masyarakat dalam menjual sampah anorganik kepada bank sampah. Sekaligus memberikan informasi terkait pengelolaan sampah kepada masyarakat.',
             },{
                 id : 2,
                 pertanyaan: 'Persyaratan Daftar Bang Salam ?',
-                jawaban: 'Bang Salam merupakan salah satu bentuk kepedulian terhadap lingkungan dengan memanfaatkan bang sampah '
+                jawaban: 'Memiliki e-ktp, membuat akun Bang Salam, dan memiliki semangat untuk melakukan pemilahan sampah di rumah masing-masing.',
             },{
                 id : 3,
                 pertanyaan: 'Dimana letak Bang Salam ?',
-                jawaban: 'Bang Salam merupakan salah satu bentuk kepedulian terhadap lingkungan dengan memanfaatkan bang sampah '
+                jawaban: 'Bang Salam, sementara ini bekerja sama dengan kelompok tani Agropreneur dan Pesantren yang ada di Desa Cintamulya.',
             },
             {
                 id : 4,
                 pertanyaan: 'Kenapa saya tidak bisa akses ?',
-                jawaban: 'Bang Salam merupakan salah satu bentuk kepedulian terhadap lingkungan dengan memanfaatkan bang sampah '
+                jawaban: 'Beberapa fitur tidak dapat diakses oleh pengguna dikarenakan status verifikasi pada profil pengguna belum tervalidasi oleh admin.',
             },
         ]},
         {
@@ -35,11 +35,11 @@ const PusatBantuan = () => {
             subKategori:[{
                 id : 1,
                 pertanyaan: 'Bagaimana Cara Menjual Sampah?',
-                jawaban: 'Sampah anorganik dapat dijual pada Bang Salam yang berlokasi di pesantren pada Kecamatan Candipuro. Sampah terlebih dahulu dipisah oleh pengguna agar mudah untuk menimbang berdasarkan kategori sampah. Untuk melakukan permintaan penjualan sampah dapat mengajukannya pada menu jual sampah pada aplikasi. '
+                jawaban: 'Pilah sampah dari rumah masing-masing, bersihkan dan keringkan. Kemudian bawa sampah anorganik (misal kertas, plastik, logam, dll) ke lokasi penimbangan Bang Salam. Di lokasi penimbangan, akan dilakukan input data berat sampah dan kemudian akan dikonversi menjadi salam coin.',
             },{
                 id : 2,
                 pertanyaan: 'Apakah ada minimal berat atau pcs untuk menjual sampah?',
-                jawaban: 'Bang Salam merupakan salah satu bentuk kepedulian terhadap lingkungan dengan memanfaatkan bang sampah '
+                jawaban: 'Untuk sementara tidak ada berat minimal dalam penjualan sampah.'
             },
     ]},
     {
@@ -48,11 +48,11 @@ const PusatBantuan = () => {
         subKategori:[{
             id : 1,
             pertanyaan: 'Apa itu Salam Coin pada aplikasi ?',
-            jawaban: 'Bang Salam merupakan salah satu bentuk kepedulian terhadap lingkungan dengan memanfaatkan bang sampah '
+            jawaban: 'Salam coin adalah semacam mata uang yang berlaku di aplikasi Bang Salam. 1 Salam Coin bernilai sama dengan 1 Rupiah.',
         },{
             id : 2,
             pertanyaan: 'Bagaimana cara mencairkan dana?',
-            jawaban: 'Bang Salam merupakan salah satu bentuk kepedulian terhadap lingkungan dengan memanfaatkan bang sampah '
+            jawaban: 'Informasi jadwal pencairan dana akan disampaikan melalui aplikasi. Salam coin yang bisa dicairkan adalah yang telah mencapai angka 10.000 Coin (10.000 rupiah) dan telah melakukan penjualan sampah ke bang salam selama lebih dari 1 bulan.',
         }
     ]},
     ]);
